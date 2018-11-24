@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>MAIN SCREEN</Text>
+        <Text>MAIN SCREEN!!!!!!!</Text>
       </View>
     );
   }
