@@ -18,6 +18,13 @@ export default class signInScreen extends React.Component {
           }}
         >
         </Button>
+        <Button
+          title="Home"
+          onPress={() => {
+            navigate('homeScreen');
+          }}
+        >
+        </Button>
       </View>
     );
   }

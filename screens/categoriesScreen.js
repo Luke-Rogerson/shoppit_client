@@ -8,12 +8,12 @@ export default class categoriesScreen extends React.Component {
       <View style={styles.container}>
         <Text>CATS</Text>
         <Button
-          title="Back"
+          title="Next"
           onPress={() => {
-            navigate('signInScreen');
+            navigate('readyScreen');
           }}
         >
-          Back to signin!
+
         </Button>
       </View>
     );
