@@ -8,7 +8,7 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.container}>
         <Text>PROFILE SCREEN</Text>
         <Button
-          title="Go to item-detail page"
+          title="Imagine this is an item"
           onPress={() => navigate('ItemDetailScreen')}
         />
       </View>
