@@ -12,9 +12,7 @@ export default class readyScreen extends React.Component {
           onPress={() => {
             navigate('homeScreen');
           }}
-        >
-
-        </Button>
+        />
       </View>
     );
   }

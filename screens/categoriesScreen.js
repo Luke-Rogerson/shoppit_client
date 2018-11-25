@@ -12,9 +12,7 @@ export default class categoriesScreen extends React.Component {
           onPress={() => {
             navigate('readyScreen');
           }}
-        >
-
-        </Button>
+        />
       </View>
     );
   }
