@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class SignInScreen extends React.Component {
-  static navigationOptions = () => ({
-    title: 'SignIn '
-  });
   render() {
     const {navigate} = this.props.navigation;
     return (
