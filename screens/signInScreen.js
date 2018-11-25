@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 
-export default class signInScreen extends React.Component {
+export default class SignInScreen extends React.Component {
   static navigationOptions = () => ({
     title: 'SignIn '
   });
@@ -13,14 +13,12 @@ export default class signInScreen extends React.Component {
         <Text>THIS IS THE SIGN IN SCREEN</Text>
         <Button
           title="Next"
-          onPress={() => {
-            navigate('categoriesScreen');
-          }}
+          onPress={() => navigate('CategoriesScreen')}
         />
         <Button
           title="Home"
           onPress={() => {
-            navigate('homeScreen');
+            navigate('HomeScreen');
           }}
         />
       </View>

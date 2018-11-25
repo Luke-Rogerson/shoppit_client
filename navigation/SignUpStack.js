@@ -1,11 +1,11 @@
 import { createStackNavigator } from 'react-navigation';
 
-import signInScreen from '../screens/signInScreen';
-import categoriesScreen from '../screens/categoriesScreen';
-import readyScreen from '../screens/readyScreen';
+import SignInScreen from '../screens/SignInScreen';
+import CategoriesScreen from '../screens/CategoriesScreen';
+import ReadyScreen from '../screens/ReadyScreen';
 
 export default createStackNavigator({
-  signInScreen,
-  categoriesScreen,
-  readyScreen
+  SignInScreen,
+  CategoriesScreen,
+  ReadyScreen,
 });

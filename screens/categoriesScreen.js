@@ -1,17 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class categoriesScreen extends React.Component {
+export default class CategoriesScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>CATS</Text>
+        <Text>CATEGORIES SCREEN</Text>
         <Button
           title="Next"
-          onPress={() => {
-            navigate('readyScreen');
-          }}
+          onPress={() => navigate('ReadyScreen')}
         />
       </View>
     );

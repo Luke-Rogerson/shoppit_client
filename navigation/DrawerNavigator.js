@@ -1,11 +1,11 @@
 import { createDrawerNavigator } from 'react-navigation';
 
-import homeScreen from '../screens/homeScreen';
-import profileScreen from '../screens/profileScreen';
-import friendListScreen from '../screens/friendListScreen';
+import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import FriendListScreen from '../screens/FriendListScreen';
 
 export default createDrawerNavigator({
-  homeScreen,
-  profileScreen,
-  friendListScreen
+  HomeScreen,
+  ProfileScreen,
+  FriendListScreen
 });

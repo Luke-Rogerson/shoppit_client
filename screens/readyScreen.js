@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class readyScreen extends React.Component {
+export default class ReadyScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -9,9 +9,7 @@ export default class readyScreen extends React.Component {
         <Text>READY SCREEN</Text>
         <Button
           title="Next"
-          onPress={() => {
-            navigate('homeScreen');
-          }}
+          onPress={() => navigate('HomeScreen')}
         />
       </View>
     );
