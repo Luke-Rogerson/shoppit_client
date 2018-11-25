@@ -1,11 +1,16 @@
 import { createDrawerNavigator } from 'react-navigation';
 
-import MainViewsStack from './MainViewsStack';
+import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import FriendListScreen from '../screens/FriendListScreen';
 
-export default createDrawerNavigator({
-  Home: MainViewsStack, // Using MainViewsStack temporarily
-  ProfileScreen,
-  FriendListScreen
-});
+export default createDrawerNavigator(
+  {
+    HomeScreen,
+    ProfileScreen,
+    FriendListScreen
+  },
+  {
+    initialRouteName: 'HomeScreen'
+  }
+);

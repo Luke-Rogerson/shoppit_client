@@ -14,6 +14,7 @@ export default createStackNavigator(
   },
   {
     headerMode: 'float',
+    headerBackTitleVisible: false,
     navigationOptions: {
       headerStyle: { backgroundColor: '#E73536' },
       title: 'TINDER FOR COOL SHIT',

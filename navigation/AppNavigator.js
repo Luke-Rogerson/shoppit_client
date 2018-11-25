@@ -7,5 +7,5 @@ import MainViewsStack from './MainViewsStack';
 export default createSwitchNavigator({
   SignUp: SignUpStack,
   DrawerNav: DrawerNavigator,
-  MainViews: MainViewsStack
+  MainViews: MainViewsStack,
 });
