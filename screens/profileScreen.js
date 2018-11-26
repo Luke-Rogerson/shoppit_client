@@ -41,7 +41,7 @@ export default class ProfileScreen extends React.Component {
           source={{ uri: this.state.userData.avatar_url }}
           style={styles.profile_pic}
         />
-        <Text>{this.state.userData.categories[1].category_name}</Text>
+        <Text style={styles.category_name}>{this.state.userData.categories[1].category_name}</Text>
         <ScrollView>
           {mockdb.fitness.map((item, i) => {
             return (
@@ -84,5 +84,9 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     margin: 10,
     borderRadius: 10
+  },
+  category_name: {
+    textTransform: 'capitalize',
+    fontWeight: 'bold'
   }
 });
