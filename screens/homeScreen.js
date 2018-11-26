@@ -295,7 +295,6 @@ const styles = StyleSheet.create({
     padding: 20,
     position: 'absolute',
     bottom: 0,
-    backgroundColor: '#efefef'
   },
   btn: {
     flex: 1,
@@ -303,7 +302,6 @@ const styles = StyleSheet.create({
     width: 70,
     borderRadius: 50,
     marginHorizontal: 15,
-    backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'center'
   }
