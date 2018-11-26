@@ -3,6 +3,18 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class FriendListScreen extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      friendsData: null
+    };
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
