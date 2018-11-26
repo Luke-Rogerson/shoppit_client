@@ -288,14 +288,13 @@ export default class HomeScreen extends React.Component {
 }
 const styles = StyleSheet.create({
   btnContainer: {
-    width: SCREEN_WIDTH,
+    // width: SCREEN_WIDTH,
     flex: 1,
     flexDirection: 'row',
     alignContent: 'center',
     padding: 20,
     position: 'absolute',
-    bottom: 0,
-    backgroundColor: '#efefef'
+    bottom: 40
   },
   btn: {
     flex: 1,
@@ -303,7 +302,6 @@ const styles = StyleSheet.create({
     width: 70,
     borderRadius: 50,
     marginHorizontal: 15,
-    backgroundColor: '#ffff',
     alignItems: 'center',
     justifyContent: 'center'
   }
