@@ -13,7 +13,7 @@ export default createStackNavigator(
   {
     headerMode: 'float',
     navigationOptions: {
-      headerStyle: { backgroundColor: '#E73536' },
+      headerStyle: { backgroundColor: '#6F6E6C' },
       title: 'TINDER FOR COOL SHIT',
       headerTintColor: 'white',
       headerLeft: null, // Disables back button

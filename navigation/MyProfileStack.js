@@ -14,13 +14,13 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#E73536' },
+      headerStyle: { backgroundColor: '#6F6E6C' },
       title: 'TINDER FOR COOL SHIT',
       headerTintColor: 'white',
       headerLeft: (
         <TouchableHighlight onPress={() => navigation.toggleDrawer()}>
           <Image
-            source={require('./hamburgericon.png')}
+            source={require('./hamburger-icon.png')}
             style={{ width: 30, height: 30, marginLeft: 10 }}
           />
         </TouchableHighlight>
