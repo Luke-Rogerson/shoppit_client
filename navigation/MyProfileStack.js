@@ -13,7 +13,7 @@ export default createStackNavigator(
     headerBackTitleVisible: true,
     navigationOptions: ({
       headerStyle: { backgroundColor: '#6F6E6C' },
-      title: 'TINDER FOR COOL SHIT',
+      title: 'WISHOP',
       headerTintColor: 'white',
     })
   }
