@@ -13,7 +13,7 @@ export default createBottomTabNavigator(
       navigationOptions: {
         title: 'Home',
         tabBarIcon:
-          <Entypo name='home' size={25} color='lightgrey' style={{paddingTop: 5}} />
+          <Entypo name='home' size={25} color='lightgrey' style={{paddingTop: 5}} />,
       }
     },
     MyProfile: {
@@ -34,6 +34,9 @@ export default createBottomTabNavigator(
     }
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'Home',
+    tabBarOptions: {
+      activeTintColor: 'black'
+    }
   }
 );
