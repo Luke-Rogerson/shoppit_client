@@ -1,9 +1,9 @@
 import { createSwitchNavigator } from 'react-navigation';
 
 import SignUpStack from './SignUpStack';
-import DrawerNavigator from './DrawerNavigator';
+import BottomTabNavigator from './DrawerNavigator';
 
 export default createSwitchNavigator({
   SignUpStack,
-  DrawerNavigator
+  BottomTabNavigator
 });

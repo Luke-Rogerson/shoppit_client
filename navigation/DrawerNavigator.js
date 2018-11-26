@@ -1,10 +1,10 @@
-import { createDrawerNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import HomeStack from './HomeStack';
 import MyProfileStack from './MyProfileStack';
 import FriendsStack from './FriendsStack';
 
-export default createDrawerNavigator(
+export default createBottomTabNavigator(
   {
     HomeStack,
     MyProfileStack,
