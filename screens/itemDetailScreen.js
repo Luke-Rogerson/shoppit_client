@@ -1,26 +1,95 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity
+} from 'react-native';
+import { Ionicons, Entypo } from '@expo/vector-icons';
+
+const Items = [
+  { id: '1', uri: require('../assets/img1.jpg') },
+  { id: '2', uri: require('../assets/img2.jpg') },
+  {
+    id: '3',
+    uri: require('../assets/img3.jpg'),
+    price: '$10.99',
+    item_name: 'Cool Comfy Slipper Sock'
+  },
+  { id: '4', uri: require('../assets/img4.jpg') },
+  { id: '5', uri: require('../assets/img5.jpg') },
+  { id: '6', uri: require('../assets/img6.jpg') }
+];
 
 export default class ItemDetailScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>COOL ITEM HERE</Text>
-        <Text>$1buzillion</Text>
-        <Button
-          title="BUY"
-          onPress={() => navigate('ItemDetailScreen')}
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <Text style={styles.baseText}>
+          <Text style={styles.titleText}>{Items[2].item_name}</Text>
+        </Text>
+
+        <Image
+          style={{
+            flex: 1,
+            height: null,
+            width: null,
+            resizeMode: 'contain'
+          }}
+          source={Items[2].uri}
         />
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <Text style={styles.titleText}>{Items[2].price}</Text>
+          <Button title="BUY NOW" onPress={() => navigate('HomeScreen')} />
+        </View>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity style={styles.btn}>
+            <Entypo name="circle-with-cross" size={50} color="grey" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn}>
+            <Ionicons name="md-heart" size={50} color="grey" />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  btnContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'row',
+    padding: 20,
+    position: 'absolute',
+    bottom: 10
+  },
+  btn: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  baseText: {
+    fontFamily: 'Arial',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    marginTop: 10,
+    textAlign: 'center',
+    zIndex: 1000
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#24292E'
   }
 });
