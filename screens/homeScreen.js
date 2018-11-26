@@ -114,7 +114,7 @@ export default class HomeScreen extends React.Component {
             style={[
               this.rotateAndTranslate,
               {
-                height: SCREEN_HEIGHT - 120,
+                height: SCREEN_HEIGHT - 200,
                 width: SCREEN_WIDTH,
                 padding: 10,
                 position: 'absolute'
@@ -126,7 +126,7 @@ export default class HomeScreen extends React.Component {
                 opacity: this.likeOpacity,
                 transform: [{ rotate: '-30deg' }],
                 position: 'absolute',
-                top: 50,
+                top: 40,
                 left: 40,
                 zIndex: 1000
               }}
@@ -189,7 +189,7 @@ export default class HomeScreen extends React.Component {
               {
                 opacity: this.nextCardOpacity,
                 transform: [{ scale: this.nextCardScale }],
-                height: SCREEN_HEIGHT - 120,
+                height: SCREEN_HEIGHT - 200,
                 width: SCREEN_WIDTH,
                 padding: 10,
                 position: 'absolute'
@@ -269,10 +269,10 @@ export default class HomeScreen extends React.Component {
           backgroundColor: 'white'
         }}
       >
-        <View style={{ height: 60 }} />
+        <View />
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
 
-        <View style={{ height: 60 }} />
+        <View />
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
@@ -288,20 +288,14 @@ export default class HomeScreen extends React.Component {
 }
 const styles = StyleSheet.create({
   btnContainer: {
-    // width: SCREEN_WIDTH,
     flex: 1,
     flexDirection: 'row',
-    alignContent: 'center',
     padding: 20,
     position: 'absolute',
-    bottom: 0
+    bottom: 50
   },
   btn: {
     flex: 1,
-    height: 70,
-    width: 70,
-    borderRadius: 50,
-    marginHorizontal: 15,
     alignItems: 'center',
     justifyContent: 'center'
   }
