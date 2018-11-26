@@ -1,6 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableHighlight
+} from 'react-native';
+import mockdb from '../mockdb.json';
 
 export default class ProfileScreen extends React.Component {
   constructor(props) {
@@ -24,26 +31,29 @@ export default class ProfileScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     if (!userData) return <Text>Loading...</Text>;
+
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.text}>
           {this.state.userData.first_name} {this.state.userData.last_name}
         </Text>
         <Image
           source={{ uri: this.state.userData.avatar_url }}
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: 30,
-            borderWidth: 1,
-            borderColor: 'black',
-            margin: 5
-          }}
+          style={styles.profile_pic}
         />
-        <Button
-          title="Imagine this is an item"
-          onPress={() => navigate('ItemDetailScreen')}
-        />
+        <Text>{this.state.userData.categories[1].category_name}</Text>
+        <ScrollView>
+          {mockdb.fitness.map((item, i) => {
+            return (
+              <TouchableHighlight onPress={() => navigate('ItemDetailScreen')} key={i}>
+                <Image
+                  source={{ uri: item.img_url }}
+                  style={styles.item_images}
+                />
+              </TouchableHighlight>
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }
@@ -54,5 +64,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center'
+  },
+  text: {
+    margin: 10,
+    backgroundColor: 'lightgrey'
+  },
+  profile_pic: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: 'black',
+    marginBottom: 10
+  },
+  item_images: {
+    width: 300,
+    height: 200,
+    borderWidth: 1,
+    borderColor: 'black',
+    margin: 10,
+    borderRadius: 10
   }
 });
