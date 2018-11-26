@@ -7,10 +7,7 @@ export default class ItemDetailScreen extends React.Component {
       <View style={styles.container}>
         <Text>COOL ITEM HERE</Text>
         <Text>$1buzillion</Text>
-        <Button
-          title="BUY"
-          onPress={() => navigate('ItemDetailScreen')}
-        />
+        <Button title="BUY" onPress={() => navigate('HomeScreen')} />
       </View>
     );
   }
