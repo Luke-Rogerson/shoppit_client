@@ -11,7 +11,7 @@ export default class ReadyScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/profile/me')
+    fetch('http://private-e029e-wisher.apiary-mock.com/me')
       .then(res => res.json())
       .then(data => this.setState({ userData: data }))
       // eslint-disable-next-line no-console
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Arial',
-    fontWeight: 'bold',
     fontSize: 20,
     color: '#6F6E6C'
   }

@@ -10,7 +10,7 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -281,16 +281,20 @@ export default class HomeScreen extends React.Component {
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
-            <Entypo name="circle-with-cross" size={50} color="grey" />
+            <Ionicons
+              name="ios-close-circle-outline"
+              size={50}
+              color="#6F6E6C"
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
-            <Ionicons name="md-heart" size={50} color="grey" />
+            <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
             <Ionicons
-              name="ios-information-circle"
+              name="ios-information-circle-outline"
               size={50}
-              color="grey"
+              color="#6F6E6C"
               onPress={() => navigate('ItemDetailScreen')}
             />
           </TouchableOpacity>

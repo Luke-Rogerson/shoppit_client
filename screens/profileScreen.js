@@ -22,7 +22,7 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/profile/me')
+    fetch('http://private-e029e-wisher.apiary-mock.com/me')
       .then(res => res.json())
       .then(data => this.setState({ userData: data }))
       // eslint-disable-next-line no-console
@@ -44,10 +44,9 @@ export default class ProfileScreen extends React.Component {
           source={{ uri: this.state.userData.avatar_url }}
           style={styles.profile_pic}
         />
-
-        <Text style={styles.category_name}>
+        {/* <Text style={styles.category_name}>
           {this.state.userData.categories[1].category_name}
-        </Text>
+        </Text> */}
         <ScrollView>
           {mockdb.fitness.map((item, i) => {
             return (
@@ -77,7 +76,6 @@ const styles = StyleSheet.create({
   text: {
     margin: 10,
     color: '#6F6E6C',
-    fontWeight: 'bold',
     fontSize: 20
   },
   profile_pic: {
@@ -97,7 +95,6 @@ const styles = StyleSheet.create({
   },
   category_name: {
     textTransform: 'capitalize',
-    fontWeight: 'bold',
     color: '#6F6E6C',
     padding: 10
   }

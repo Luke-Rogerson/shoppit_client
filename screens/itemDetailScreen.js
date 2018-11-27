@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const Items = [
   { id: '1', uri: require('../assets/img1.jpg') },
@@ -57,10 +57,14 @@ export default class ItemDetailScreen extends React.Component {
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
-            <Entypo name="circle-with-cross" size={50} color="grey" />
+            <Ionicons
+              name="ios-close-circle-outline"
+              size={50}
+              color="#6F6E6C"
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
-            <Ionicons name="md-heart" size={50} color="grey" />
+            <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
           </TouchableOpacity>
         </View>
       </View>
@@ -89,12 +93,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     zIndex: 1000,
-    color: '#6F6E6C',
-    fontWeight: 'bold'
+    color: '#6F6E6C'
   },
   titleText: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#6F6E6C'
   }
 });
