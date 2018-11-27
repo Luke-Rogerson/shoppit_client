@@ -9,26 +9,14 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Items = [
-  { id: '1', uri: require('../assets/img1.jpg') },
-  { id: '2', uri: require('../assets/img2.jpg') },
-  {
-    id: '3',
-    uri: require('../assets/img3.jpg'),
-    price: '$10.99',
-    item_name: 'Cool Comfy Slipper Sock'
-  },
-  { id: '4', uri: require('../assets/img4.jpg') },
-  { id: '5', uri: require('../assets/img5.jpg') },
-  { id: '6', uri: require('../assets/img6.jpg') }
-];
-
 export default class ItemDetailScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Text style={styles.baseText}>
-          <Text style={styles.titleText}>{Items[2].item_name}</Text>
+          <Text style={styles.titleText}>
+            {this.props.navigation.getParam('name', '')}
+          </Text>
         </Text>
 
         <Image
@@ -38,7 +26,7 @@ export default class ItemDetailScreen extends React.Component {
             width: null,
             resizeMode: 'contain'
           }}
-          source={Items[2].uri}
+          source={{ uri: this.props.navigation.getParam('img_url') }}
         />
 
         <View
@@ -49,7 +37,9 @@ export default class ItemDetailScreen extends React.Component {
             justifyContent: 'center'
           }}
         >
-          <Text style={styles.titleText}>{Items[2].price}</Text>
+          <Text style={styles.titleText}>
+            {this.props.navigation.getParam('price', '')}
+          </Text>
           <Button
             title="BUY NOW"
             onPress={() => uri('https://www.amazon.com/')}

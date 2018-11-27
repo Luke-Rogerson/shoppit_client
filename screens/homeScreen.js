@@ -117,7 +117,7 @@ export default class HomeScreen extends React.Component {
           return (
             <Animated.View
               {...this.PanResponder.panHandlers}
-              key={i}
+              key={item.item_id}
               style={[
                 this.rotateAndTranslate,
                 {
@@ -138,18 +138,7 @@ export default class HomeScreen extends React.Component {
                   zIndex: 1000
                 }}
               >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'green',
-                    color: 'green',
-                    fontSize: 32,
-                    fontWeight: '800',
-                    padding: 10
-                  }}
-                >
-                  LIKE
-                </Text>
+                <Text style={styles.textLike}>LIKE</Text>
               </Animated.View>
 
               <Animated.View
@@ -162,36 +151,16 @@ export default class HomeScreen extends React.Component {
                   zIndex: 1000
                 }}
               >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'red',
-                    color: 'red',
-                    fontSize: 32,
-                    fontWeight: '800',
-                    padding: 10
-                  }}
-                >
-                  NOPE
-                </Text>
+                <Text style={styles.textNope}>NOPE</Text>
               </Animated.View>
 
-              <Image
-                style={{
-                  flex: 1,
-                  height: null,
-                  width: null,
-                  resizeMode: 'cover',
-                  borderRadius: 20
-                }}
-                source={{ uri: item.img_url }}
-              />
+              <Image style={styles.image} source={{ uri: item.img_url }} />
             </Animated.View>
           );
         } else {
           return (
             <Animated.View
-              key={i}
+              key={item.item_id}
               style={[
                 {
                   opacity: this.nextCardOpacity,
@@ -203,66 +172,15 @@ export default class HomeScreen extends React.Component {
                 }
               ]}
             >
-              <Animated.View
-                style={{
-                  opacity: 0,
-                  transform: [{ rotate: '-30deg' }],
-                  position: 'absolute',
-                  top: 50,
-                  left: 40,
-                  zIndex: 1000
-                }}
-              >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'green',
-                    color: 'green',
-                    fontSize: 32,
-                    fontWeight: '800',
-                    padding: 10
-                  }}
-                >
-                  LIKE
-                </Text>
+              <Animated.View style={styles.animated}>
+                <Text style={styles.textLike}>LIKE</Text>
               </Animated.View>
 
-              <Animated.View
-                style={{
-                  opacity: 0,
-                  transform: [{ rotate: '30deg' }],
-                  position: 'absolute',
-                  top: 50,
-                  right: 40,
-                  zIndex: 1000,
-                  backgroundColor: 'white'
-                }}
-              >
-                <Text
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'red',
-                    color: 'red',
-                    fontSize: 32,
-                    fontWeight: '800',
-                    padding: 10
-                  }}
-                >
-                  NOPE
-                </Text>
+              <Animated.View style={styles.animated}>
+                <Text style={styles.textNope}>NOPE</Text>
               </Animated.View>
 
-              <Image
-                style={{
-                  flex: 1,
-                  height: null,
-                  width: null,
-                  resizeMode: 'cover',
-                  borderRadius: 20
-                }}
-                source={{ uri: item.img_url }}
-                onLongPress={() => navigate('ItemDetailScreen')}
-              />
+              <Image style={styles.image} source={{ uri: item.img_url }} />
             </Animated.View>
           );
         }
@@ -272,6 +190,9 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    if (!this.state.itemsData) return <Text>Loading...</Text>;
+    const currentItem = this.state.itemsData[this.state.currentIndex];
+    // console.log('currentItems', currentItem);
 
     return (
       <View
@@ -280,11 +201,7 @@ export default class HomeScreen extends React.Component {
           backgroundColor: 'white'
         }}
       >
-        <View />
-
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
-
-        <View />
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
@@ -302,7 +219,13 @@ export default class HomeScreen extends React.Component {
               name="ios-information-circle-outline"
               size={50}
               color="#6F6E6C"
-              onPress={() => navigate('ItemDetailScreen')}
+              onPress={() =>
+                navigate('ItemDetailScreen', {
+                  name: currentItem.item_name,
+                  image: currentItem.img_url,
+                  price: currentItem.price
+                })
+              }
             />
           </TouchableOpacity>
         </View>
@@ -322,5 +245,37 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  image: {
+    flex: 1,
+    height: null,
+    width: null,
+    resizeMode: 'cover',
+    borderRadius: 20
+  },
+  textNope: {
+    borderWidth: 1,
+    borderColor: 'red',
+    color: 'red',
+    fontSize: 32,
+    fontWeight: '800',
+    padding: 10
+  },
+  textLike: {
+    borderWidth: 1,
+    borderColor: 'green',
+    color: 'green',
+    fontSize: 32,
+    fontWeight: '800',
+    padding: 10
+  },
+  animated: {
+    opacity: 0,
+    transform: [{ rotate: '30deg' }],
+    position: 'absolute',
+    top: 50,
+    right: 40,
+    zIndex: 1000,
+    backgroundColor: 'white'
   }
 });
