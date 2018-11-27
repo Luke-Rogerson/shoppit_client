@@ -17,6 +17,7 @@
     "react-native-multiple-select-list": "^1.0.4",
     "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^2.18.2",
+    "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "ws": "^6.1.2"
   },
