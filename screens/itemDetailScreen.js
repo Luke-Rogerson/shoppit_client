@@ -85,11 +85,13 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     textAlign: 'center',
-    zIndex: 1000
+    zIndex: 1000,
+    color: '#6F6E6C',
+    fontWeight: 'bold'
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#24292E'
+    color: '#6F6E6C'
   }
 });

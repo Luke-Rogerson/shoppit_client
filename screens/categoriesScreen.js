@@ -45,7 +45,7 @@ export default class CategoriesScreen extends React.Component {
           iconColor={'#00a2dd'}
           iconSize={30}
           selectedIconName={'ios-checkmark-circle-outline'}
-          scrollViewHeight={300}
+          // scrollViewHeight={300}
         />
         <View>
           <Button title="Next" onPress={() => navigate('ReadyScreen')} />
