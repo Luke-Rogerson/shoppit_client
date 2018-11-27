@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+import { connect } from 'react-redux';
+
 export default class SignInScreen extends React.Component {
+
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -17,10 +21,20 @@ export default class SignInScreen extends React.Component {
             navigate('HomeScreen');
           }}
         />
+        <Button
+          title="Click here"
+          onPress={() => alert('Hello')}
+        />
       </View>
     );
+
   }
 }
+
+const fetchUserData = (id) => ({
+  type: 'FETCH_USER',
+
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -30,3 +44,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+

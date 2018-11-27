@@ -1,7 +1,8 @@
 const defaultState = {
-  users: {},
-  categories: {},
-  items: {}
+  user: {},
+  itemCategories: {},
+  items: {},
+  itemsByCategory: {}
 };
 
 const entities = (state = defaultState, action) => {
