@@ -102,6 +102,7 @@ export default class HomeScreen extends React.Component {
       }
     });
   }
+
   renderItems = () => {
     return Items.map((item, i) => {
       if (i < this.state.currentIndex) {
@@ -254,6 +255,7 @@ export default class HomeScreen extends React.Component {
                 borderRadius: 20
               }}
               source={item.uri}
+              onLongPress={() => navigate('ItemDetailScreen')}
             />
           </Animated.View>
         );
@@ -262,6 +264,8 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View
         style={{
@@ -270,6 +274,7 @@ export default class HomeScreen extends React.Component {
         }}
       >
         <View />
+
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
 
         <View />
@@ -280,6 +285,14 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
             <Ionicons name="md-heart" size={50} color="grey" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btn}>
+            <Ionicons
+              name="ios-information-circle"
+              size={50}
+              color="grey"
+              onPress={() => navigate('ItemDetailScreen')}
+            />
           </TouchableOpacity>
         </View>
       </View>
