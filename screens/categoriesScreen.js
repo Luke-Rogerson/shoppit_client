@@ -22,30 +22,31 @@ export default class CategoriesScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     if (!this.state.categories) return <Text>LOADING...</Text>;
+    const categories = this.state.categories.reduce(
+      (accum, category) => ({
+        ...accum,
+        [category.category_id]: category.category_name
+      }),
+      {}
+    );
 
     return (
       <View style={styles.container}>
-        {this.state.categories.map((category, index) => {
-          // return <Text key={index}>{category.category_name} </Text>;
-          return (
-            <CustomMultiPicker
-              key={index}
-              options={category}
-              multiple={true} //
-              returnValue={'value'} // label or value
-              callback={res => {
-                return res;
-              }} // callback, array of selected items
-              rowBackgroundColor={'#eee'}
-              rowHeight={40}
-              rowRadius={5}
-              iconColor={'#00a2dd'}
-              iconSize={30}
-              selectedIconName={'ios-checkmark-circle-outline'}
-              scrollViewHeight={130}
-            />
-          );
-        })}
+        <CustomMultiPicker
+          options={categories}
+          multiple={true}
+          returnValue={'value'}
+          callback={res => {
+            return res;
+          }} // callback, array of selected items
+          rowBackgroundColor={'#eee'}
+          rowHeight={50}
+          rowRadius={5}
+          iconColor={'#00a2dd'}
+          iconSize={30}
+          selectedIconName={'ios-checkmark-circle-outline'}
+          scrollViewHeight={300}
+        />
         <View>
           <Button title="Next" onPress={() => navigate('ReadyScreen')} />
         </View>
