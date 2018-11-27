@@ -5,9 +5,12 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions
 } from 'react-native';
 import mockdb from '../mockdb.json';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default class ProfileScreen extends React.Component {
   constructor(props) {
@@ -41,11 +44,17 @@ export default class ProfileScreen extends React.Component {
           source={{ uri: this.state.userData.avatar_url }}
           style={styles.profile_pic}
         />
-        <Text style={styles.category_name}>{this.state.userData.categories[1].category_name}</Text>
+
+        <Text style={styles.category_name}>
+          {this.state.userData.categories[1].category_name}
+        </Text>
         <ScrollView>
           {mockdb.fitness.map((item, i) => {
             return (
-              <TouchableHighlight onPress={() => navigate('ItemDetailScreen')} key={i}>
+              <TouchableHighlight
+                onPress={() => navigate('ItemDetailScreen')}
+                key={i}
+              >
                 <Image
                   source={{ uri: item.img_url }}
                   style={styles.item_images}
@@ -67,26 +76,29 @@ const styles = StyleSheet.create({
   },
   text: {
     margin: 10,
-    backgroundColor: 'lightgrey'
+    color: '#6F6E6C',
+    fontWeight: 'bold',
+    fontSize: 20
   },
   profile_pic: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    borderWidth: 1,
-    borderColor: 'black',
-    marginBottom: 10
+    marginTop: 10
   },
   item_images: {
-    width: 300,
-    height: 200,
-    borderWidth: 1,
-    borderColor: 'black',
+    flex: 1,
+    resizeMode: 'cover',
+    height: 300,
+    width: SCREEN_WIDTH - 20,
     margin: 10,
-    borderRadius: 10
+    borderRadius: 5,
+    padding: 10
   },
   category_name: {
     textTransform: 'capitalize',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#6F6E6C',
+    padding: 10
   }
 });

@@ -50,7 +50,10 @@ export default class ItemDetailScreen extends React.Component {
           }}
         >
           <Text style={styles.titleText}>{Items[2].price}</Text>
-          <Button title="BUY NOW" onPress={() => navigate('HomeScreen')} />
+          <Button
+            title="BUY NOW"
+            onPress={() => uri('https://www.amazon.com/')}
+          />
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
