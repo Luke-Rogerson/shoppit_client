@@ -2,15 +2,25 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default class FriendListScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      friendsData: null
+    };
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>FRIEND LIST SCREEN</Text>
-        <Button
-          title="Friend #1"
-          onPress={() => navigate('ProfileScreen')}
-        />
+        <Button title="Friend #1" onPress={() => navigate('ProfileScreen')} />
       </View>
     );
   }

@@ -1,0 +1,50 @@
+{
+    "fitness": [
+    {
+        "item_id": 01,
+        "item_name": "Cool comfy cactus",
+         "category": [
+            {
+                "category_id": 501,
+                "category_name": "books"
+            },
+            {
+                "category_id": 505,
+                "category_name": "fitness"
+            }
+        ],
+        "img_url": "https://i.imgur.com/koCQSPC.jpg",
+        "amazon_url": "https://www.amazon.com/Squishable-Cactus-Plush-15/dp/B073HGG8QD/ref=sr_1_5?ie=UTF8&qid=1543002244&sr=8-5&keywords=cactus+plush",
+        "price": 4799,
+        "description": "Would you like to hug a cactus? Not without a lot of practice! All those sharp and pointed pricklies, Wouldn't fail to stab and stick me! How I'd love a Cactus gentle, Cuddly, soft, and sentimental, Ready for some friendly squeezing, Using spines that felt more pleasing!"
+    },
+    {
+        "item_id": 02,
+        "item_name": "Banana guard",
+        "category": [
+            {
+                "category_id": 505,
+                "category_name": "fitness"
+            }
+            ],
+        "img_url": "https://i.imgur.com/JveKVrZ.png?1",
+        "amazon_url": "https://www.amazon.com/LovesTown-Different-Outdoor-Protector-Storage/dp/B072M4DQ45/ref=sr_1_2?ie=UTF8&qid=1543002605&sr=8-2&keywords=banana+bunker",
+        "price": 459,
+        "description": "Protect your banana from damage and keep it fresh. Suitable for most bananas, with the design of air holes on both sides, which ensures freshness of bananas in a long time. The design of covered button is very easy to open and close."
+     },
+    {
+        "item_id": 03,
+        "item_name": "Awesome dog toy",
+        "category": [
+            {
+                "category_id": 505,
+                "category_name": "fitness"
+            }
+            ],
+        "img_url": "https://i.imgur.com/DguAaG7.jpg",
+        "amazon_url": "https://www.amazon.com/Schylling-SSM-Sock-Monkey/dp/B0013JEAO4/ref=sr_1_4?ie=UTF8&qid=1543002432&sr=8-4&keywords=sock+monkey",
+        "price": 1439,
+        "description": "Hang out with this special Schylling designed sock monkey, which is classic, retro and cool. It is the traditional brown, with red lips and a cute hat. It measures 20in tall."
+    },
+    ]
+}

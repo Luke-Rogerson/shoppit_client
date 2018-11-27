@@ -1,0 +1,75 @@
+{
+  "user_id": 1200,
+  "friends": [
+      {
+          "user_id": 1300,
+          "first_name": "Leandro",
+          "last_name": "Marques",
+          "gender": "male",
+          "birthday": "10-18-1030",
+          "avatar_url": "https://i.imgur.com/Ts3ShSJ.jpg",
+          "email": "awesome@codeworks.me",
+          "categories": [
+              {
+                  "category_id": 502,
+                  "category_name": "sports"
+              },
+              {
+                  "category_id": 503,
+                  "category_name": "technology"
+              },
+              {
+                  "category_id": 504,
+                  "category_name": "apparel"
+              }
+          ]
+      },
+      {
+          "user_id": 1200,
+          "first_name": "Luke",
+          "last_name": "Rogerson",
+          "gender": "male",
+          "birthday": "03-08-1350",
+          "avatar_url": "https://i.imgur.com/PWmEzCm.jpg",
+          "email": "coolguy@codeworks.me",
+          "categories": [
+              {
+                  "category_id": 501,
+                  "category_name": "books"
+              },
+              {
+                  "category_id": 503,
+                  "category_name": "technology"
+              },
+              {
+                  "category_id": 505,
+                  "category_name": "fitness"
+              }
+          ]
+      },
+      {
+          "user_id": 1500,
+          "first_name": "Amy",
+          "last_name": "Kirasack",
+          "gender": "female",
+          "birthday": "03-08-1250",
+          "avatar_url": "https://i.imgur.com/PWmEzCm.jpg"
+          "email": "cats@codeworks.me",
+          "categories": [
+           {
+              "category_id": 501,
+              "category_name": "books"
+          },
+          {
+              "category_id": 504,
+              "category_name": "apparel"
+          },
+          {
+              "category_id": 505,
+              "category_name": "fitness"
+          }
+          ]
+      },
+
+  ]
+}
