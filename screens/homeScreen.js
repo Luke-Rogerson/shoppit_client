@@ -10,23 +10,18 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const Items = [
-  { id: '1', uri: require('../assets/img1.jpg') },
-  { id: '2', uri: require('../assets/img2.jpg') },
-  { id: '3', uri: require('../assets/img3.jpg') },
-  { id: '4', uri: require('../assets/img4.jpg') },
-  { id: '5', uri: require('../assets/img5.jpg') },
-  { id: '6', uri: require('../assets/img6.jpg') }
-];
-
 export default class HomeScreen extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      itemsData: null
+    };
 
     this.position = new Animated.ValueXY();
     this.state = {
@@ -70,6 +65,16 @@ export default class HomeScreen extends React.Component {
     });
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3333/items/recommended', {
+      headers: { user_id: 2 }
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ itemsData: data.items }))
+      // eslint-disable-next-line no-console
+      .catch(error => console.error('Error:', error));
+  }
+
   UNSAFE_componentWillMount() {
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -104,167 +109,92 @@ export default class HomeScreen extends React.Component {
   }
 
   renderItems = () => {
-    return Items.map((item, i) => {
-      if (i < this.state.currentIndex) {
-        return null;
-      } else if (i == this.state.currentIndex) {
-        return (
-          <Animated.View
-            {...this.PanResponder.panHandlers}
-            key={item.id}
-            style={[
-              this.rotateAndTranslate,
-              {
-                height: SCREEN_HEIGHT - 200,
-                width: SCREEN_WIDTH,
-                padding: 10,
-                position: 'absolute'
-              }
-            ]}
-          >
+    if (!this.state.itemsData) return <Text>Loading...</Text>;
+
+    return this.state.itemsData
+      .map((item, i) => {
+        if (i < this.state.currentIndex) {
+          return null;
+        } else if (i == this.state.currentIndex) {
+          return (
             <Animated.View
-              style={{
-                opacity: this.likeOpacity,
-                transform: [{ rotate: '-30deg' }],
-                position: 'absolute',
-                top: 40,
-                left: 40,
-                zIndex: 1000
-              }}
+              {...this.PanResponder.panHandlers}
+              key={item.item_id}
+              style={[
+                this.rotateAndTranslate,
+                {
+                  height: SCREEN_HEIGHT - 200,
+                  width: SCREEN_WIDTH,
+                  padding: 10,
+                  position: 'absolute'
+                }
+              ]}
             >
-              <Text
+              <Animated.View
                 style={{
-                  borderWidth: 1,
-                  borderColor: 'green',
-                  color: 'green',
-                  fontSize: 32,
-                  fontWeight: '800',
-                  padding: 10
+                  opacity: this.likeOpacity,
+                  transform: [{ rotate: '-30deg' }],
+                  position: 'absolute',
+                  top: 40,
+                  left: 40,
+                  zIndex: 1000
                 }}
               >
-                LIKE
-              </Text>
-            </Animated.View>
+                <Text style={styles.textLike}>LIKE</Text>
+              </Animated.View>
 
-            <Animated.View
-              style={{
-                opacity: this.dislikeOpacity,
-                transform: [{ rotate: '30deg' }],
-                position: 'absolute',
-                top: 50,
-                right: 40,
-                zIndex: 1000
-              }}
-            >
-              <Text
+              <Animated.View
                 style={{
-                  borderWidth: 1,
-                  borderColor: 'red',
-                  color: 'red',
-                  fontSize: 32,
-                  fontWeight: '800',
-                  padding: 10
+                  opacity: this.dislikeOpacity,
+                  transform: [{ rotate: '30deg' }],
+                  position: 'absolute',
+                  top: 50,
+                  right: 40,
+                  zIndex: 1000
                 }}
               >
-                NOPE
-              </Text>
-            </Animated.View>
+                <Text style={styles.textNope}>NOPE</Text>
+              </Animated.View>
 
-            <Image
-              style={{
-                flex: 1,
-                height: null,
-                width: null,
-                resizeMode: 'contain',
-                borderRadius: 20
-              }}
-              source={item.uri}
-            />
-          </Animated.View>
-        );
-      } else {
-        return (
-          <Animated.View
-            key={item.id}
-            style={[
-              {
-                opacity: this.nextCardOpacity,
-                transform: [{ scale: this.nextCardScale }],
-                height: SCREEN_HEIGHT - 200,
-                width: SCREEN_WIDTH,
-                padding: 10,
-                position: 'absolute'
-              }
-            ]}
-          >
+              <Image style={styles.image} source={{ uri: item.img_url }} />
+            </Animated.View>
+          );
+        } else {
+          return (
             <Animated.View
-              style={{
-                opacity: 0,
-                transform: [{ rotate: '-30deg' }],
-                position: 'absolute',
-                top: 50,
-                left: 40,
-                zIndex: 1000
-              }}
+              key={item.item_id}
+              style={[
+                {
+                  opacity: this.nextCardOpacity,
+                  transform: [{ scale: this.nextCardScale }],
+                  height: SCREEN_HEIGHT - 200,
+                  width: SCREEN_WIDTH,
+                  padding: 10,
+                  position: 'absolute'
+                }
+              ]}
             >
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'green',
-                  color: 'green',
-                  fontSize: 32,
-                  fontWeight: '800',
-                  padding: 10
-                }}
-              >
-                LIKE
-              </Text>
-            </Animated.View>
+              <Animated.View style={styles.animated}>
+                <Text style={styles.textLike}>LIKE</Text>
+              </Animated.View>
 
-            <Animated.View
-              style={{
-                opacity: 0,
-                transform: [{ rotate: '30deg' }],
-                position: 'absolute',
-                top: 50,
-                right: 40,
-                zIndex: 1000,
-                backgroundColor: 'white'
-              }}
-            >
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'red',
-                  color: 'red',
-                  fontSize: 32,
-                  fontWeight: '800',
-                  padding: 10
-                }}
-              >
-                NOPE
-              </Text>
-            </Animated.View>
+              <Animated.View style={styles.animated}>
+                <Text style={styles.textNope}>NOPE</Text>
+              </Animated.View>
 
-            <Image
-              style={{
-                flex: 1,
-                height: null,
-                width: null,
-                resizeMode: 'contain',
-                borderRadius: 20
-              }}
-              source={item.uri}
-              onLongPress={() => navigate('ItemDetailScreen')}
-            />
-          </Animated.View>
-        );
-      }
-    }).reverse();
+              <Image style={styles.image} source={{ uri: item.img_url }} />
+            </Animated.View>
+          );
+        }
+      })
+      .reverse();
   };
 
   render() {
     const { navigate } = this.props.navigation;
+    if (!this.state.itemsData) return <Text>Loading...</Text>;
+    const currentItem = this.state.itemsData[this.state.currentIndex];
+    // console.log('currentItems', currentItem);
 
     return (
       <View
@@ -273,25 +203,31 @@ export default class HomeScreen extends React.Component {
           backgroundColor: 'white'
         }}
       >
-        <View />
-
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
-
-        <View />
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn}>
-            <Entypo name="circle-with-cross" size={50} color="grey" />
+            <Ionicons
+              name="ios-close-circle-outline"
+              size={50}
+              color="#6F6E6C"
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
-            <Ionicons name="md-heart" size={50} color="grey" />
+            <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
             <Ionicons
-              name="ios-information-circle"
+              name="ios-information-circle-outline"
               size={50}
-              color="grey"
-              onPress={() => navigate('ItemDetailScreen')}
+              color="#6F6E6C"
+              onPress={() =>
+                navigate('ItemDetailScreen', {
+                  name: currentItem.item_name,
+                  image: currentItem.img_url,
+                  price: currentItem.price
+                })
+              }
             />
           </TouchableOpacity>
         </View>
@@ -311,5 +247,37 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  image: {
+    flex: 1,
+    height: null,
+    width: null,
+    resizeMode: 'cover',
+    borderRadius: 20
+  },
+  textNope: {
+    borderWidth: 1,
+    borderColor: 'red',
+    color: 'red',
+    fontSize: 32,
+    fontWeight: '800',
+    padding: 10
+  },
+  textLike: {
+    borderWidth: 1,
+    borderColor: 'green',
+    color: 'green',
+    fontSize: 32,
+    fontWeight: '800',
+    padding: 10
+  },
+  animated: {
+    opacity: 0,
+    transform: [{ rotate: '30deg' }],
+    position: 'absolute',
+    top: 50,
+    right: 40,
+    zIndex: 1000,
+    backgroundColor: 'white'
   }
 });

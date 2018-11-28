@@ -16,9 +16,9 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#6F6E6C' },
+      headerStyle: { backgroundColor: '#FAFAFA' },
       title: 'WISHOP',
-      headerTintColor: 'white',
+      headerTintColor: '#6F6E6C',
       headerRight: (
         <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
           <Image
@@ -30,8 +30,6 @@ export default createStackNavigator(
               width: 40,
               height: 40,
               borderRadius: 20,
-              borderWidth: 0.5,
-              borderColor: 'black',
               marginRight: 10,
               marginBottom: 10
             }}

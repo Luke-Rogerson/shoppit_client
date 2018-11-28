@@ -8,14 +8,14 @@ export default createStackNavigator(
   {
     SignInScreen,
     CategoriesScreen,
-    ReadyScreen,
+    ReadyScreen
   },
   {
     headerMode: 'float',
     navigationOptions: {
-      headerStyle: { backgroundColor: '#6F6E6C' },
+      headerStyle: { backgroundColor: '#FAFAFA' },
       title: 'WISHOP',
-      headerTintColor: 'white',
+      headerTintColor: '#6F6E6C',
       headerLeft: null, // Disables back button
       gesturesEnabled: false // Prevents user being able to swipe left to go back in stack
     }
