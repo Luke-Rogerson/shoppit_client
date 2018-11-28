@@ -7,6 +7,8 @@ export default (BASE_URL) => store => next => action => {
   // Otherwise, do...
   const api = action[API];
 
+
+
   next({
     ...action,
     type: action.type + '_PENDING'
@@ -29,6 +31,8 @@ export default (BASE_URL) => store => next => action => {
   if (api.method === 'POST' || api.method === 'PUT') {
     options.body = JSON.stringify(api.body);
   }
+
+  console.log('HERER');
 
   fetch(BASE_URL + api.url, options)
     .then(response => response.json())

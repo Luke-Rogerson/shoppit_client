@@ -9,6 +9,10 @@ const categoriesSchema = new schema.Array(categorySchema);
 const getRecommendedItemSchema = new schema.Entity('items', undefined, { idAttribute: 'item_id'});
 const getAllRecommendedItemsSchema = new schema.Array(getRecommendedItemSchema);
 
+const getLikedItemSchema = new schema.Entity('likes', undefined, { idAttribute: 'user_id' });
+const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
+
+
 // {
 //   categories: [dfsdf]
 // }
@@ -57,9 +61,13 @@ export const setItemAffinity = (item_id, bool) => ({
   bool
 });   // Backend will create "affinity" property with true/false value. We wil get back response 201.
 
-export const getLikedItems = (user_id) => ({
-  type: 'GET_LIKED_ITEMS',
-  user_id
-});
+// export const getLikedItems = (user_id) => ({
+//   type: 'GET_LIKED_ITEMS',
+//   user_id
+//   [API]: {
+//     url: '',
+//     schema: categoriesSchema,
+//   }
+// });
 
 // export const getUserFriends = (user_id) =>
