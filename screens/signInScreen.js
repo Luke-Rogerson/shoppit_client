@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import {getUserData} from '../actions';
+import {getAllCategories} from '../actions';
 
 class SignInScreen extends React.Component {
 
@@ -25,7 +25,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => this.props.getUserData()}
+          onPress={() => this.props.getAllCategories()}
         />
       </View>
     );
@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
 
 // state.pages.signIn.user -> 1400
 const mapStateToProps = state => ({
-  user: state.entities.users[state.pages.signIn.user],
+  // user: state.entities.users[state.pages.signIn.user],
   // categories: state.pages.signIn.categories.map(id => (
   //   state.entites.categories[id]
   // ))
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUserData: () => dispatch(getUserData())
+  getAllCategories: () => dispatch(getAllCategories())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

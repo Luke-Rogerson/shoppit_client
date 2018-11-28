@@ -25,7 +25,7 @@ const store = createStore(
   reducers,
   composeEnhancers(
     applyMiddleware(
-      api('http://private-e029e-wisher.apiary-mock.com/')
+      api('http://localhost:3333')
     )
   )
 );

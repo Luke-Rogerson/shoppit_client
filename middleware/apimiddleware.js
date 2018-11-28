@@ -34,7 +34,10 @@ export default (BASE_URL) => store => next => action => {
     .then(response => response.json())
     .then(data => {
       if (api.schema) {
+        console.log('GOT HERE: ', api.schema);
         data = normalize(data, api.schema);
+        console.log('shfjkshgsrjkghsjkfbs',data);
+
 
 
         // data = {
