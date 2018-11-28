@@ -1,5 +1,6 @@
 const defaultState = {
-  users: {},
+  currentUser: {},
+  friends: {},
   categories: {},
   items: {},
 };
@@ -12,9 +13,13 @@ const entities = (state = defaultState, action) => {
 
   return  {
     ...state,
-    users: {
-      ...state.users,
-      ...entities.users
+    currentUser: {
+      ...state.currentUser,
+      ...entities.currentUser
+    },
+    friends: {
+      ...state.friends,
+      ...entities.friends
     },
     items: {
       ...state.items,

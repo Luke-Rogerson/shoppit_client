@@ -36,7 +36,7 @@ export default (BASE_URL) => store => next => action => {
       if (api.schema) {
         console.log('GOT HERE: ', api.schema);
         data = normalize(data, api.schema);
-        console.log('shfjkshgsrjkghsjkfbs',data);
+        console.log('AFTER',data);
 
 
 
@@ -77,6 +77,7 @@ export default (BASE_URL) => store => next => action => {
       });
     })
     .catch(error => {
+      console.log(error)
       store.dispatch({
         ...action,
         type: action.type + '_FAILURE',

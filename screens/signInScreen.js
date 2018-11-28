@@ -3,10 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import {getAllCategories} from '../actions';
+import {getAllRecommendedItems} from '../actions';
 
 class SignInScreen extends React.Component {
-
 
   render() {
     const {navigate} = this.props.navigation;
@@ -25,7 +24,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => this.props.getAllCategories()}
+          onPress={() => this.props.getAllRecommendedItems()}
         />
       </View>
     );
@@ -51,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllCategories: () => dispatch(getAllCategories())
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
