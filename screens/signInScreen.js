@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import {getCurrentUserData} from '../actions';
+import {getUserFriends} from '../actions';
 
 class SignInScreen extends React.Component {
 
@@ -24,7 +24,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => this.props.getCurrentUserData(2)}
+          onPress={() => this.props.getUserFriends(2)}
         />
       </View>
     );
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentUserData: () => dispatch(getCurrentUserData(2))
+  getUserFriends: () => dispatch(getUserFriends(2))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

@@ -3,6 +3,7 @@ const defaultState = {
   friends: {},
   categories: {},
   items: {},
+
 };
 
 const entities = (state = defaultState, action) => {
