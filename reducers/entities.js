@@ -6,10 +6,20 @@ const defaultState = {
 };
 
 const entities = (state = defaultState, action) => {
-  switch (action.type) {
-  default:
-    return state;
-  }
+  if (!action.data || !action.data.entities) return state;
+  const entities = action.data.entities;
+
+  return  {
+    ...state,
+    user: {
+      ...state.user,
+      ...entities.user
+    },
+    items: {
+      ...state.items,
+      ...entities.items
+    }
+  };
 };
 
 export default entities;

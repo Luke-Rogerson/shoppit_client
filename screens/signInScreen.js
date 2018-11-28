@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-export default class SignInScreen extends React.Component {
+import {getUserData} from '../actions';
+
+class SignInScreen extends React.Component {
 
 
   render() {
@@ -23,18 +25,13 @@ export default class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => alert('Hello')}
+          onPress={() => this.props.getUserData()}
         />
       </View>
     );
 
   }
 }
-
-const fetchUserData = (id) => ({
-  type: 'FETCH_USER',
-
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -45,3 +42,16 @@ const styles = StyleSheet.create({
   }
 });
 
+// state.pages.signIn.user -> 1400
+const mapStateToProps = state => ({
+  user: state.entities.users[state.pages.signIn.user],
+  // categories: state.pages.signIn.categories.map(id => (
+  //   state.entites.categories[id]
+  // ))
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUserData: () => dispatch(getUserData())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
