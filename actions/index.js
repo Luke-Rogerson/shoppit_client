@@ -48,10 +48,10 @@ export const deselectACategory = (user_id) => ({
 
 export const getAllRecommendedItems = (user_id) => ({
   type: 'GET_ALL_RECOMMENDED_ITEMS',
-  user_id,
   [API]: {
     url: '/items/recommended',
     schema: getAllRecommendedItemsSchema,
+    user_id
   }
 });
 

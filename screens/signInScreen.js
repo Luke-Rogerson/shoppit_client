@@ -24,7 +24,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => this.props.getAllRecommendedItems()}
+          onPress={() => this.props.getAllRecommendedItems(2)}
         />
       </View>
     );
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

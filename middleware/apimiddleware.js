@@ -7,15 +7,17 @@ export default (BASE_URL) => store => next => action => {
   // Otherwise, do...
   const api = action[API];
 
-
-
   next({
     ...action,
     type: action.type + '_PENDING'
   });
 
   const options = {
-    method: api.method || 'GET'
+    method: api.method || 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'user_id': api.user_id
+    }
   };
 
   // HANDLE AUTH HERE TOO WHEN WE GET TO IT
@@ -23,54 +25,30 @@ export default (BASE_URL) => store => next => action => {
   // then append the token in the headers
   // Header: auth - bearer...
 
-  const headers = {
-    'Content-Type': 'application/json'
-  };
-  options.headers = headers;
+  // const Headers = {
+  //   'Content-Type': 'application/json',
+  //   'user_id': api.user_id
+  // };
+  // options.Headers = Headers;
+
+
 
   if (api.method === 'POST' || api.method === 'PUT') {
     options.body = JSON.stringify(api.body);
   }
 
-  console.log('HERER');
-
   fetch(BASE_URL + api.url, options)
-    .then(response => response.json())
+    .then(response => {
+      console.log('RES: ', response);
+      return response.json();
+    })
     .then(data => {
       if (api.schema) {
         console.log('GOT HERE: ', api.schema);
+        console.log('DATA: ', data);
+
         data = normalize(data, api.schema);
-        console.log('AFTER',data);
-
-
-
-        // data = {
-        //   entities: {
-        //     categories: {
-        //       501: {
-        //         "category_id": 501,
-        //         "category_name": "books"
-        //       },
-        //       505: {
-        //         "category_id": 505,
-        //         "category_name": "fitness"
-        //       }
-        //     },
-        //     users: {
-        //       1400: {
-        //         "user_id": 1400,
-        //         "first_name": "Charlie",
-        //         "last_name": "Rutland",
-        //         "gender": "female",
-        //         "birthday": "01-11-1460",
-        //         "avatar_url": "https://i.imgur.com/MU2dD8E.jpg",
-        //         "email": "wownice@codeworks.me",
-        //         "category": [501,505]
-        //       }
-        //     }
-        //   },
-        //   results: 1400
-        // }
+        console.log('AFTER', data);
       }
 
       store.dispatch({
@@ -86,6 +64,6 @@ export default (BASE_URL) => store => next => action => {
         type: action.type + '_FAILURE',
         [API]: undefined,
         error: error.message
-      });
+      }, console.log(error));
     });
 };
