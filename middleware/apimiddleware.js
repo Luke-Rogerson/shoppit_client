@@ -77,7 +77,6 @@ export default (BASE_URL) => store => next => action => {
       });
     })
     .catch(error => {
-      console.log(error)
       store.dispatch({
         ...action,
         type: action.type + '_FAILURE',
