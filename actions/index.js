@@ -1,4 +1,9 @@
 import { API } from '../middleware/apimiddleware';
+import { schema } from 'normalizr';
+
+// const userSchema = new schema.Entity('user_id');
+// const categorySchema = new schema.Entity('category_id');
+// const itemsSchema = new schema.Entity('likes');
 
 export const getUserData = (id, cookie) => ({
   type: 'GET_USER_DATA',

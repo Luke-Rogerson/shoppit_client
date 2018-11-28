@@ -1,5 +1,6 @@
-export const API = 'potatosandomolasses';
+import { normalize } from 'normalizr';
 
+export const API = 'potatosandomolasses';
 export default (BASE_URL) => store => next => action => {
   if (!action[API]) return next(action); // Pass on if not asynchronous
 
