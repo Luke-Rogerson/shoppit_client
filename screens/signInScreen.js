@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import {getAllRecommendedItems} from '../actions';
+import {getCurrentUserData} from '../actions';
 
 class SignInScreen extends React.Component {
 
@@ -24,7 +24,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Click here"
-          onPress={() => this.props.getAllRecommendedItems(2)}
+          onPress={() => this.props.getCurrentUserData(2)}
         />
       </View>
     );
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2))
+  getCurrentUserData: () => dispatch(getCurrentUserData(2))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

@@ -12,7 +12,6 @@ const getAllRecommendedItemsSchema = new schema.Array(getRecommendedItemSchema);
 const getLikedItemSchema = new schema.Entity('likes', undefined, { idAttribute: 'user_id' });
 const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
 
-
 // {
 //   categories: [dfsdf]
 // }
@@ -21,8 +20,8 @@ const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
 
 export const getCurrentUserData = (user_id) => ({
   type: 'GET_CURRENT_USER_DATA',
-  user_id,
   [API]: {
+    user_id,
     url: '/me',
     schema: currentUserSchema,
   }
@@ -61,13 +60,14 @@ export const setItemAffinity = (item_id, bool) => ({
   bool
 });   // Backend will create "affinity" property with true/false value. We wil get back response 201.
 
-// export const getLikedItems = (user_id) => ({
-//   type: 'GET_LIKED_ITEMS',
-//   user_id
-//   [API]: {
-//     url: '',
-//     schema: categoriesSchema,
-//   }
-// });
+export const getLikedItems = (user_id) => ({
+  type: 'GET_LIKED_ITEMS',
+  [API]: {
+  user_id,
+
+    url: '',
+    schema: categoriesSchema,
+  }
+});
 
 // export const getUserFriends = (user_id) =>

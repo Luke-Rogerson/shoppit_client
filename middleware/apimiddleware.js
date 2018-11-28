@@ -39,16 +39,12 @@ export default (BASE_URL) => store => next => action => {
 
   fetch(BASE_URL + api.url, options)
     .then(response => {
-      console.log('RES: ', response);
+
       return response.json();
     })
     .then(data => {
       if (api.schema) {
-        console.log('GOT HERE: ', api.schema);
-        console.log('DATA: ', data);
-
         data = normalize(data, api.schema);
-        console.log('AFTER', data);
       }
 
       store.dispatch({
