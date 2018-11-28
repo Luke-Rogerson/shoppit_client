@@ -26,7 +26,7 @@ export default class ItemDetailScreen extends React.Component {
             width: null,
             resizeMode: 'contain'
           }}
-          source={{ uri: this.props.navigation.getParam('img_url') }}
+          source={{ uri: this.props.navigation.getParam('image') }}
         />
 
         <View

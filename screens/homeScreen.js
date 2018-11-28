@@ -66,7 +66,9 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/items/recommended')
+    fetch('http://localhost:3333/items/recommended', {
+      headers: { user_id: 2 }
+    })
       .then(res => res.json())
       .then(data => this.setState({ itemsData: data.items }))
       // eslint-disable-next-line no-console
