@@ -15,12 +15,6 @@ const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
 const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
 
-// {
-//   categories: [dfsdf]
-// }
-
-// const itemsSchema = new schema.Entity('likes');
-
 export const getCurrentUserData = (user_id) => ({
   type: 'GET_CURRENT_USER_DATA',
   [API]: {
@@ -38,16 +32,6 @@ export const getAllCategories = () => ({
   }
 });
 
-export const selectACategory = (user_id) => ({
-  type: 'SELECT_A_CATEGORY',
-  user_id
-});
-
-export const deselectACategory = (user_id) => ({
-  type: 'DESELECT_A_CATEGORY',
-  user_id
-});
-
 export const getAllRecommendedItems = (user_id) => ({
   type: 'GET_ALL_RECOMMENDED_ITEMS',
   [API]: {
@@ -56,12 +40,6 @@ export const getAllRecommendedItems = (user_id) => ({
     user_id
   }
 });
-
-export const setItemAffinity = (item_id, bool) => ({
-  type: 'SET_ITEM_AFFINITY',
-  item_id,
-  bool
-});   // Backend will create "affinity" property with true/false value. We wil get back response 201.
 
 export const getLikedItems = (user_id) => ({
   type: 'GET_LIKED_ITEMS',
@@ -79,3 +57,21 @@ export const getUserFriends = (user_id) => ({
     user_id
   }
 });
+
+export const selectACategory = (user_id) => ({
+  type: 'SELECT_A_CATEGORY',
+  user_id
+});
+
+export const deselectACategory = (user_id) => ({
+  type: 'DESELECT_A_CATEGORY',
+  user_id
+});
+
+export const setItemAffinity = (item_id, bool) => ({
+  type: 'SET_ITEM_AFFINITY',
+  item_id,
+  bool
+});
+// Backend will create "affinity" property with true/false value.
+// We wil get back response 201.

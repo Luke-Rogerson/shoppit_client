@@ -17,7 +17,8 @@ export default (BASE_URL) => store => next => action => {
     headers: {
       'Content-Type': 'application/json',
       'user_id': api.user_id
-    }
+    },
+    body: JSON.stringify(api.body)
   };
 
   // HANDLE AUTH HERE TOO WHEN WE GET TO IT
@@ -33,9 +34,9 @@ export default (BASE_URL) => store => next => action => {
 
 
 
-  if (api.method === 'POST' || api.method === 'PUT') {
-    options.body = JSON.stringify(api.body);
-  }
+  // if (api.method === 'POST' || api.method === 'PUT') {
+  //   options.body = JSON.stringify(api.body);
+  // }
 
   fetch(BASE_URL + api.url, options)
     .then(response => {
