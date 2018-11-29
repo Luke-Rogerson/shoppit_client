@@ -8,7 +8,10 @@ import {
   getAllCategories,
   getAllRecommendedItems,
   getLikedItems,
-  getUserFriends
+  getUserFriends,
+  selectACategory,
+  deselectACategory,
+  setItemAffinity
 } from '../actions';
 
 class SignInScreen extends React.Component {
@@ -20,6 +23,9 @@ class SignInScreen extends React.Component {
     this.props.getAllRecommendedItems();
     this.props.getLikedItems();
     this.props.getUserFriends();
+    this.props.selectACategory();
+    this.props.deselectACategory();
+    this.props.setItemAffinity();
   }
 
   render() {
@@ -61,7 +67,10 @@ const mapDispatchToProps = dispatch => ({
   getAllCategories: () => dispatch(getAllCategories()),
   getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
   getLikedItems: () => dispatch(getLikedItems(2)),
-  getUserFriends: () => dispatch(getUserFriends(2))
+  getUserFriends: () => dispatch(getUserFriends(2)),
+  selectACategory: () => dispatch(selectACategory(2, 6)),
+  deselectACategory: () => dispatch(deselectACategory(2, 5)),
+  setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
 });
 
 export default connect(

@@ -63,7 +63,8 @@ export const selectACategory = (user_id, category_id) => ({
   [API]: {
     method: 'PUT',
     url: `/me/categories/${category_id}`,
-    user_id
+    user_id,
+    schema: currentUserSchema
   }
 });
 
@@ -72,16 +73,18 @@ export const deselectACategory = (user_id, category_id) => ({
   [API]: {
     method: 'DELETE',
     url: `/me/categories/${category_id}`,
-    user_id
+    user_id,
+    schema: currentUserSchema
   }
 });
 
-export const setItemAffinity = (item_id, value) => ({
+export const setItemAffinity = (user_id, item_id, value) => ({
   type: 'SET_ITEM_AFFINITY',
   [API]: {
     method: 'PUT',
     url: `/items/${item_id}/like/${value}`,
-    user_id
+    user_id,
+    schema: getLikedItemsSchema,
   }
 });
 // Backend will create "affinity" property with true/false value.
