@@ -18,15 +18,13 @@ class SignInScreen extends React.Component {
 
   componentDidMount() {
     // For testing only
-    this.props.getCurrentUserData();
-    this.props.getAllCategories();
-    this.props.getAllRecommendedItems();
-    this.props.getLikedItems();
-    this.props.getUserFriends();
-    this.props.selectACategory();
-    this.props.deselectACategory();
-    this.props.setItemAffinity();
+    // this.props.getCurrentUserData();
+    // this.props.getAllRecommendedItems();
+    // this.props.getLikedItems();
+    // this.props.getUserFriends();
+    // this.props.setItemAffinity();
   }
+
 
   render() {
     const { navigate } = this.props.navigation;
@@ -62,18 +60,15 @@ const styles = StyleSheet.create({
 //   ))
 // });
 
-const mapDispatchToProps = dispatch => ({
-  getCurrentUserData: () => dispatch(getCurrentUserData(2)),
-  getAllCategories: () => dispatch(getAllCategories()),
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
-  getLikedItems: () => dispatch(getLikedItems(2)),
-  getUserFriends: () => dispatch(getUserFriends(2)),
-  selectACategory: () => dispatch(selectACategory(2, 7)),
-  deselectACategory: () => dispatch(deselectACategory(2, 5)),
-  setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
-});
+// const mapDispatchToProps = dispatch => ({
+//   getCurrentUserData: () => dispatch(getCurrentUserData(2)),
+//   getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
+//   getLikedItems: () => dispatch(getLikedItems(2)),
+//   getUserFriends: () => dispatch(getUserFriends(2)),
+//   setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
+// });
 
 export default connect(
   null,
-  mapDispatchToProps
+  null
 )(SignInScreen);
