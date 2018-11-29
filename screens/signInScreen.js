@@ -18,7 +18,7 @@ class SignInScreen extends React.Component {
 
   componentDidMount() {
     // For testing only
-    // this.props.getCurrentUserData();
+    this.props.getCurrentUserData();
     // this.props.getAllRecommendedItems();
     // this.props.getLikedItems();
     // this.props.getUserFriends();
@@ -60,15 +60,15 @@ const styles = StyleSheet.create({
 //   ))
 // });
 
-// const mapDispatchToProps = dispatch => ({
-//   getCurrentUserData: () => dispatch(getCurrentUserData(2)),
+const mapDispatchToProps = dispatch => ({
+  getCurrentUserData: () => dispatch(getCurrentUserData(2)),
 //   getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
 //   getLikedItems: () => dispatch(getLikedItems(2)),
 //   getUserFriends: () => dispatch(getUserFriends(2)),
 //   setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
-// });
+});
 
 export default connect(
   null,
-  null
+  mapDispatchToProps,
 )(SignInScreen);
