@@ -70,7 +70,7 @@ export default class HomeScreen extends React.Component {
       headers: { user_id: 2 }
     })
       .then(res => res.json())
-      .then(data => this.setState({ itemsData: data.items }))
+      .then(data => this.setState({ itemsData: data }))
       // eslint-disable-next-line no-console
       .catch(error => console.error('Error:', error));
   }
