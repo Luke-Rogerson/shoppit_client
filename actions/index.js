@@ -18,6 +18,7 @@ const itemsSchema = new schema.Array(itemSchema);
 
 const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
+
 // ----------------------------------------------------
 
 export const getCurrentUserData = (user_id) => ({
@@ -92,3 +93,5 @@ export const setItemAffinity = (user_id, item_id, value) => ({
     schema: itemSchema,
   }
 });
+
+

@@ -2,7 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import CustomMultiPicker from 'react-native-multiple-select-list';
 
-export default class CategoriesScreen extends React.Component {
+import { connect } from 'react-redux';
+
+class CategoriesScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -63,3 +65,19 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize'
   }
 });
+
+const mapStateToProps = (state) => ({
+  categories: state.pages.categoriesPage.categories.map(category_id => (
+    state.entities.categories[category_id]
+  )),
+  page: state.pages.categoriesPage
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+
+// });
+
+export default connect(
+  mapStateToProps,
+  null
+)(CategoriesScreen);
