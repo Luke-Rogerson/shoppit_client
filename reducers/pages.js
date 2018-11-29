@@ -3,6 +3,12 @@ const defaultState = {
     friends: {
       friendsList: [],
       isLoading: false
+    },
+    categoriesPage: {
+      categories: [23, 78, 873],
+      selectedCategories: [7, 6, 8],
+      loading: false,
+      // GET_CATEGORIES_FAILURE
     }
   }
 };

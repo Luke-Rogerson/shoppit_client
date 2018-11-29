@@ -2,16 +2,19 @@ import { API } from '../middleware/apimiddleware';
 import { schema } from 'normalizr';
 
 // Normalizr schemas
-const currentUserSchema = new schema.Entity('currentUser', undefined, {idAttribute:'user_id'});
-
 const categorySchema = new schema.Entity('categories', undefined, { idAttribute: 'category_id' });
 const categoriesSchema = new schema.Array(categorySchema);
 
-const getRecommendedItemSchema = new schema.Entity('recommendedItems', undefined, { idAttribute: 'item_id'});
-const getAllRecommendedItemsSchema = new schema.Array(getRecommendedItemSchema);
+const currentUserSchema = new schema.Entity('currentUser', {
+  category: [categorySchema]
+}, {idAttribute:'user_id'});
 
-const getLikedItemSchema = new schema.Entity('likedItems', undefined, { idAttribute: 'item_id' });
-const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
+const itemSchema = new schema.Entity('items', {
+  category: categorySchema
+}, {
+  idAttribute: 'item_id'
+});
+const itemsSchema = new schema.Array(itemSchema);
 
 const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
@@ -38,7 +41,7 @@ export const getAllRecommendedItems = (user_id) => ({
   type: 'GET_ALL_RECOMMENDED_ITEMS',
   [API]: {
     url: '/items/recommended',
-    schema: getAllRecommendedItemsSchema,
+    schema: itemsSchema,
     user_id
   }
 });
@@ -47,7 +50,7 @@ export const getLikedItems = (user_id) => ({
   type: 'GET_LIKED_ITEMS',
   [API]: {
     url: `/users/${user_id}/items`,
-    schema: getLikedItemsSchema,
+    schema: itemSchema,
   }
 });
 
@@ -86,6 +89,6 @@ export const setItemAffinity = (user_id, item_id, value) => ({
     method: 'PUT',
     url: `/items/${item_id}/like/${value}`,
     user_id,
-    schema: getLikedItemsSchema,
+    schema: itemSchema,
   }
 });

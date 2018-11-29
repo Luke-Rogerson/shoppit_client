@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => ({
   getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
   getLikedItems: () => dispatch(getLikedItems(2)),
   getUserFriends: () => dispatch(getUserFriends(2)),
-  selectACategory: () => dispatch(selectACategory(2, 6)),
+  selectACategory: () => dispatch(selectACategory(2, 7)),
   deselectACategory: () => dispatch(deselectACategory(2, 5)),
   setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
 });
