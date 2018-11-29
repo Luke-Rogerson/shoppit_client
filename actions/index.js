@@ -58,20 +58,31 @@ export const getUserFriends = (user_id) => ({
   }
 });
 
-export const selectACategory = (user_id) => ({
+export const selectACategory = (user_id, category_id) => ({
   type: 'SELECT_A_CATEGORY',
-  user_id
+  [API]: {
+    method: 'PUT',
+    url: `/me/categories/${category_id}`,
+    user_id
+  }
 });
 
-export const deselectACategory = (user_id) => ({
+export const deselectACategory = (user_id, category_id) => ({
   type: 'DESELECT_A_CATEGORY',
-  user_id
+  [API]: {
+    method: 'DELETE',
+    url: `/me/categories/${category_id}`,
+    user_id
+  }
 });
 
-export const setItemAffinity = (item_id, bool) => ({
+export const setItemAffinity = (item_id, value) => ({
   type: 'SET_ITEM_AFFINITY',
-  item_id,
-  bool
+  [API]: {
+    method: 'PUT',
+    url: `/items/${item_id}/like/${value}`,
+    user_id
+  }
 });
 // Backend will create "affinity" property with true/false value.
 // We wil get back response 201.
