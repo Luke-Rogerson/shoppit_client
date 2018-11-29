@@ -14,7 +14,7 @@ class CategoriesScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    console.log('PROPS: ', this.props);
+
     if (!this.props.categories) return <Text>LOADING...</Text>;
     const categories = this.props.categories.reduce(
       (accum, category) => ({
@@ -31,14 +31,14 @@ class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
-            console.log(res);
-            // if (res.length > this.props.selectedCategories) {
-            //   const categoryId = res[res.length - 1];
-            //   this.props.selectACategory(categoryId);
-            // } else {
-            //   const categoryId = this.props.selectedCategories.find(category => !res.includes(category.category_id)).category_id;
-            //   this.props.deselectACategory(categoryId);
-            // }
+            if (res.length > this.props.selectedCategories) {
+              const categoryId = res[res.length - 1];
+
+              this.props.selectACategory(2, categoryId);
+            } else {
+              const categoryId = this.props.selectedCategories.find(category => !res.includes(category.category_id)).category_id;
+              this.props.deselectACategory(categoryId);
+            }
           }} // callback, array of selected items
           rowBackgroundColor={'#eee'}
           rowHeight={50}
@@ -75,8 +75,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllCategories: () => dispatch(getAllCategories()),
-  // selectACategory: () => dispatch(selectACategory()),
-  // deselectACategory: () => dispatch(deselectACategory())
+  selectACategory: () => dispatch(selectACategory(2,2)),
+  deselectACategory: () => dispatch(deselectACategory())
 });
 
 export default connect(
