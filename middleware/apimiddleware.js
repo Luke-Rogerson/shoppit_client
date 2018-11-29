@@ -39,7 +39,6 @@ export default (BASE_URL) => store => next => action => {
 
   fetch(BASE_URL + api.url, options)
     .then(response => {
-
       return response.json();
     })
     .then(data => {
@@ -60,6 +59,6 @@ export default (BASE_URL) => store => next => action => {
         type: action.type + '_FAILURE',
         [API]: undefined,
         error: error.message
-      }, console.log(error));
+      }, );
     });
 };
