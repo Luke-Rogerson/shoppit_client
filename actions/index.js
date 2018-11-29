@@ -12,7 +12,7 @@ const getAllRecommendedItemsSchema = new schema.Array(getRecommendedItemSchema);
 const getLikedItemSchema = new schema.Entity('likes', undefined, { idAttribute: 'item_id' });
 const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
 
-const getUserFriendSchema = new schema.Entity('friend', undefined, { idAttribute: 'user_id' });
+const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
 
 // {
@@ -66,7 +66,6 @@ export const setItemAffinity = (item_id, bool) => ({
 export const getLikedItems = (user_id) => ({
   type: 'GET_LIKED_ITEMS',
   [API]: {
-    user_id,
     url: `/users/${user_id}/items`,
     schema: getLikedItemsSchema,
   }
@@ -75,8 +74,8 @@ export const getLikedItems = (user_id) => ({
 export const getUserFriends = (user_id) => ({
   type: 'GET_USER_FRIENDS',
   [API]: {
-    user_id,
-    url: 'me/friends',
+    url: '/me/friends',
     schema: getUserFriendsSchema,
+    user_id
   }
 });
