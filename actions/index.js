@@ -1,19 +1,21 @@
 import { API } from '../middleware/apimiddleware';
 import { schema } from 'normalizr';
 
+// Normalizr schemas
 const currentUserSchema = new schema.Entity('currentUser', undefined, {idAttribute:'user_id'});
 
 const categorySchema = new schema.Entity('categories', undefined, { idAttribute: 'category_id' });
 const categoriesSchema = new schema.Array(categorySchema);
 
-const getRecommendedItemSchema = new schema.Entity('items', undefined, { idAttribute: 'item_id'});
+const getRecommendedItemSchema = new schema.Entity('recommendedItems', undefined, { idAttribute: 'item_id'});
 const getAllRecommendedItemsSchema = new schema.Array(getRecommendedItemSchema);
 
-const getLikedItemSchema = new schema.Entity('likes', undefined, { idAttribute: 'item_id' });
+const getLikedItemSchema = new schema.Entity('likedItems', undefined, { idAttribute: 'item_id' });
 const getLikedItemsSchema = new schema.Array(getLikedItemSchema);
 
 const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
+// ----------------------------------------------------
 
 export const getCurrentUserData = (user_id) => ({
   type: 'GET_CURRENT_USER_DATA',
@@ -87,5 +89,3 @@ export const setItemAffinity = (user_id, item_id, value) => ({
     schema: getLikedItemsSchema,
   }
 });
-// Backend will create "affinity" property with true/false value.
-// We wil get back response 201.
