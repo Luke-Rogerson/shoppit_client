@@ -18,9 +18,11 @@ export default class FriendListScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/me/friends')
+    fetch('http://localhost:3333/me/friends', {
+      headers: { user_id: 2 }
+    })
       .then(res => res.json())
-      .then(data => this.setState({ friendsData: data.friends }))
+      .then(data => this.setState({ friendsData: data }))
       // eslint-disable-next-line no-console
       .catch(error => console.error('Error:', error));
   }

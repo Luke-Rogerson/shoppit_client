@@ -12,7 +12,7 @@ export default class CategoriesScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/categories')
+    fetch('http://localhost:3333/categories')
       .then(res => res.json())
       .then(data => this.setState({ categories: data }))
       // eslint-disable-next-line no-console
@@ -37,7 +37,7 @@ export default class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
-            return res;
+            console.log('result', res);
           }} // callback, array of selected items
           rowBackgroundColor={'#eee'}
           rowHeight={50}
@@ -45,7 +45,7 @@ export default class CategoriesScreen extends React.Component {
           iconColor={'#00a2dd'}
           iconSize={30}
           selectedIconName={'ios-checkmark-circle-outline'}
-          // scrollViewHeight={300}
+          scrollViewHeight={500}
         />
         <View>
           <Button title="Next" onPress={() => navigate('ReadyScreen')} />

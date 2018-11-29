@@ -22,9 +22,14 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/me')
+    fetch('http://localhost:3333/me', {
+      headers: { user_id: 2 }
+    })
       .then(res => res.json())
       .then(data => this.setState({ userData: data }))
+      // fetch('http://localhost:3333/users/2/items')
+      //   .then(res => res.json())
+      //   .then(data => this.setState({ likedItems: data }))
       // eslint-disable-next-line no-console
       .catch(error => console.error('Error:', error));
   }
