@@ -14,7 +14,7 @@ export default createStackNavigator(
     headerMode: 'float',
     navigationOptions: {
       headerStyle: { backgroundColor: '#FAFAFA' },
-      title: 'WISHOP',
+      title: 'WISHER',
       headerTintColor: '#6F6E6C',
       headerLeft: null, // Disables back button
       gesturesEnabled: false // Prevents user being able to swipe left to go back in stack

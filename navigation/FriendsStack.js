@@ -17,7 +17,7 @@ export default createStackNavigator(
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
       headerStyle: { backgroundColor: '#FAFAFA' },
-      title: 'WISHOP',
+      title: 'WISHER',
       headerTintColor: '#6F6E6C',
       headerRight: (
         <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>

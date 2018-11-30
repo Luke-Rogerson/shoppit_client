@@ -65,9 +65,7 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-
     this.props.getAllRecommendedItems();
-
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -279,17 +277,16 @@ const mapStateToProps = state => ({
   currentUserId: state.pages.currentUserPage.currentUser,
   currentUser: state.entities.currentUser,
 
-  recommendedItems: state.pages.homePage.items.map(item_id => (
-    state.entities.items[item_id]
-  ))
+  recommendedItems: state.pages.homePage.items.map(
+    item_id => state.entities.items[item_id]
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2))
 });
-
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(HomeScreen);
