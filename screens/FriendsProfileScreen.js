@@ -16,9 +16,9 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class FriendsProfileScreen extends React.Component {
   componentDidMount() {
-    console.log('FRIENDS', this.props.friendsIds);
+    console.log('ITEMS', this.props.likedItems);
 
-    // this.props.getLikedItems(this.props.friendsIds);
+    this.props.getLikedItems(this.props.navigation.getParam('id'));
   }
 
   render() {
@@ -30,9 +30,9 @@ class FriendsProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {this.props.navigation.getParam('id', '')}{' '}
-          {this.props.navigation.getParam('firstName', '')}{' '}
-          {this.props.navigation.getParam('lastName', '')}
+          {this.props.navigation.getParam('id')}{' '}
+          {this.props.navigation.getParam('firstName')}{' '}
+          {this.props.navigation.getParam('lastName')}
         </Text>
         <Image
           source={{ uri: this.props.navigation.getParam('image') }}
@@ -41,6 +41,28 @@ class FriendsProfileScreen extends React.Component {
         <Text style={styles.text}>
           {this.props.navigation.getParam('birthday', '')}
         </Text>
+        <ScrollView>
+          {likedItems.map((item, i) => {
+            return (
+              <TouchableHighlight
+                onPress={() =>
+                  navigate('ItemDetailScreen', {
+                    image: item.img_url,
+                    id: item.item_id,
+                    title: item.item_name,
+                    price: item.price
+                  })
+                }
+                key={i}
+              >
+                <Image
+                  source={{ uri: item.img_url }}
+                  style={styles.item_images}
+                />
+              </TouchableHighlight>
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }
@@ -91,11 +113,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // getLikedItems: id => dispatch(getLikedItems(id))
+  getLikedItems: id => dispatch(getLikedItems(id))
 });
 
 export default connect(
   mapStateToProps,
-  null
-  // mapDispatchToProps
+  // null
+  mapDispatchToProps
 )(FriendsProfileScreen);

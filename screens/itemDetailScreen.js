@@ -15,7 +15,7 @@ export default class ItemDetailScreen extends React.Component {
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Text style={styles.baseText}>
           <Text style={styles.titleText}>
-            {this.props.navigation.getParam('name', '')}
+            {this.props.navigation.getParam('title')}
           </Text>
         </Text>
 
