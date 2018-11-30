@@ -31,12 +31,15 @@ class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
-            if (res.length > this.props.selectedCategories) {
-              const categoryId = res[res.length - 1];
+            const selectedCategories = res.slice(1);
+            if (selectedCategories.length === 0) return;
 
-              this.props.selectACategory(2, categoryId);
+            if (selectedCategories.length > this.props.selectedCategories) {
+              const categoryId = selectedCategories[selectedCategories.length - 1];
+
+              this.props.selectACategory(categoryId);
             } else {
-              const categoryId = this.props.selectedCategories.find(category => !res.includes(category.category_id)).category_id;
+              const categoryId = selectedCategories.find(category_id => !this.props.selectedCategories.includes(category_id.toString()));
               this.props.deselectACategory(categoryId);
             }
           }} // callback, array of selected items
@@ -75,8 +78,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllCategories: () => dispatch(getAllCategories()),
-  selectACategory: () => dispatch(selectACategory(2,2)),
-  deselectACategory: () => dispatch(deselectACategory())
+  selectACategory: (category_id) => dispatch(selectACategory(category_id)),
+  deselectACategory: (category_id) => dispatch(deselectACategory(category_id))
 });
 
 export default connect(

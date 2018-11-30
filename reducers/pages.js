@@ -4,14 +4,16 @@ const defaultState = {
     isLoading: false
   },
   categoriesPage: {
-    // categories: [23, 78, 873],
-    // selectedCategories: [7, 6, 8],
     categories: [],
     selectedCategories: [],
     loading: false
   },
   currentUserPage: {
     currentUser: [],
+    loading: false
+  },
+  homePage: {
+    items: [],
     loading: false
   }
 };
@@ -34,14 +36,38 @@ const pages = (state = defaultState, action) => {
         currentUser: action.data.result
       }
     };
-    case 'DESELECT_A_CATEGORY_SUCCESS':
-      return {
-        ...state,
-        categoriesPage: {
-          ...state.categoriesPage,
-          selectedCategories: action.data.result
-        }
-      };
+  case 'SELECT_A_CATEGORY_SUCCESS': {
+    const category_id = action.data[0].category_id;
+    return {
+      ...state,
+      categoriesPage: {
+        ...state.categoriesPage,
+        selectedCategories: state.categoriesPage.selectedCategories.includes(category_id)
+          ? state.categoriesPage.selectedCategories
+          : state.categoriesPage.selectedCategories.concat(category_id)
+      }
+    };
+  }
+  case 'DESELECT_A_CATEGORY_SUCCESS':
+    const { category_id } = action;
+    return {
+      ...state,
+      categoriesPage: {
+        ...state.categoriesPage,
+        selectedCategories: state.categoriesPage.selectedCategories.includes(category_id)
+          ? state.categoriesPage.selectedCategories
+          : state.categoriesPage.selectedCategories.filter(id => id !== category_id)
+      }
+    };
+  case 'GET_ALL_RECOMMENDED_ITEMS_SUCCESS':
+    return {
+      ...state,
+      homePage: {
+        ...state.homePage,
+        items: action.data.result
+      }
+    };
+
   default:
     return state;
   }

@@ -8,29 +8,21 @@ import {
   TouchableHighlight,
   Dimensions
 } from 'react-native';
-import mockdb from '../mockdb.json';
+
+import { connect } from 'react-redux';
+
+import { getLikedItems } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class ProfileScreen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userData: null
-    };
-  }
+class ProfileScreen extends React.Component {
 
   componentDidMount() {
-    fetch('http://private-e029e-wisher.apiary-mock.com/me')
-      .then(res => res.json())
-      .then(data => this.setState({ userData: data }))
-      // eslint-disable-next-line no-console
-      .catch(error => console.error('Error:', error));
+    this.props.getLikedItems();
   }
 
   render() {
-    const { userData } = this.state;
+
     const { navigate } = this.props.navigation;
 
     if (!userData) return <Text>Loading...</Text>;
@@ -99,3 +91,17 @@ const styles = StyleSheet.create({
     padding: 10
   }
 });
+
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProfileScreen);

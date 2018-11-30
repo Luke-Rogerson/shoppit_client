@@ -16,7 +16,7 @@ export default (BASE_URL) => store => next => action => {
     method: api.method || 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'user_id': api.user_id
+      'user_id': 2
     },
     body: JSON.stringify(api.body)
   };
@@ -40,7 +40,10 @@ export default (BASE_URL) => store => next => action => {
 
   fetch(BASE_URL + api.url, options)
     .then(response => {
-      return response.json();
+      // FIXME: this catch is only for empty responses, but it catches all errors now.
+      return response.json().catch(e => {
+        console.warn('[apiMiddleware] Error parsing json', e);
+      });
     })
     .then(data => {
       if (api.schema) {
@@ -55,6 +58,8 @@ export default (BASE_URL) => store => next => action => {
       });
     })
     .catch(error => {
+      console.error(error);
+
       store.dispatch({
         ...action,
         type: action.type + '_FAILURE',

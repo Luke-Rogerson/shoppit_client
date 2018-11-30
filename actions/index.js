@@ -64,23 +64,20 @@ export const getUserFriends = (user_id) => ({
   }
 });
 
-export const selectACategory = (user_id, category_id) => ({
+export const selectACategory = (category_id) => ({
   type: 'SELECT_A_CATEGORY',
   [API]: {
     method: 'PUT',
     url: `/me/categories/${category_id}`,
-    user_id,
-    schema: currentUserSchema
   }
 });
 
-export const deselectACategory = (user_id, category_id) => ({
+export const deselectACategory = (category_id) => ({
   type: 'DESELECT_A_CATEGORY',
+  category_id,
   [API]: {
     method: 'DELETE',
     url: `/me/categories/${category_id}`,
-    user_id,
-    schema: currentUserSchema
   }
 });
 
