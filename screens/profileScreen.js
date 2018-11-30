@@ -9,35 +9,40 @@ import {
   Dimensions
 } from 'react-native';
 
+import moment from 'moment';
+
 import { connect } from 'react-redux';
+
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class ProfileScreen extends React.Component {
 
   componentDidMount() {
-    this.props.getLikedItems();
+    // this.props.getLikedItems();
   }
 
   render() {
 
     const { navigate } = this.props.navigation;
+    const { currentUser, currentUserId } = this.props;
 
-    if (!userData) return <Text>Loading...</Text>;
+    if (!currentUser) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {this.state.userData.first_name} {this.state.userData.last_name}
+          {currentUser[currentUserId].first_name} {currentUser[currentUserId].last_name}
         </Text>
         <Image
-          source={{ uri: this.state.userData.avatar_url }}
+          source={{ uri: currentUser[currentUserId].avatar_url }}
           style={styles.profile_pic}
         />
-        {/* <Text style={styles.category_name}>
-          {this.state.userData.categories[1].category_name}
-        </Text> */}
-        <ScrollView>
+        <Text style={styles.text}>
+          {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
+        </Text>
+        {/* <ScrollView>
           {mockdb.fitness.map((item, i) => {
             return (
               <TouchableHighlight
@@ -51,7 +56,7 @@ class ProfileScreen extends React.Component {
               </TouchableHighlight>
             );
           })}
-        </ScrollView>
+        </ScrollView> */}
       </View>
     );
   }
@@ -90,9 +95,10 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = state => ({
-
-// });
+const mapStateToProps = state => ({
+  currentUserId: state.pages.currentUserPage.currentUser,
+  currentUser: state.entities.currentUser,
+});
 
 // const mapDispatchToProps = dispatch => ({
 
@@ -100,6 +106,6 @@ const styles = StyleSheet.create({
 
 
 export default connect(
+  mapStateToProps,
   null,
-  null
 )(ProfileScreen);

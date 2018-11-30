@@ -48,7 +48,7 @@ const pages = (state = defaultState, action) => {
       }
     };
   }
-  case 'DESELECT_A_CATEGORY_SUCCESS':
+  case 'DESELECT_A_CATEGORY_SUCCESS': {
     const { category_id } = action;
     return {
       ...state,
@@ -59,6 +59,7 @@ const pages = (state = defaultState, action) => {
           : state.categoriesPage.selectedCategories.filter(id => id !== category_id)
       }
     };
+  }
   case 'GET_ALL_RECOMMENDED_ITEMS_SUCCESS':
     return {
       ...state,

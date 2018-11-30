@@ -66,9 +66,8 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.props.getAllRecommendedItems();
-  }
 
-  UNSAFE_componentWillMount() {
+
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (evt, gestureState) => {
@@ -227,6 +226,7 @@ class HomeScreen extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   btnContainer: {
     flex: 1,
