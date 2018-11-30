@@ -7,17 +7,21 @@ class ReadyScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
+    const { currentUser, loggedInUser} = this.props;
 
-    if (!this.state.currentUser) return <Text>Loading...</Text>;
+    if (!this.props.loggedInUser) return <Text>Loading...</Text>;
 
+    console.log('PROPS: ', currentUser[loggedInUser].first_name);
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          Congrats {this.props.currentUser.first_name}{' '}
-          {this.props.currentUser.last_name}
+
+
+          Congrats {currentUser[loggedInUser].first_name}{' '}
+          {currentUser[loggedInUser].last_name}
         </Text>
         <Image
-          source={{ uri: this.props.currentUser.avatar_url }}
+          source={{ uri: currentUser[loggedInUser].avatar_url }}
           style={styles.profile_pic}
         />
         <Text style={styles.text}>You are all set up!</Text>
@@ -51,9 +55,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  currentUser: state.pages.currentUserPage.currentUser.map(user_id => (
-    state.entities.currentUser[user_id]
-  ))
+  loggedInUser: state.pages.currentUserPage.currentUser,
+  currentUser: state.entities.currentUser
 });
 
 export default connect(
