@@ -11,19 +11,19 @@ class ReadyScreen extends React.Component {
 
     if (!this.props.loggedInUser) return <Text>Loading...</Text>;
 
-    console.log('PROPS: ', currentUser[loggedInUser].first_name);
     return (
       <View style={styles.container}>
+
         <Text style={styles.text}>
-
-
           Congrats {currentUser[loggedInUser].first_name}{' '}
           {currentUser[loggedInUser].last_name}
         </Text>
+
         <Image
           source={{ uri: currentUser[loggedInUser].avatar_url }}
           style={styles.profile_pic}
         />
+
         <Text style={styles.text}>You are all set up!</Text>
 
         <Button title="Next" onPress={() => navigate('HomeScreen')} />
