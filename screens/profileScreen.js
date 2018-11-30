@@ -12,32 +12,26 @@ import {
 import moment from 'moment';
 
 import { connect } from 'react-redux';
-import {getLikedItems} from '../actions';
-
-
+import { getLikedItems } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class ProfileScreen extends React.Component {
-
   componentDidMount() {
-
     this.props.getLikedItems();
-
   }
 
   render() {
-
     const { navigate } = this.props.navigation;
     const { currentUser, currentUserId, likedItems } = this.props;
-
 
     if (!currentUser) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {currentUser[currentUserId].first_name} {currentUser[currentUserId].last_name}
+          {currentUser[currentUserId].first_name}{' '}
+          {currentUser[currentUserId].last_name}
         </Text>
         <Image
           source={{ uri: currentUser[currentUserId].avatar_url }}
@@ -49,7 +43,6 @@ class ProfileScreen extends React.Component {
         <ScrollView>
           {likedItems.map((item, i) => {
             return (
-
               <TouchableHighlight
                 onPress={() => navigate('ItemDetailScreen')}
                 key={i}
@@ -104,17 +97,16 @@ const mapStateToProps = state => ({
   currentUserId: state.pages.currentUserPage.currentUser,
   currentUser: state.entities.currentUser,
 
-  likedItems: state.pages.profilePage.items.map(item_id => (
-    state.entities.likedItems[item_id]
-  ))
+  likedItems: state.pages.profilePage.items.map(
+    item_id => state.entities.likedItems[item_id]
+  )
 });
 
 const mapDispatchToProps = dispatch => ({
-  getLikedItems: () => dispatch(getLikedItems(2)),
+  getLikedItems: () => dispatch(getLikedItems(1))
 });
-
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ProfileScreen);

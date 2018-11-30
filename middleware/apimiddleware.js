@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 
 export const API = 'potatosandomolasses';
-export default (BASE_URL) => store => next => action => {
+export default BASE_URL => store => next => action => {
   if (!action[API]) return next(action); // Pass on if not asynchronous
 
   // Otherwise, do...
@@ -16,7 +16,7 @@ export default (BASE_URL) => store => next => action => {
     method: api.method || 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'user_id': 2
+      user_id: 1
     },
     body: JSON.stringify(api.body)
   };
@@ -55,6 +55,6 @@ export default (BASE_URL) => store => next => action => {
         type: action.type + '_FAILURE',
         [API]: undefined,
         error: error.message
-      }, );
+      });
     });
 };

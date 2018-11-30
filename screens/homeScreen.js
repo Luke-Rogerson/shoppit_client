@@ -283,7 +283,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2))
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
 });
 
 export default connect(
