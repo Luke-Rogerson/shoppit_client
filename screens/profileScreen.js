@@ -11,8 +11,6 @@ import {
 
 import { connect } from 'react-redux';
 
-import { getLikedItems } from '../actions';
-
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class ProfileScreen extends React.Component {
@@ -92,16 +90,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
 
-});
+// });
 
-const mapDispatchToProps = dispatch => ({
+// const mapDispatchToProps = dispatch => ({
 
-});
+// });
 
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  null
 )(ProfileScreen);

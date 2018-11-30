@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  // categoriesrytrryeert: state.categoriesPage
+
   categories: state.pages.categoriesPage.categories.map(category_id => (
     state.entities.categories[category_id]
   )),

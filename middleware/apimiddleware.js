@@ -26,22 +26,11 @@ export default (BASE_URL) => store => next => action => {
   // then append the token in the headers
   // Header: auth - bearer...
 
-  // const Headers = {
-  //   'Content-Type': 'application/json',
-  //   'user_id': api.user_id
-  // };
-  // options.Headers = Headers;
-
-
-
-  // if (api.method === 'POST' || api.method === 'PUT') {
-  //   options.body = JSON.stringify(api.body);
-  // }
-
   fetch(BASE_URL + api.url, options)
     .then(response => {
       // FIXME: this catch is only for empty responses, but it catches all errors now.
       return response.json().catch(e => {
+        // eslint-disable-next-line no-console
         console.warn('[apiMiddleware] Error parsing json', e);
       });
     })
@@ -58,6 +47,7 @@ export default (BASE_URL) => store => next => action => {
       });
     })
     .catch(error => {
+      // eslint-disable-next-line no-console
       console.error(error);
 
       store.dispatch({
