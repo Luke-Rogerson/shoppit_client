@@ -5,24 +5,12 @@ import { connect } from 'react-redux';
 
 import {
   getCurrentUserData,
-  getAllCategories,
-  getAllRecommendedItems,
-  getLikedItems,
-  getUserFriends,
-  selectACategory,
-  deselectACategory,
-  setItemAffinity
 } from '../actions';
 
 class SignInScreen extends React.Component {
 
   componentDidMount() {
-    // For testing only
     this.props.getCurrentUserData();
-    // this.props.getAllRecommendedItems();
-    // this.props.getLikedItems();
-    // this.props.getUserFriends();
-    // this.props.setItemAffinity();
   }
 
 
@@ -52,20 +40,8 @@ const styles = StyleSheet.create({
   }
 });
 
-// state.pages.signIn.user -> 1400
-// const mapStateToProps = state => ({
-//   user: state.entities.users[state.pages.signIn.user],
-//   categories: state.pages.signIn.categories.map(id => (
-//     state.entites.categories[id]
-//   ))
-// });
-
 const mapDispatchToProps = dispatch => ({
   getCurrentUserData: () => dispatch(getCurrentUserData(2)),
-//   getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
-//   getLikedItems: () => dispatch(getLikedItems(2)),
-//   getUserFriends: () => dispatch(getUserFriends(2)),
-//   setItemAffinity: () => dispatch(setItemAffinity(2, 4288, false))
 });
 
 export default connect(

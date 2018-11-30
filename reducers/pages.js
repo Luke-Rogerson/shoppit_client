@@ -31,7 +31,7 @@ const pages = (state = defaultState, action) => {
       ...state,
       currentUserPage: {
         ...state.currentUserPage,
-        currentUser: action.data.entities.currentUser
+        currentUser: action.data.result
       }
     };
     case 'DESELECT_A_CATEGORY_SUCCESS':
