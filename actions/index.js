@@ -90,6 +90,7 @@ export const deselectACategory = (category_id) => ({
 
 export const setItemAffinity = (item_id, affinity) => ({
   type: 'SET_ITEM_AFFINITY',
+  loading: true,
   [API]: {
     method: 'PUT',
     url: `/items/${item_id}/like/${affinity}`,
