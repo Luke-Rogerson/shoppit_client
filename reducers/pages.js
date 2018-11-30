@@ -102,7 +102,8 @@ const pages = (state = defaultState, action) => {
       ...state,
       homePage: {
         ...state.homePage,
-        likedItems: action.data.result
+        likedItems: action.data.result,
+        loading: false
       }
     };
 

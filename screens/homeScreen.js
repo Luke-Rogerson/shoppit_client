@@ -62,9 +62,11 @@ class HomeScreen extends React.Component {
       outputRange: [1, 0.8, 1],
       extrapolate: 'clamp'
     });
+
   }
 
   componentDidMount() {
+
     this.props.getAllRecommendedItems();
 
     this.PanResponder = PanResponder.create({
@@ -73,7 +75,7 @@ class HomeScreen extends React.Component {
         this.position.setValue({ x: gestureState.dx, y: gestureState.dy });
       },
       onPanResponderRelease: (evt, gestureState) => {
-        if (gestureState.dx > 120) {
+        if (gestureState.dx > 120) { // swipe RIGHT ie. like
           Animated.spring(this.position, {
             toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
           }).start(() => {
@@ -81,7 +83,7 @@ class HomeScreen extends React.Component {
               this.position.setValue({ x: 0, y: 0 });
             });
           });
-        } else if (gestureState.dx < -120) {
+        } else if (gestureState.dx < -120) { // swipe LEFT ie. dismiss
           Animated.spring(this.position, {
             toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
           }).start(() => {
@@ -201,9 +203,10 @@ class HomeScreen extends React.Component {
               name="ios-close-circle-outline"
               size={50}
               color="#6F6E6C"
-              onPress={() =>
-                this.props.setItemAffinity(currentItem.item_id, false)
-              }
+              onPress={() => {
+                this.props.setItemAffinity(currentItem.item_id, false);
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
@@ -211,9 +214,10 @@ class HomeScreen extends React.Component {
               name="ios-heart-empty"
               size={50}
               color="#6F6E6C"
-              onPress={() =>
-                this.props.setItemAffinity(currentItem.item_id, true)
-              }
+              onPress={() => {
+                this.props.setItemAffinity(currentItem.item_id, true);
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
@@ -290,7 +294,8 @@ const mapStateToProps = state => ({
 
   recommendedItems: state.pages.homePage.items.map(
     item_id => state.entities.items[item_id]
-  )
+  ),
+  isUpdating: state.pages.homePage.loading
 });
 
 const mapDispatchToProps = dispatch => ({
