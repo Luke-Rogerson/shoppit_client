@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAllRecommendedItems } from '../actions';
+import { getAllRecommendedItems, setItemAffinity } from '../actions';
 
 import {
   Text,
@@ -284,7 +284,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
+  setItemAffinity: (item_id, affinity) => dispatch(setItemAffinity(item_id, affinity))
 });
 
 export default connect(
