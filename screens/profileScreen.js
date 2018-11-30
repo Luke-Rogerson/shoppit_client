@@ -21,7 +21,9 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 class ProfileScreen extends React.Component {
 
   componentDidMount() {
+
     this.props.getLikedItems();
+
   }
 
   render() {

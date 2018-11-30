@@ -9,7 +9,9 @@ import { selectACategory, deselectACategory,  getAllCategories } from '../action
 class CategoriesScreen extends React.Component {
 
   componentDidMount() {
+
     this.props.getAllCategories();
+
   }
 
   render() {
@@ -31,6 +33,7 @@ class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
+
             const selectedCategories = res.slice(1);
             if (selectedCategories.length === 0) return;
 
@@ -42,6 +45,7 @@ class CategoriesScreen extends React.Component {
               const categoryId = selectedCategories.find(category_id => !this.props.selectedCategories.includes(category_id.toString()));
               this.props.deselectACategory(categoryId);
             }
+
           }} // callback, array of selected items
           rowBackgroundColor={'#eee'}
           rowHeight={50}
@@ -49,7 +53,9 @@ class CategoriesScreen extends React.Component {
           iconColor={'#00a2dd'}
           iconSize={30}
           selectedIconName={'ios-checkmark-circle-outline'}
-          scrollViewHeight={300}
+
+          scrollViewHeight={500}
+
         />
         <View>
           <Button title="Next" onPress={() => navigate('ReadyScreen')} />
