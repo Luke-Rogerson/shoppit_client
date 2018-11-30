@@ -10,6 +10,7 @@ const defaultState = {
   },
   homePage: {
     items: [],
+    likedItems: [],
     loading: false
   },
   profilePage: {
@@ -93,6 +94,15 @@ const pages = (state = defaultState, action) => {
       friendsPage: {
         ...state.friendsPage,
         friendsList: action.data.result
+      }
+    };
+
+  case 'SET_ITEM_AFFINITY_SUCCESS':
+    return {
+      ...state,
+      homePage: {
+        ...state.homePage,
+        likedItems: action.data.result
       }
     };
 

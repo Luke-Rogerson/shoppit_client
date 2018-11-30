@@ -93,8 +93,6 @@ export const setItemAffinity = (item_id, affinity) => ({
   [API]: {
     method: 'PUT',
     url: `/items/${item_id}/like/${affinity}`,
-    schema: itemSchema,
+    schema: likedItemSchema,
   }
 });
-
-

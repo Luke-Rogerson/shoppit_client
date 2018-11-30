@@ -201,10 +201,20 @@ class HomeScreen extends React.Component {
               name="ios-close-circle-outline"
               size={50}
               color="#6F6E6C"
+              onPress={() =>
+                this.props.setItemAffinity(currentItem.item_id, false)
+              }
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
-            <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
+            <Ionicons
+              name="ios-heart-empty"
+              size={50}
+              color="#6F6E6C"
+              onPress={() =>
+                this.props.setItemAffinity(currentItem.item_id, true)
+              }
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
             <Ionicons
@@ -284,8 +294,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
-  setItemAffinity: (item_id, affinity) => dispatch(setItemAffinity(item_id, affinity))
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems()),
+  setItemAffinity: (item_id, affinity) =>
+    dispatch(setItemAffinity(item_id, affinity))
 });
 
 export default connect(
