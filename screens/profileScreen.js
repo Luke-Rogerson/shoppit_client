@@ -12,6 +12,7 @@ import {
 import moment from 'moment';
 
 import { connect } from 'react-redux';
+import {getLikedItems} from '../actions';
 
 
 
@@ -20,13 +21,14 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 class ProfileScreen extends React.Component {
 
   componentDidMount() {
-    // this.props.getLikedItems();
+    this.props.getLikedItems();
   }
 
   render() {
 
     const { navigate } = this.props.navigation;
-    const { currentUser, currentUserId } = this.props;
+    const { currentUser, currentUserId, likedItems } = this.props;
+
 
     if (!currentUser) return <Text>Loading...</Text>;
 
@@ -42,9 +44,10 @@ class ProfileScreen extends React.Component {
         <Text style={styles.text}>
           {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
         </Text>
-        {/* <ScrollView>
-          {mockdb.fitness.map((item, i) => {
+        <ScrollView>
+          {likedItems.map((item, i) => {
             return (
+
               <TouchableHighlight
                 onPress={() => navigate('ItemDetailScreen')}
                 key={i}
@@ -56,7 +59,7 @@ class ProfileScreen extends React.Component {
               </TouchableHighlight>
             );
           })}
-        </ScrollView> */}
+        </ScrollView>
       </View>
     );
   }
@@ -98,14 +101,18 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   currentUserId: state.pages.currentUserPage.currentUser,
   currentUser: state.entities.currentUser,
+
+  likedItems: state.pages.profilePage.items.map(item_id => (
+    state.entities.likedItems[item_id]
+  ))
 });
 
-// const mapDispatchToProps = dispatch => ({
-
-// });
+const mapDispatchToProps = dispatch => ({
+  getLikedItems: () => dispatch(getLikedItems(2)),
+});
 
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(ProfileScreen);

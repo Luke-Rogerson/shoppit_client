@@ -15,6 +15,9 @@ const defaultState = {
   homePage: {
     items: [],
     loading: false
+  },
+  profilePage: {
+    items: []
   }
 };
 
@@ -65,6 +68,15 @@ const pages = (state = defaultState, action) => {
       ...state,
       homePage: {
         ...state.homePage,
+        items: action.data.result
+      }
+    };
+
+  case 'GET_LIKED_ITEMS_SUCCESS':
+    return {
+      ...state,
+      profilePage: {
+        ...state.profilePage,
         items: action.data.result
       }
     };

@@ -2,7 +2,8 @@ const defaultState = {
   currentUser: {},
   friends: {},
   categories: {},
-  items: {}
+  items: {},
+  likedItems: {}
 };
 
 const entities = (state = defaultState, action) => {
@@ -28,6 +29,10 @@ const entities = (state = defaultState, action) => {
     items: {
       ...state.items,
       ...entities.items
+    },
+    likedItems: {
+      ...state.likedItems,
+      ...entities.likedItems
     }
   };
 };

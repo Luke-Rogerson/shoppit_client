@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-
   categories: state.pages.categoriesPage.categories.map(category_id => (
     state.entities.categories[category_id]
   )),

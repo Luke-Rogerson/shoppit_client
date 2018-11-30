@@ -16,6 +16,13 @@ const itemSchema = new schema.Entity('items', {
 });
 const itemsSchema = new schema.Array(itemSchema);
 
+const likedItemSchema = new schema.Entity('likedItems', {
+  category: categorySchema
+}, {
+  idAttribute: 'item_id'
+});
+const likedItemsSchema = new schema.Array(likedItemSchema);
+
 const getUserFriendSchema = new schema.Entity('friends', undefined, { idAttribute: 'user_id' });
 const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
 
@@ -51,7 +58,7 @@ export const getLikedItems = (user_id) => ({
   type: 'GET_LIKED_ITEMS',
   [API]: {
     url: `/users/${user_id}/items`,
-    schema: itemSchema,
+    schema: likedItemsSchema,
   }
 });
 
