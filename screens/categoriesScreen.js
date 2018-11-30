@@ -2,27 +2,23 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import CustomMultiPicker from 'react-native-multiple-select-list';
 
-export default class CategoriesScreen extends React.Component {
-  constructor(props) {
-    super(props);
+import { connect } from 'react-redux';
 
-    this.state = {
-      categories: null
-    };
-  }
+import { selectACategory, deselectACategory,  getAllCategories } from '../actions';
+
+class CategoriesScreen extends React.Component {
 
   componentDidMount() {
-    fetch('http://localhost:3333/categories')
-      .then(res => res.json())
-      .then(data => this.setState({ categories: data }))
-      // eslint-disable-next-line no-console
-      .catch(error => console.error('Error:', error));
+
+    this.props.getAllCategories();
+
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    if (!this.state.categories) return <Text>LOADING...</Text>;
-    const categories = this.state.categories.reduce(
+
+    if (!this.props.categories) return <Text>LOADING...</Text>;
+    const categories = this.props.categories.reduce(
       (accum, category) => ({
         ...accum,
         [category.category_id]: category.category_name
@@ -37,7 +33,19 @@ export default class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
-            console.log('result', res);
+
+            const selectedCategories = res.slice(1);
+            if (selectedCategories.length === 0) return;
+
+            if (selectedCategories.length > this.props.selectedCategories) {
+              const categoryId = selectedCategories[selectedCategories.length - 1];
+
+              this.props.selectACategory(categoryId);
+            } else {
+              const categoryId = selectedCategories.find(category_id => !this.props.selectedCategories.includes(category_id.toString()));
+              this.props.deselectACategory(categoryId);
+            }
+
           }} // callback, array of selected items
           rowBackgroundColor={'#eee'}
           rowHeight={50}
@@ -45,7 +53,9 @@ export default class CategoriesScreen extends React.Component {
           iconColor={'#00a2dd'}
           iconSize={30}
           selectedIconName={'ios-checkmark-circle-outline'}
+
           scrollViewHeight={500}
+
         />
         <View>
           <Button title="Next" onPress={() => navigate('ReadyScreen')} />
@@ -63,3 +73,21 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize'
   }
 });
+
+const mapStateToProps = (state) => ({
+  categories: state.pages.categoriesPage.categories.map(category_id => (
+    state.entities.categories[category_id]
+  )),
+  selectedCategories: state.pages.categoriesPage.selectedCategories
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllCategories: () => dispatch(getAllCategories()),
+  selectACategory: (category_id) => dispatch(selectACategory(category_id)),
+  deselectACategory: (category_id) => dispatch(deselectACategory(category_id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoriesScreen);

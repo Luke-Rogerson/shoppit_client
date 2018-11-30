@@ -8,53 +8,48 @@ import {
   TouchableHighlight,
   Dimensions
 } from 'react-native';
-import mockdb from '../mockdb.json';
+
+import moment from 'moment';
+
+import { connect } from 'react-redux';
+import {getLikedItems} from '../actions';
+
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class ProfileScreen extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userData: null
-    };
-  }
+class ProfileScreen extends React.Component {
 
   componentDidMount() {
-    fetch('http://localhost:3333/me', {
-      headers: { user_id: 2 }
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ userData: data }))
-      // fetch('http://localhost:3333/users/2/items')
-      //   .then(res => res.json())
-      //   .then(data => this.setState({ likedItems: data }))
-      // eslint-disable-next-line no-console
-      .catch(error => console.error('Error:', error));
+
+    this.props.getLikedItems();
+
   }
 
   render() {
-    const { userData } = this.state;
-    const { navigate } = this.props.navigation;
 
-    if (!userData) return <Text>Loading...</Text>;
+    const { navigate } = this.props.navigation;
+    const { currentUser, currentUserId, likedItems } = this.props;
+
+
+    if (!currentUser) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {this.state.userData.first_name} {this.state.userData.last_name}
+          {currentUser[currentUserId].first_name} {currentUser[currentUserId].last_name}
         </Text>
         <Image
-          source={{ uri: this.state.userData.avatar_url }}
+          source={{ uri: currentUser[currentUserId].avatar_url }}
           style={styles.profile_pic}
         />
-        {/* <Text style={styles.category_name}>
-          {this.state.userData.categories[1].category_name}
-        </Text> */}
+        <Text style={styles.text}>
+          {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
+        </Text>
         <ScrollView>
-          {mockdb.fitness.map((item, i) => {
+          {likedItems.map((item, i) => {
             return (
+
               <TouchableHighlight
                 onPress={() => navigate('ItemDetailScreen')}
                 key={i}
@@ -104,3 +99,22 @@ const styles = StyleSheet.create({
     padding: 10
   }
 });
+
+const mapStateToProps = state => ({
+  currentUserId: state.pages.currentUserPage.currentUser,
+  currentUser: state.entities.currentUser,
+
+  likedItems: state.pages.profilePage.items.map(item_id => (
+    state.entities.likedItems[item_id]
+  ))
+});
+
+const mapDispatchToProps = dispatch => ({
+  getLikedItems: () => dispatch(getLikedItems(2)),
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProfileScreen);

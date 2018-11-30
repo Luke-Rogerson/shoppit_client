@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { getAllRecommendedItems } from '../actions';
 
 import {
   Text,
@@ -15,13 +18,9 @@ import { Ionicons } from '@expo/vector-icons';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      itemsData: null
-    };
 
     this.position = new Animated.ValueXY();
     this.state = {
@@ -66,16 +65,10 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3333/items/recommended', {
-      headers: { user_id: 2 }
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ itemsData: data }))
-      // eslint-disable-next-line no-console
-      .catch(error => console.error('Error:', error));
-  }
 
-  UNSAFE_componentWillMount() {
+    this.props.getAllRecommendedItems();
+
+
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (evt, gestureState) => {
@@ -109,9 +102,9 @@ export default class HomeScreen extends React.Component {
   }
 
   renderItems = () => {
-    if (!this.state.itemsData) return <Text>Loading...</Text>;
+    if (!this.props.recommendedItems) return <Text>Loading...</Text>;
 
-    return this.state.itemsData
+    return this.props.recommendedItems
       .map((item, i) => {
         if (i < this.state.currentIndex) {
           return null;
@@ -192,9 +185,8 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    if (!this.state.itemsData) return <Text>Loading...</Text>;
-    const currentItem = this.state.itemsData[this.state.currentIndex];
-    // console.log('currentItems', currentItem);
+    if (!this.props.recommendedItems) return <Text>Loading...</Text>;
+    const currentItem = this.props.recommendedItems[this.state.currentIndex];
 
     return (
       <View
@@ -235,6 +227,7 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   btnContainer: {
     flex: 1,
@@ -281,3 +274,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   }
 });
+
+const mapStateToProps = state => ({
+  currentUserId: state.pages.currentUserPage.currentUser,
+  currentUser: state.entities.currentUser,
+
+  recommendedItems: state.pages.homePage.items.map(item_id => (
+    state.entities.items[item_id]
+  ))
+});
+
+const mapDispatchToProps = dispatch => ({
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems(2)),
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);

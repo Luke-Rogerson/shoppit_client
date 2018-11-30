@@ -1,16 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-export default class SignInScreen extends React.Component {
+import { connect } from 'react-redux';
+
+import {
+  getCurrentUserData,
+} from '../actions';
+
+class SignInScreen extends React.Component {
+
+  componentDidMount() {
+    this.props.getCurrentUserData();
+  }
+
+
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>THIS IS THE SIGN IN SCREEN</Text>
-        <Button
-          title="Next"
-          onPress={() => navigate('CategoriesScreen')}
-        />
+        <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
         <Button
           title="Home"
           onPress={() => {
@@ -30,3 +39,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+const mapDispatchToProps = dispatch => ({
+  getCurrentUserData: () => dispatch(getCurrentUserData(2)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignInScreen);
