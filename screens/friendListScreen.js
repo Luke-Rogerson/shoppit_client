@@ -10,6 +10,7 @@ import {
 
 import { connect } from 'react-redux';
 import { getUserFriends } from '../actions';
+import moment from 'moment';
 
 class FriendListScreen extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class FriendListScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { friends } = this.props;
+    // const friendId = this.props.friends[]
 
     if (!friends) return <Text>Loading...</Text>;
 
@@ -28,7 +30,15 @@ class FriendListScreen extends React.Component {
           {friends.map((friend, i) => {
             return (
               <TouchableHighlight
-                onPress={() => navigate('ProfileScreen')}
+                onPress={() =>
+                  navigate('FriendsProfileScreen', {
+                    firstName: friend.first_name,
+                    lastName: friend.last_name,
+                    image: friend.avatar_url,
+                    id: friend.user_id,
+                    birthday: moment(friend.birthday).format('Do MMMM')
+                  })
+                }
                 key={i}
               >
                 <View style={styles.container}>

@@ -5,12 +5,14 @@ import { createStackNavigator } from 'react-navigation';
 import FriendsListScreen from '../screens/FriendListScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
+import FriendsProfileScreen from '../screens/FriendsProfileScreen';
 
 export default createStackNavigator(
   {
     FriendsListScreen,
     ProfileScreen,
-    ItemDetailScreen
+    ItemDetailScreen,
+    FriendsProfileScreen
   },
   {
     headerMode: 'float',
