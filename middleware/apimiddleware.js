@@ -1,7 +1,19 @@
 import { normalize } from 'normalizr';
+import { AsyncStorage } from 'react-native';
 
 export const API = 'potatosandomolasses';
-export default BASE_URL => store => next => action => {
+
+retrieveToken = async () => {
+  try {
+    const accesstoken = await AsyncStorage.getItem('accesstoken');
+    return accesstoken;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};
+
+export default BASE_URL => store => next => async action => {
   if (!action[API]) return next(action); // Pass on if not asynchronous
 
   // Otherwise, do...
@@ -17,15 +29,10 @@ export default BASE_URL => store => next => action => {
     method: api.method || 'GET',
     headers: {
       'Content-Type': 'application/json',
-      user_id: 1
+      accesstoken: await retrieveToken()
     },
     body: JSON.stringify(api.body)
   };
-
-  // HANDLE AUTH HERE TOO WHEN WE GET TO IT
-  // get token from async storage
-  // then append the token in the headers
-  // Header: auth - bearer...
 
   fetch(BASE_URL + api.url, options)
     .then(response => {
@@ -36,7 +43,7 @@ export default BASE_URL => store => next => action => {
       });
     })
     .then(data => {
-      if (api.schema) {
+      if (data && api.schema) {
         data = normalize(data, api.schema);
       }
 
@@ -57,7 +64,7 @@ export default BASE_URL => store => next => action => {
         type: action.type + '_FAILURE',
         [API]: undefined,
         loading: false,
-        error: error.message
+        error: error && error.message
       });
     });
 };

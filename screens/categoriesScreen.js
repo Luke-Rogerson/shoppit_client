@@ -36,22 +36,41 @@ class CategoriesScreen extends React.Component {
           multiple={true}
           returnValue={'value'}
           callback={res => {
-            const selectedCategories = res.slice(1);
-            if (selectedCategories.length === 0) return;
+            const selectedCategories = res;
+            if (this.props.selectedCategories.length === 0 && res.length > 1) {
+              const categoryId =
+                selectedCategories[selectedCategories.length - 1];
 
-            if (selectedCategories.length > this.props.selectedCategories) {
+              this.props.selectACategory(categoryId);
+            } else if (
+              res.length === 1 &&
+              this.props.selectedCategories.length === 0
+            ) {
+              return;
+            }
+
+            const selectedItem = this.props.selectedCategories.reduce(
+              (acc, el) =>
+                !el || (el && selectedCategories.includes(el.toString()))
+                  ? acc
+                  : [...acc, el],
+              []
+            )[0];
+
+
+            if (!selectedItem) {
               const categoryId =
                 selectedCategories[selectedCategories.length - 1];
 
               this.props.selectACategory(categoryId);
             } else {
-              const categoryId = selectedCategories.find(
-                category_id =>
-                  !this.props.selectedCategories.includes(
-                    category_id.toString()
-                  )
-              );
-              this.props.deselectACategory(categoryId);
+              // const categoryId = selectedCategories.find(
+              //   category_id =>
+              //     !this.props.selectedCategories.includes(
+              //       category_id.toString()
+              //     )
+              // );
+              this.props.deselectACategory(selectedItem);
             }
           }} // callback, array of selected items
           rowBackgroundColor={'#eee'}
