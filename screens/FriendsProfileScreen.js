@@ -9,36 +9,34 @@ import {
   Dimensions
 } from 'react-native';
 
-import moment from 'moment';
-
 import { connect } from 'react-redux';
 import { getLikedItems } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class ProfileScreen extends React.Component {
+class FriendsProfileScreen extends React.Component {
   componentDidMount() {
-    this.props.getLikedItems(this.props.currentUserId);
+    this.props.getLikedItems(this.props.navigation.getParam('id'));
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    const { currentUser, currentUserId, likedItems } = this.props;
+    const { friends, likedItems } = this.props;
 
-    if (!currentUser) return <Text>Loading...</Text>;
+    if (!friends) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {currentUser[currentUserId].first_name}{' '}
-          {currentUser[currentUserId].last_name}
+          {this.props.navigation.getParam('firstName')}{' '}
+          {this.props.navigation.getParam('lastName')}
         </Text>
         <Image
-          source={{ uri: currentUser[currentUserId].avatar_url }}
+          source={{ uri: this.props.navigation.getParam('image') }}
           style={styles.profile_pic}
         />
         <Text style={styles.text}>
-          {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
+          {this.props.navigation.getParam('birthday', '')}
         </Text>
         <ScrollView>
           {likedItems.map((item, i) => {
@@ -102,8 +100,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  currentUserId: state.pages.currentUserPage.currentUser,
-  currentUser: state.entities.currentUser,
+  friends: state.pages.friendsPage.friendsList.map(
+    friend => state.entities.friends[friend]
+  ),
+  friendsIds: state.pages.friendsPage.friendsList,
 
   likedItems: state.pages.profilePage.items.map(
     item_id => state.entities.likedItems[item_id]
@@ -116,5 +116,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
+  // null
   mapDispatchToProps
-)(ProfileScreen);
+)(FriendsProfileScreen);

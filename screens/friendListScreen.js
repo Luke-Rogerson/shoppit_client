@@ -8,36 +8,37 @@ import {
   ScrollView
 } from 'react-native';
 
-export default class FriendListScreen extends React.Component {
-  constructor(props) {
-    super(props);
+import { connect } from 'react-redux';
+import { getUserFriends } from '../actions';
 
-    this.state = {
-      friendsData: null
-    };
-  }
+import moment from 'moment';
 
+class FriendListScreen extends React.Component {
   componentDidMount() {
-    fetch('http://localhost:3333/me/friends', {
-      headers: { user_id: 2 }
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ friendsData: data }))
-      // eslint-disable-next-line no-console
-      .catch(error => console.error('Error:', error));
+    this.props.getUserFriends();
   }
 
   render() {
     const { navigate } = this.props.navigation;
-    if (!this.state.friendsData) return <Text>Loading...</Text>;
+    const { friends } = this.props;
+
+    if (!friends) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
         <ScrollView>
-          {this.state.friendsData.map((friend, i) => {
+          {friends.map((friend, i) => {
             return (
               <TouchableHighlight
-                onPress={() => navigate('ProfileScreen')}
+                onPress={() =>
+                  navigate('FriendsProfileScreen', {
+                    firstName: friend.first_name,
+                    lastName: friend.last_name,
+                    image: friend.avatar_url,
+                    id: friend.user_id,
+                    birthday: moment(friend.birthday).format('Do MMMM')
+                  })
+                }
                 key={i}
               >
                 <View style={styles.container}>
@@ -70,11 +71,26 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginTop: 10
+    margin: 10
   },
   text: {
-    margin: 10,
+    margin: 30,
     color: '#6F6E6C',
     fontSize: 20
   }
 });
+
+const mapStateToProps = state => ({
+  friends: state.pages.friendsPage.friendsList.map(
+    friend => state.entities.friends[friend]
+  )
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUserFriends: () => dispatch(getUserFriends(1))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FriendListScreen);

@@ -3,16 +3,12 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
 
-import {
-  getCurrentUserData,
-} from '../actions';
+import { getCurrentUserData } from '../actions';
 
 class SignInScreen extends React.Component {
-
   componentDidMount() {
     this.props.getCurrentUserData();
   }
-
 
   render() {
     const { navigate } = this.props.navigation;
@@ -41,10 +37,10 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentUserData: () => dispatch(getCurrentUserData(2)),
+  getCurrentUserData: () => dispatch(getCurrentUserData(2))
 });
 
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SignInScreen);

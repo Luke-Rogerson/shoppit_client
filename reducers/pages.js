@@ -1,8 +1,4 @@
 const defaultState = {
-  friends: {
-    friendsList: [],
-    isLoading: false
-  },
   categoriesPage: {
     categories: [],
     selectedCategories: [],
@@ -18,6 +14,10 @@ const defaultState = {
   },
   profilePage: {
     items: []
+  },
+  friendsPage: {
+    friendsList: [],
+    isLoading: false
   }
 };
 
@@ -45,7 +45,9 @@ const pages = (state = defaultState, action) => {
       ...state,
       categoriesPage: {
         ...state.categoriesPage,
-        selectedCategories: state.categoriesPage.selectedCategories.includes(category_id)
+        selectedCategories: state.categoriesPage.selectedCategories.includes(
+          category_id
+        )
           ? state.categoriesPage.selectedCategories
           : state.categoriesPage.selectedCategories.concat(category_id)
       }
@@ -57,9 +59,13 @@ const pages = (state = defaultState, action) => {
       ...state,
       categoriesPage: {
         ...state.categoriesPage,
-        selectedCategories: state.categoriesPage.selectedCategories.includes(category_id)
+        selectedCategories: state.categoriesPage.selectedCategories.includes(
+          category_id
+        )
           ? state.categoriesPage.selectedCategories
-          : state.categoriesPage.selectedCategories.filter(id => id !== category_id)
+          : state.categoriesPage.selectedCategories.filter(
+            id => id !== category_id
+          )
       }
     };
   }
@@ -78,6 +84,15 @@ const pages = (state = defaultState, action) => {
       profilePage: {
         ...state.profilePage,
         items: action.data.result
+      }
+    };
+
+  case 'GET_USER_FRIENDS_SUCCESS':
+    return {
+      ...state,
+      friendsPage: {
+        ...state.friendsPage,
+        friendsList: action.data.result
       }
     };
 
