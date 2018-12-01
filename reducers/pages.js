@@ -60,13 +60,9 @@ const pages = (state = defaultState, action) => {
       ...state,
       categoriesPage: {
         ...state.categoriesPage,
-        selectedCategories: state.categoriesPage.selectedCategories.includes(
-          category_id
+        selectedCategories: state.categoriesPage.selectedCategories.filter(
+          id => id !== category_id
         )
-          ? state.categoriesPage.selectedCategories
-          : state.categoriesPage.selectedCategories.filter(
-            id => id !== category_id
-          )
       }
     };
   }
