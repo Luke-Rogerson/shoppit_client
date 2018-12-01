@@ -225,14 +225,15 @@ class HomeScreen extends React.Component {
               name="ios-information-circle-outline"
               size={50}
               color="#6F6E6C"
-              onPress={() =>
+              onPress={() => {
                 navigate('ItemDetailScreen', {
                   name: currentItem.item_name,
+                  item_id: currentItem.item_id,
                   image: currentItem.img_url,
                   price: currentItem.price,
                   link: currentItem.amazon_url
-                })
-              }
+                });
+              }}
             />
           </TouchableOpacity>
           {/* LIKE button */}
