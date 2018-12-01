@@ -18,6 +18,7 @@ import { Ionicons } from '@expo/vector-icons';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
+
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -65,20 +66,26 @@ class HomeScreen extends React.Component {
 
   }
 
+
+
   componentDidMount() {
 
     this.props.getAllRecommendedItems();
+
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (evt, gestureState) => {
         this.position.setValue({ x: gestureState.dx, y: gestureState.dy });
       },
+
       onPanResponderRelease: (evt, gestureState) => {
+        const currentItem = this.props.recommendedItems[this.state.currentIndex];
         if (gestureState.dx > 120) { // swipe RIGHT ie. like
           Animated.spring(this.position, {
             toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
           }).start(() => {
+            this.props.setItemAffinity(currentItem.item_id, true);
             this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
             });
@@ -87,6 +94,7 @@ class HomeScreen extends React.Component {
           Animated.spring(this.position, {
             toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
           }).start(() => {
+            this.props.setItemAffinity(currentItem.item_id, false);
             this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
             });
@@ -186,6 +194,7 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     if (!this.props.recommendedItems) return <Text>Loading...</Text>;
+
     const currentItem = this.props.recommendedItems[this.state.currentIndex];
 
     return (
