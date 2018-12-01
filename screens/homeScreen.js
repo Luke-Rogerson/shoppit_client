@@ -66,8 +66,6 @@ class HomeScreen extends React.Component {
 
   }
 
-
-
   componentDidMount() {
 
     this.props.getAllRecommendedItems();
@@ -233,6 +231,7 @@ class HomeScreen extends React.Component {
                   price: currentItem.price,
                   link: currentItem.amazon_url
                 });
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
               }}
             />
           </TouchableOpacity>

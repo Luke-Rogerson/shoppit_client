@@ -73,7 +73,7 @@ class ItemDetailScreen extends React.Component {
                 onPress={() => this.setState({ showWebView: true })}
               />
             </View>
-            <View style={styles.btnContainer}>
+            {/* <View style={styles.btnContainer}>
               <TouchableOpacity style={styles.btn}>
                 <Ionicons
                   name="ios-close-circle-outline"
@@ -84,7 +84,7 @@ class ItemDetailScreen extends React.Component {
               <TouchableOpacity style={styles.btn}>
                 <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.btnContainer}>
