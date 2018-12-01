@@ -215,7 +215,8 @@ class HomeScreen extends React.Component {
                 navigate('ItemDetailScreen', {
                   name: currentItem.item_name,
                   image: currentItem.img_url,
-                  price: currentItem.price
+                  price: currentItem.price,
+                  link: currentItem.amazon_url
                 })
               }
             />
