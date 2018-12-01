@@ -207,6 +207,7 @@ class HomeScreen extends React.Component {
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
 
         <View style={styles.btnContainer}>
+          {/* DISLIKE button */}
           <TouchableOpacity style={styles.btn}>
             <Ionicons
               name="ios-close-circle-outline"
@@ -218,17 +219,7 @@ class HomeScreen extends React.Component {
               }}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}>
-            <Ionicons
-              name="ios-heart-empty"
-              size={50}
-              color="#6F6E6C"
-              onPress={() => {
-                this.props.setItemAffinity(currentItem.item_id, true);
-                this.setState({ currentIndex: this.state.currentIndex + 1 });
-              }}
-            />
-          </TouchableOpacity>
+          {/* INFO button */}
           <TouchableOpacity style={styles.btn}>
             <Ionicons
               name="ios-information-circle-outline"
@@ -242,6 +233,18 @@ class HomeScreen extends React.Component {
                   link: currentItem.amazon_url
                 })
               }
+            />
+          </TouchableOpacity>
+          {/* LIKE button */}
+          <TouchableOpacity style={styles.btn}>
+            <Ionicons
+              name="ios-heart-empty"
+              size={50}
+              color="#6F6E6C"
+              onPress={() => {
+                this.props.setItemAffinity(currentItem.item_id, true);
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
             />
           </TouchableOpacity>
         </View>
