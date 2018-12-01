@@ -10,7 +10,6 @@ import {
 
 import { connect } from 'react-redux';
 import { getUserFriends } from '../actions';
-// import { getLikedItems } from '../actions';
 
 import moment from 'moment';
 
@@ -22,7 +21,6 @@ class FriendListScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { friends } = this.props;
-    // const friendId = this.props.friends[]
 
     if (!friends) return <Text>Loading...</Text>;
 
@@ -53,7 +51,6 @@ class FriendListScreen extends React.Component {
                   <Text style={styles.text}>
                     {friend.first_name} {friend.last_name}
                   </Text>
-                  {/* <View>{this.props.getLikedItems(friend.user_id)}</View> */}
                 </View>
               </TouchableHighlight>
             );
@@ -91,7 +88,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUserFriends: () => dispatch(getUserFriends(1))
-  // getLikedItems: id => dispatch(getLikedItems(id))
 });
 
 export default connect(

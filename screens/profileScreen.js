@@ -44,7 +44,15 @@ class ProfileScreen extends React.Component {
           {likedItems.map((item, i) => {
             return (
               <TouchableHighlight
-                onPress={() => navigate('ItemDetailScreen')}
+                onPress={() =>
+                  navigate('ItemDetailScreen', {
+                    image: item.img_url,
+                    id: item.item_id,
+                    title: item.item_name,
+                    price: item.price,
+                    link: item.amazon_url
+                  })
+                }
                 key={i}
               >
                 <Image

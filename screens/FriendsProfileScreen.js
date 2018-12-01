@@ -16,8 +16,6 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class FriendsProfileScreen extends React.Component {
   componentDidMount() {
-    console.log('ITEMS', this.props.likedItems);
-
     this.props.getLikedItems(this.props.navigation.getParam('id'));
   }
 
@@ -30,7 +28,6 @@ class FriendsProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          {this.props.navigation.getParam('id')}{' '}
           {this.props.navigation.getParam('firstName')}{' '}
           {this.props.navigation.getParam('lastName')}
         </Text>
@@ -50,7 +47,8 @@ class FriendsProfileScreen extends React.Component {
                     image: item.img_url,
                     id: item.item_id,
                     title: item.item_name,
-                    price: item.price
+                    price: item.price,
+                    link: item.amazon_url
                   })
                 }
                 key={i}

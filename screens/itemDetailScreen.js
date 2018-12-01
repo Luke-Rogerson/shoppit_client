@@ -38,11 +38,11 @@ export default class ItemDetailScreen extends React.Component {
           }}
         >
           <Text style={styles.titleText}>
-            {this.props.navigation.getParam('price', '')}
+            {this.props.navigation.getParam('price')}
           </Text>
           <Button
             title="BUY NOW"
-            onPress={() => uri('https://www.amazon.com/')}
+            onPress={() => uri(this.props.navigation.getParam('link'))}
           />
         </View>
         <View style={styles.btnContainer}>
