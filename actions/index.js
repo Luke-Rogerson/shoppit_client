@@ -44,10 +44,9 @@ const getUserFriendsSchema = new schema.Array(getUserFriendSchema);
 
 // ----------------------------------------------------
 
-export const getCurrentUserData = user_id => ({
+export const getCurrentUserData = () => ({
   type: 'GET_CURRENT_USER_DATA',
   [API]: {
-    user_id,
     url: '/me',
     schema: currentUserSchema
   }
@@ -61,12 +60,11 @@ export const getAllCategories = () => ({
   }
 });
 
-export const getAllRecommendedItems = user_id => ({
+export const getAllRecommendedItems = () => ({
   type: 'GET_ALL_RECOMMENDED_ITEMS',
   [API]: {
     url: '/items/recommended',
-    schema: itemsSchema,
-    user_id
+    schema: itemsSchema
   }
 });
 
@@ -78,12 +76,11 @@ export const getLikedItems = user_id => ({
   }
 });
 
-export const getUserFriends = user_id => ({
+export const getUserFriends = () => ({
   type: 'GET_USER_FRIENDS',
   [API]: {
     url: '/me/friends',
-    schema: getUserFriendsSchema,
-    user_id
+    schema: getUserFriendsSchema
   }
 });
 

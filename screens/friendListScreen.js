@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUserFriends: () => dispatch(getUserFriends(1))
+  getUserFriends: () => dispatch(getUserFriends())
 });
 
 export default connect(

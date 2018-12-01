@@ -31,6 +31,7 @@ class CategoriesScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Text>I am...</Text>
         <CustomMultiPicker
           options={categories}
           multiple={true}
@@ -57,22 +58,15 @@ class CategoriesScreen extends React.Component {
               []
             )[0];
 
-
             if (!selectedItem) {
               const categoryId =
                 selectedCategories[selectedCategories.length - 1];
 
               this.props.selectACategory(categoryId);
             } else {
-              // const categoryId = selectedCategories.find(
-              //   category_id =>
-              //     !this.props.selectedCategories.includes(
-              //       category_id.toString()
-              //     )
-              // );
               this.props.deselectACategory(selectedItem);
             }
-          }} // callback, array of selected items
+          }}
           rowBackgroundColor={'#eee'}
           rowHeight={50}
           rowRadius={5}

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  WebView
-} from 'react-native';
+import { StyleSheet, Text, View, Button, Image, WebView } from 'react-native';
 
 import { connect } from 'react-redux';
 import { setItemAffinity } from '../actions';
@@ -30,7 +23,6 @@ class ItemDetailScreen extends React.Component {
     );
   }
   render() {
-
     if (this.state.showWebView) {
       return this.renderAmazon();
     } else
@@ -69,9 +61,7 @@ class ItemDetailScreen extends React.Component {
                 onPress={() => this.setState({ showWebView: true })}
               />
             </View>
-
           </View>
-
         </View>
       );
   }
@@ -107,8 +97,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setItemAffinity: (id, affinity) =>
-    dispatch(setItemAffinity(id, affinity))
+  setItemAffinity: (id, affinity) => dispatch(setItemAffinity(id, affinity))
 });
 
 export default connect(

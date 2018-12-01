@@ -8,7 +8,7 @@ import { AsyncStorage } from 'react-native';
 
 class SignInScreen extends React.Component {
   componentDidMount() {
-    this.props.getCurrentUserData();
+    if (AsyncStorage.getItem('accesstoken')) this.props.getCurrentUserData();
   }
 
   storeToken = async (key, value) => {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getCurrentUserData: () => dispatch(getCurrentUserData(2))
+  getCurrentUserData: () => dispatch(getCurrentUserData())
 });
 
 export default connect(
