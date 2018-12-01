@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAllRecommendedItems } from '../actions';
+import { getAllRecommendedItems, setItemAffinity } from '../actions';
 
 import {
   Text,
@@ -17,6 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
+
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -62,29 +63,36 @@ class HomeScreen extends React.Component {
       outputRange: [1, 0.8, 1],
       extrapolate: 'clamp'
     });
+
   }
 
   componentDidMount() {
+
     this.props.getAllRecommendedItems();
+
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (evt, gestureState) => {
         this.position.setValue({ x: gestureState.dx, y: gestureState.dy });
       },
+
       onPanResponderRelease: (evt, gestureState) => {
-        if (gestureState.dx > 120) {
+        const currentItem = this.props.recommendedItems[this.state.currentIndex];
+        if (gestureState.dx > 120) { // swipe RIGHT ie. like
           Animated.spring(this.position, {
             toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
           }).start(() => {
+            this.props.setItemAffinity(currentItem.item_id, true);
             this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
             });
           });
-        } else if (gestureState.dx < -120) {
+        } else if (gestureState.dx < -120) { // swipe LEFT ie. dismiss
           Animated.spring(this.position, {
             toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
           }).start(() => {
+            this.props.setItemAffinity(currentItem.item_id, false);
             this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
             });
@@ -184,6 +192,7 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     if (!this.props.recommendedItems) return <Text>Loading...</Text>;
+
     const currentItem = this.props.recommendedItems[this.state.currentIndex];
 
     return (
@@ -196,29 +205,46 @@ class HomeScreen extends React.Component {
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
 
         <View style={styles.btnContainer}>
+          {/* DISLIKE button */}
           <TouchableOpacity style={styles.btn}>
             <Ionicons
               name="ios-close-circle-outline"
               size={50}
               color="#6F6E6C"
+              onPress={() => {
+                this.props.setItemAffinity(currentItem.item_id, false);
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}>
-            <Ionicons name="ios-heart-empty" size={50} color="#6F6E6C" />
-          </TouchableOpacity>
+          {/* INFO button */}
           <TouchableOpacity style={styles.btn}>
             <Ionicons
               name="ios-information-circle-outline"
               size={50}
               color="#6F6E6C"
-              onPress={() =>
+              onPress={() => {
                 navigate('ItemDetailScreen', {
                   name: currentItem.item_name,
+                  item_id: currentItem.item_id,
                   image: currentItem.img_url,
                   price: currentItem.price,
                   link: currentItem.amazon_url
-                })
-              }
+                });
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
+            />
+          </TouchableOpacity>
+          {/* LIKE button */}
+          <TouchableOpacity style={styles.btn}>
+            <Ionicons
+              name="ios-heart-empty"
+              size={50}
+              color="#6F6E6C"
+              onPress={() => {
+                this.props.setItemAffinity(currentItem.item_id, true);
+                this.setState({ currentIndex: this.state.currentIndex + 1 });
+              }}
             />
           </TouchableOpacity>
         </View>
@@ -280,11 +306,14 @@ const mapStateToProps = state => ({
 
   recommendedItems: state.pages.homePage.items.map(
     item_id => state.entities.items[item_id]
-  )
+  ),
+  isUpdating: state.pages.homePage.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems()),
+  setItemAffinity: (item_id, affinity) =>
+    dispatch(setItemAffinity(item_id, affinity))
 });
 
 export default connect(

@@ -88,14 +88,12 @@ export const deselectACategory = (category_id) => ({
   }
 });
 
-export const setItemAffinity = (user_id, item_id, value) => ({
+export const setItemAffinity = (item_id, affinity) => ({
   type: 'SET_ITEM_AFFINITY',
+  loading: true,
   [API]: {
     method: 'PUT',
-    url: `/items/${item_id}/like/${value}`,
-    user_id,
-    schema: itemSchema,
+    url: `/items/${item_id}/like/${affinity}`,
+    schema: likedItemSchema,
   }
 });
-
-

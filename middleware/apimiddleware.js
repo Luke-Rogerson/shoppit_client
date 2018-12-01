@@ -9,7 +9,8 @@ export default BASE_URL => store => next => action => {
 
   next({
     ...action,
-    type: action.type + '_PENDING'
+    type: action.type + '_PENDING',
+    loading: true
   });
 
   const options = {
@@ -43,6 +44,7 @@ export default BASE_URL => store => next => action => {
         ...action,
         type: action.type + '_SUCCESS',
         [API]: undefined,
+        loading: false,
         data
       });
     })
@@ -54,6 +56,7 @@ export default BASE_URL => store => next => action => {
         ...action,
         type: action.type + '_FAILURE',
         [API]: undefined,
+        loading: false,
         error: error.message
       });
     });
