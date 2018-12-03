@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, WebView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, WebView, TouchableOpacity } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
 import { setItemAffinity } from '../actions';
@@ -23,6 +25,8 @@ class ItemDetailScreen extends React.Component {
     );
   }
   render() {
+    const item_id = this.props.navigation.getParam('item_id');
+
     if (this.state.showWebView) {
       return this.renderAmazon();
     } else
@@ -61,6 +65,30 @@ class ItemDetailScreen extends React.Component {
                 onPress={() => this.setState({ showWebView: true })}
               />
             </View>
+          </View>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity style={styles.btn}>
+              <Ionicons
+                name="ios-close-circle-outline"
+                size={50}
+                color="#6F6E6C"
+                onPress={() => {
+                  this.props.setItemAffinity(item_id, false);
+                  this.props.navigation.goBack();
+                }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.btn}>
+              <Ionicons
+                name="ios-heart-empty"
+                size={50}
+                color="#6F6E6C"
+                onPress={() => {
+                  this.props.setItemAffinity(item_id, true);
+                  this.props.navigation.goBack();
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       );

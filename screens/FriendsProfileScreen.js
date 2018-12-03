@@ -52,7 +52,7 @@ class FriendsProfileScreen extends React.Component {
                 onPress={() =>
                   navigate('ItemDetailScreen', {
                     image: item.img_url,
-                    id: item.item_id,
+                    item_id: item.item_id,
                     title: item.item_name,
                     price: item.price,
                     link: item.amazon_url
