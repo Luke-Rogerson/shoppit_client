@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, WebView, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  WebView,
+  TouchableOpacity
+} from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -27,11 +35,10 @@ class ItemDetailScreen extends React.Component {
   render() {
     const item_id = this.props.navigation.getParam('item_id');
 
-    // console.log(this.props.likedItems[item_id].affinity);
-
     if (this.state.showWebView) {
       return this.renderAmazon();
     } else
+
       return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
           <Text style={styles.baseText}>
@@ -39,7 +46,6 @@ class ItemDetailScreen extends React.Component {
               {this.props.navigation.getParam('title')}
             </Text>
           </Text>
-
           <Image
             style={{
               flex: 1,
@@ -49,7 +55,6 @@ class ItemDetailScreen extends React.Component {
             }}
             source={{ uri: this.props.navigation.getParam('image') }}
           />
-
           <View
             style={{
               flex: 1,
@@ -68,8 +73,11 @@ class ItemDetailScreen extends React.Component {
               />
             </View>
           </View>
+
           <View style={styles.btnContainer}>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity
+              style={styles.btn}
+            >
               <Ionicons
                 name="ios-close-circle-outline"
                 size={50}
@@ -80,7 +88,10 @@ class ItemDetailScreen extends React.Component {
                 }}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.btn}>
+
+            <TouchableOpacity
+              style={styles.btn}
+            >
               <Ionicons
                 name="ios-heart-empty"
                 size={50}
