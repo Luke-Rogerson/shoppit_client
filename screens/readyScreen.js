@@ -4,16 +4,14 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 class ReadyScreen extends React.Component {
-
   render() {
     const { navigate } = this.props.navigation;
-    const { currentUser, currentUserId} = this.props;
+    const { currentUser, currentUserId } = this.props;
 
     if (!this.props.currentUserId) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
-
         <Text style={styles.text}>
           Congrats {currentUser[currentUserId].first_name}{' '}
           {currentUser[currentUserId].last_name}
@@ -61,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null,
+  null
 )(ReadyScreen);
