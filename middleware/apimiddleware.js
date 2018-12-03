@@ -3,9 +3,9 @@ import { AsyncStorage } from 'react-native';
 
 export const API = 'potatosandomolasses';
 
-retrieveToken = async () => {
+retrieveToken = async token => {
   try {
-    const accesstoken = await AsyncStorage.getItem('accesstoken');
+    const accesstoken = await AsyncStorage.getItem(token);
     return accesstoken;
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -29,7 +29,8 @@ export default BASE_URL => store => next => async action => {
     method: api.method || 'GET',
     headers: {
       'Content-Type': 'application/json',
-      accesstoken: await retrieveToken()
+      accesstoken: await retrieveToken('accesstoken'),
+      pushtoken: await retrieveToken('pushtoken')
     },
     body: JSON.stringify(api.body)
   };
