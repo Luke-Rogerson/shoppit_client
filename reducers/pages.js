@@ -94,6 +94,8 @@ const pages = (state = defaultState, action) => {
     };
 
   case 'SET_ITEM_AFFINITY_SUCCESS':
+    console.log(action.data);
+
     return {
       ...state,
       homePage: {
@@ -101,6 +103,10 @@ const pages = (state = defaultState, action) => {
         likedItems: action.data.result,
         loading: false
       }
+      // profilePage: {
+      //   ...state.profilePage,
+      //   items: [...state.profilePage.items, action.data.result]
+      // }
     };
 
   default:
