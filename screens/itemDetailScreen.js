@@ -27,6 +27,8 @@ class ItemDetailScreen extends React.Component {
   render() {
     const item_id = this.props.navigation.getParam('item_id');
 
+    // console.log(this.props.likedItems[item_id].affinity);
+
     if (this.state.showWebView) {
       return this.renderAmazon();
     } else
@@ -124,11 +126,15 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => ({
+  likedItems: state.entities.likedItems
+});
+
 const mapDispatchToProps = dispatch => ({
   setItemAffinity: (id, affinity) => dispatch(setItemAffinity(id, affinity))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ItemDetailScreen);
