@@ -20,10 +20,11 @@ class ItemDetailScreen extends React.Component {
   };
 
   renderAmazon() {
+    const { currentItem } = this.props.navigation.state.params;
     return (
       <WebView
         source={{
-          uri: this.props.navigation.getParam('link')
+          uri: currentItem.amazon_url
         }}
         startInLoadingState
         scalesPageToFit
@@ -33,18 +34,17 @@ class ItemDetailScreen extends React.Component {
     );
   }
   render() {
-    const item_id = this.props.navigation.getParam('item_id');
+    const { currentItem } = this.props.navigation.state.params;
+    const item_id = currentItem.item_id;
+    const alreadyLiked = Boolean(this.props.likedItems[currentItem.item_id]);
 
     if (this.state.showWebView) {
       return this.renderAmazon();
     } else
-
       return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
           <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
-              {this.props.navigation.getParam('title')}
-            </Text>
+            <Text style={styles.titleText}>{currentItem.item_name}</Text>
           </Text>
           <Image
             style={{
@@ -53,7 +53,7 @@ class ItemDetailScreen extends React.Component {
               width: null,
               resizeMode: 'contain'
             }}
-            source={{ uri: this.props.navigation.getParam('image') }}
+            source={{ uri: currentItem.img_url }}
           />
           <View
             style={{
@@ -63,9 +63,7 @@ class ItemDetailScreen extends React.Component {
               justifyContent: 'center'
             }}
           >
-            <Text style={styles.titleText}>
-              {this.props.navigation.getParam('price')}
-            </Text>
+            <Text style={styles.titleText}>{currentItem.price}</Text>
             <View style={styles.container}>
               <Button
                 title="BUY NOW"
@@ -75,9 +73,7 @@ class ItemDetailScreen extends React.Component {
           </View>
 
           <View style={styles.btnContainer}>
-            <TouchableOpacity
-              style={styles.btn}
-            >
+            <TouchableOpacity style={styles.btn}>
               <Ionicons
                 name="ios-close-circle-outline"
                 size={50}
@@ -89,18 +85,28 @@ class ItemDetailScreen extends React.Component {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.btn}
-            >
-              <Ionicons
-                name="ios-heart-empty"
-                size={50}
-                color="#6F6E6C"
-                onPress={() => {
-                  this.props.setItemAffinity(item_id, true);
-                  this.props.navigation.goBack();
-                }}
-              />
+            <TouchableOpacity style={styles.btn}>
+              {alreadyLiked ? (
+                <Ionicons
+                  name="ios-heart"
+                  size={50}
+                  color="#6F6E6C"
+                  onPress={() => {
+                    // eslint-disable-next-line no-console
+                    console.log('Don\'t touch that!');
+                  }}
+                />
+              ) : (
+                <Ionicons
+                  name="ios-heart-empty"
+                  size={50}
+                  color="#6F6E6C"
+                  onPress={() => {
+                    this.props.setItemAffinity(item_id, true);
+                    this.props.navigation.goBack();
+                  }}
+                />
+              )}
             </TouchableOpacity>
           </View>
         </View>

@@ -230,11 +230,7 @@ class HomeScreen extends React.Component {
               color="#6F6E6C"
               onPress={() => {
                 navigate('ItemDetailScreen', {
-                  name: currentItem.item_name,
-                  item_id: currentItem.item_id,
-                  image: currentItem.img_url,
-                  price: currentItem.price,
-                  link: currentItem.amazon_url
+                  currentItem
                 });
                 this.setState({ currentIndex: this.state.currentIndex + 1 });
               }}
