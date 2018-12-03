@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAllRecommendedItems, setItemAffinity } from '../actions';
+import {
+  getAllRecommendedItems,
+  setItemAffinity,
+  getCurrentUserData
+} from '../actions';
 
 import {
   Text,
@@ -17,7 +21,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
-
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -63,13 +66,11 @@ class HomeScreen extends React.Component {
       outputRange: [1, 0.8, 1],
       extrapolate: 'clamp'
     });
-
   }
 
   componentDidMount() {
-
     this.props.getAllRecommendedItems();
-
+    this.props.getCurrentUserData();
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -78,8 +79,11 @@ class HomeScreen extends React.Component {
       },
 
       onPanResponderRelease: (evt, gestureState) => {
-        const currentItem = this.props.recommendedItems[this.state.currentIndex];
-        if (gestureState.dx > 120) { // swipe RIGHT ie. like
+        const currentItem = this.props.recommendedItems[
+          this.state.currentIndex
+        ];
+        if (gestureState.dx > 120) {
+          // swipe RIGHT ie. like
           Animated.spring(this.position, {
             toValue: { x: SCREEN_WIDTH + 100, y: gestureState.dy }
           }).start(() => {
@@ -88,7 +92,8 @@ class HomeScreen extends React.Component {
               this.position.setValue({ x: 0, y: 0 });
             });
           });
-        } else if (gestureState.dx < -120) { // swipe LEFT ie. dismiss
+        } else if (gestureState.dx < -120) {
+          // swipe LEFT ie. dismiss
           Animated.spring(this.position, {
             toValue: { x: -SCREEN_WIDTH - 100, y: gestureState.dy }
           }).start(() => {
@@ -311,6 +316,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  getCurrentUserData: () => dispatch(getCurrentUserData()),
+
   getAllRecommendedItems: () => dispatch(getAllRecommendedItems()),
   setItemAffinity: (item_id, affinity) =>
     dispatch(setItemAffinity(item_id, affinity))
