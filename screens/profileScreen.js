@@ -27,9 +27,6 @@ class ProfileScreen extends React.Component {
   componentWillUnmount() {
     this.didFocusListener.remove();
   }
-  // componentDidMount() {
-  //   this.props.getLikedItems(this.props.currentUserId);
-  // }
 
   render() {
     const { navigate } = this.props.navigation;
