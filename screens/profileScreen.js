@@ -48,22 +48,18 @@ class ProfileScreen extends React.Component {
           {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
         </Text>
         <ScrollView>
-          {likedItems.map((item, i) => {
+          {likedItems.map((currentItem, i) => {
             return (
               <TouchableHighlight
                 onPress={() =>
                   navigate('ItemDetailScreen', {
-                    image: item.img_url,
-                    item_id: item.item_id,
-                    title: item.item_name,
-                    price: item.price,
-                    link: item.amazon_url
+                    currentItem
                   })
                 }
                 key={i}
               >
                 <Image
-                  source={{ uri: item.img_url }}
+                  source={{ uri: currentItem.img_url }}
                   style={styles.item_images}
                 />
               </TouchableHighlight>
