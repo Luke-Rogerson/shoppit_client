@@ -273,9 +273,10 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    height: null,
-    width: null,
-    resizeMode: 'cover',
+    height: SCREEN_HEIGHT,
+    width: SCREEN_WIDTH,
+    backgroundColor: 'white',
+    resizeMode: 'contain',
     borderRadius: 20
   },
   textNope: {

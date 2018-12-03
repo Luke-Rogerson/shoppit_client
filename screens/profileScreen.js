@@ -17,8 +17,15 @@ import { getLikedItems } from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class ProfileScreen extends React.Component {
-  componentDidMount() {
-    this.props.getLikedItems(this.props.currentUserId);
+  constructor(props) {
+    super(props);
+    this.didFocusListener = props.navigation.addListener('didFocus', () => {
+      props.getLikedItems(props.currentUserId);
+    });
+  }
+
+  componentWillUnmount() {
+    this.didFocusListener.remove();
   }
 
   render() {

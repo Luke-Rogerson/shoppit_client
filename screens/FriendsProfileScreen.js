@@ -15,15 +15,22 @@ import { getLikedItems } from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class FriendsProfileScreen extends React.Component {
-  componentDidMount() {
-    this.props.getLikedItems(this.props.navigation.getParam('id'));
+  constructor(props) {
+    super(props);
+    this.didFocusListener = props.navigation.addListener('didFocus', () => {
+      props.getLikedItems(this.props.navigation.getParam('id'));
+    });
+  }
+
+  componentWillUnmount() {
+    this.didFocusListener.remove();
   }
 
   render() {
     const { navigate } = this.props.navigation;
     const { friends, likedItems } = this.props;
 
-    if (!friends) return <Text>Loading...</Text>;
+    if (!friends || !likedItems) return <Text>Loading...</Text>;
 
     return (
       <View style={styles.container}>
