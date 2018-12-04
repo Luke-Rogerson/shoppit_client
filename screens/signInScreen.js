@@ -79,7 +79,7 @@ class SignInScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>THIS IS THE SIGN IN SCREEN</Text>
+        <Text style={styles.title}>Welcome to Shoppit</Text>
         <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
         <Button
           title="Home"
@@ -100,9 +100,14 @@ class SignInScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#91C7A3',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  title: {
+    fontSize: 40,
+    fontFamily: 'Walsheim',
+    color: '#fff'
   }
 });
 
