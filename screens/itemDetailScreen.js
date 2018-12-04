@@ -46,10 +46,13 @@ class ItemDetailScreen extends React.Component {
 
         <View style={styles.main_container}>
 
+          <View style={styles.item_image_container}>
           <Image
             style={styles.item_image}
             source={{ uri: currentItem.img_url }}
           />
+          <Text style={styles.titleText}>{currentItem.price}</Text>
+          </View>
 
           <View style={styles.item_container}>
             <View style={styles.container}>
@@ -57,7 +60,7 @@ class ItemDetailScreen extends React.Component {
                 <Text style={styles.titleText}>{currentItem.item_name}</Text>
               </Text>
 
-              <Text style={styles.titleText}>{currentItem.price}</Text>
+
 
               <Button
                 title="BUY NOW"
@@ -150,8 +153,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#6F6E6C'
   },
+  item_image_container: {
+    position: 'relative'
+  },
   item_image: {
-
     height: SCREEN_HEIGHT - 400,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
