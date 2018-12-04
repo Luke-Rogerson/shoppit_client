@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { Permissions, Notifications } from 'expo';
 
 import { connect } from 'react-redux';
 
 import { getCurrentUserData } from '../actions';
-import { AsyncStorage } from 'react-native';
+import { Dimensions, AsyncStorage } from 'react-native';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class SignInScreen extends React.Component {
   componentDidMount() {
@@ -80,6 +82,13 @@ class SignInScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Welcome to Shoppit</Text>
+
+        <Image
+          source={require('./../assets/bunny-hop.gif')}
+          style={{ width: SCREEN_WIDTH }}
+          resizeMode="contain"
+        />
+
         <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
         <Button
           title="Home"
