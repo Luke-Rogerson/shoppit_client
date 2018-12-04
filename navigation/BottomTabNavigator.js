@@ -11,32 +11,36 @@ export default createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        title: 'Home',
-        tabBarIcon:
-          <Entypo name='home' size={25} color='lightgrey' style={{paddingTop: 5}} />,
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ tintColor }) => (
+          <Entypo name="home" color={tintColor} size={24} />
+        )
       }
     },
     MyProfile: {
       screen: MyProfileStack,
       navigationOptions: {
-        title: 'My Profile',
-        tabBarIcon:
-          <Entypo name='user' size={25} color='lightgrey' style={{paddingTop: 5}} />
+        tabBarLabel: 'My Profile',
+        tabBarIcon: ({ tintColor }) => (
+          <Entypo name="user" color={tintColor} size={24} />
+        )
       }
     },
     Friends: {
       screen: FriendsStack,
       navigationOptions: {
-        title: 'Friends',
-        tabBarIcon:
-          <Entypo name='users' size={25} color='lightgrey' style={{paddingTop: 5}} />
+        tabBarLabel: 'Friends',
+        tabBarIcon: ({ tintColor }) => (
+          <Entypo name="users" color={tintColor} size={24} />
+        )
       }
     }
   },
   {
     initialRouteName: 'Home',
     tabBarOptions: {
-      activeTintColor: 'black'
+      activeTintColor: '#91C7A3',
+      inactiveTintColor: '#C0C0C0'
     }
   }
 );
