@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import { Permissions, Notifications } from 'expo';
-
 import { connect } from 'react-redux';
-
 import { getCurrentUserData } from '../actions';
 import { Dimensions, AsyncStorage } from 'react-native';
+import { Button, Icon } from 'native-base';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -78,7 +77,7 @@ class SignInScreen extends React.Component {
   render() {
     if (!this.props.currentUser) return <Text>Loading...</Text>;
 
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Welcome to Shoppit</Text>
@@ -89,22 +88,22 @@ class SignInScreen extends React.Component {
           resizeMode="contain"
         />
 
-        <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
-        <Button
-          title="Home"
-          onPress={() => {
-            navigate('HomeScreen');
-          }}
-        />
-
-        <Button
-          title="Connect with Facebook"
-          onPress={this.logInFB.bind(this)}
-        />
+        <Button iconLeft large full light onPress={this.logInFB.bind(this)}>
+          <Icon style={styles.icon} name="logo-facebook" />
+          <Text style={styles.text}> Connect with Facebook</Text>
+        </Button>
       </View>
     );
   }
 }
+
+// <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
+//         <Button
+//           title="Home"
+//           onPress={() => {
+//             navigate('HomeScreen');
+//           }}
+//         />
 
 const styles = StyleSheet.create({
   container: {
@@ -117,6 +116,15 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontFamily: 'Walsheim',
     color: '#fff'
+  },
+  text: {
+    color: '#3b5998',
+    fontFamily: 'Walsheim',
+    fontSize: 30
+  },
+  icon: {
+    fontSize: 32,
+    color: '#3b5998'
   }
 });
 
