@@ -157,9 +157,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     right: 40,
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
-    color: 'orange'
+    backgroundColor: "orange",
+    color: "white",
   },
   item_image_container: {
     position: 'relative'
