@@ -7,6 +7,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
 import FriendListScreen from '../screens/FriendListScreen';
 import CurrentUserAvatar from './CurrentUserAvatar';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default createStackNavigator(
   {

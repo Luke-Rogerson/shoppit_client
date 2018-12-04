@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import HomeStack from './HomeStack';
 import MyProfileStack from './MyProfileStack';
@@ -13,7 +13,7 @@ export default createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor }) => (
-          <Entypo name="home" color={tintColor} size={24} />
+          <FontAwesome name="home" color={tintColor} size={24} />
         )
       }
     },
@@ -22,7 +22,7 @@ export default createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'My Profile',
         tabBarIcon: ({ tintColor }) => (
-          <Entypo name="user" color={tintColor} size={24} />
+          <FontAwesome name="user" color={tintColor} size={24} />
         )
       }
     },
@@ -31,7 +31,7 @@ export default createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Friends',
         tabBarIcon: ({ tintColor }) => (
-          <Entypo name="user" color={tintColor} size={24} />
+          <FontAwesome name="users" color={tintColor} size={24} />
         )
       }
     }
