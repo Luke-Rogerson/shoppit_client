@@ -19,6 +19,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { Card } from 'native-base';
+
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -127,9 +129,9 @@ class HomeScreen extends React.Component {
               style={[
                 this.rotateAndTranslate,
                 {
-                  height: SCREEN_HEIGHT - 200,
+                  height: SCREEN_HEIGHT - 300,
                   width: SCREEN_WIDTH,
-                  padding: 10,
+                  padding: 20,
                   position: 'absolute'
                 }
               ]}
@@ -171,9 +173,9 @@ class HomeScreen extends React.Component {
                 {
                   opacity: this.nextCardOpacity,
                   transform: [{ scale: this.nextCardScale }],
-                  height: SCREEN_HEIGHT - 200,
+                  height: SCREEN_HEIGHT - 300,
                   width: SCREEN_WIDTH,
-                  padding: 10,
+                  padding: 20,
                   position: 'absolute'
                 }
               ]}
@@ -204,7 +206,7 @@ class HomeScreen extends React.Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: 'white'
+          backgroundColor: '#F8FAFA'
         }}
       >
         <View style={{ flex: 1 }}>{this.renderItems()}</View>
@@ -260,7 +262,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 20,
     position: 'absolute',
-    bottom: 50
+    bottom: 30
   },
   btn: {
     flex: 1,
@@ -269,11 +271,14 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    height: SCREEN_HEIGHT,
-    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT - 600,
+    width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
-    borderRadius: 20
+    borderRadius: 20,
+    padding: 20,
+    borderWidth: 0.5,
+    borderColor: 'grey'
   },
   textNope: {
     borderWidth: 1,
@@ -298,7 +303,7 @@ const styles = StyleSheet.create({
     top: 50,
     right: 40,
     zIndex: 1000,
-    backgroundColor: 'white'
+    backgroundColor: '#F8FAFA'
   }
 });
 

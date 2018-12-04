@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight } from 'react-native';
+import { TouchableHighlight, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import FriendsListScreen from '../screens/FriendListScreen';
@@ -19,11 +19,20 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#FAFAFA' },
-      title: 'WISHER',
-      headerBackTitle: 'Back',
-
-      headerTintColor: '#6F6E6C',
+      headerStyle: { backgroundColor: '#91C7A3', height: 65 },
+      headerTitle: (
+        <Text
+          style={{
+            fontFamily: 'Pacifico',
+            color: 'white',
+            fontSize: 25
+          }}
+        >
+          shoppit
+        </Text>
+      ),
+      headerBackTitle: 'back',
+      headerTintColor: 'white',
       headerRight: (
         <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
           <CurrentUserAvatar />
