@@ -31,7 +31,7 @@ export default createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Friends',
         tabBarIcon: ({ tintColor }) => (
-          <Entypo name="users" color={tintColor} size={24} />
+          <Entypo name="user" color={tintColor} size={24} />
         )
       }
     }
@@ -40,7 +40,9 @@ export default createBottomTabNavigator(
     initialRouteName: 'Home',
     tabBarOptions: {
       activeTintColor: '#91C7A3',
-      inactiveTintColor: '#C0C0C0'
+      inactiveTintColor: '#C0C0C0',
+      style: { height: 70 },
+      labelStyle: { fontSize: 14, fontFamily: 'Walsheim' }
     }
   }
 );
