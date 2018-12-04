@@ -47,30 +47,29 @@ class ProfileScreen extends React.Component {
             {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
           </Text>
         </View>
-        <View>
-          <ScrollView
-            alwaysBounceVertical={'false'}
-            contentContainerStyle={styles.itemsList}
-          >
-            {likedItems.map((currentItem, i) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigate('ItemDetailScreen', {
-                      currentItem
-                    })
-                  }
-                  key={i}
-                >
-                  <Image
-                    source={{ uri: currentItem.img_url }}
-                    style={styles.item_images}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
+
+        <ScrollView
+          alwaysBounceVertical={'false'}
+          contentContainerStyle={styles.itemsList}
+        >
+          {likedItems.map((currentItem, i) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigate('ItemDetailScreen', {
+                    currentItem
+                  })
+                }
+                key={i}
+              >
+                <Image
+                  source={{ uri: currentItem.img_url }}
+                  style={styles.item_images}
+                />
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
       </View>
     );
   }
