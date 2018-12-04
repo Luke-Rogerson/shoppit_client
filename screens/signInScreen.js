@@ -62,12 +62,14 @@ class SignInScreen extends React.Component {
       );
       if (type === 'success') {
         await this.storeToken('accesstoken', token);
-        const currentUserCatLen = this.props.currentUser[
-          this.props.currentUserId
-        ].category.length;
-        currentUserCatLen > 1
-          ? this.props.navigation.navigate('HomeScreen')
-          : this.props.navigation.navigate('CategoriesScreen');
+        this.props.navigation.navigate('HomeScreen');
+
+        // const currentUserCatLen = this.props.currentUser[
+        //   this.props.currentUserId
+        // ].category.length;
+        // currentUserCatLen > 1
+        //   ? this.props.navigation.navigate('HomeScreen')
+        //   : this.props.navigation.navigate('CategoriesScreen');
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
