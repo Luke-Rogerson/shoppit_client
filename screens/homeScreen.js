@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 20,
     position: 'absolute',
-    bottom: 30
+    bottom: 5
   },
   btn: {
     flex: 1,
