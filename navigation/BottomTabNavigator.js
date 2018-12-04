@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import HomeStack from './HomeStack';
 import MyProfileStack from './MyProfileStack';
@@ -11,32 +11,38 @@ export default createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        title: 'Home',
-        tabBarIcon:
-          <Entypo name='home' size={25} color='lightgrey' style={{paddingTop: 5}} />,
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="home" color={tintColor} size={24} />
+        )
       }
     },
     MyProfile: {
       screen: MyProfileStack,
       navigationOptions: {
-        title: 'My Profile',
-        tabBarIcon:
-          <Entypo name='user' size={25} color='lightgrey' style={{paddingTop: 5}} />
+        tabBarLabel: 'My Profile',
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="user" color={tintColor} size={24} />
+        )
       }
     },
     Friends: {
       screen: FriendsStack,
       navigationOptions: {
-        title: 'Friends',
-        tabBarIcon:
-          <Entypo name='users' size={25} color='lightgrey' style={{paddingTop: 5}} />
+        tabBarLabel: 'Friends',
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="users" color={tintColor} size={24} />
+        )
       }
     }
   },
   {
     initialRouteName: 'Home',
     tabBarOptions: {
-      activeTintColor: 'black'
+      activeTintColor: '#91C7A3',
+      inactiveTintColor: '#C0C0C0',
+      style: { height: 70 },
+      labelStyle: { fontSize: 14, fontFamily: 'Walsheim' }
     }
   }
 );

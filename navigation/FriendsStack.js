@@ -19,21 +19,19 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#91C7A3' },
+      headerStyle: { backgroundColor: '#91C7A3', height: 65 },
       headerTitle: (
         <Text
           style={{
             fontFamily: 'Pacifico',
             color: 'white',
-            fontSize: 25,
-            paddingBottom: 60
+            fontSize: 25
           }}
         >
           shoppit
         </Text>
       ),
       headerBackTitle: 'back',
-
       headerTintColor: 'white',
       headerRight: (
         <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
