@@ -82,7 +82,12 @@ class SignInScreen extends React.Component {
     // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Shoppit</Text>
+        <Text
+          onPress={() => this.props.navigation.navigate('HomeScreen')}
+          style={styles.title}
+        >
+          Welcome to Shoppit
+        </Text>
 
         <Image
           source={require('./../assets/bunny-hop.gif')}
@@ -98,14 +103,6 @@ class SignInScreen extends React.Component {
     );
   }
 }
-
-// <Button title="Next" onPress={() => navigate('CategoriesScreen')} />
-//         <Button
-//           title="Home"
-//           onPress={() => {
-//             navigate('HomeScreen');
-//           }}
-//         />
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -20,18 +20,23 @@ export default createStackNavigator(
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
       headerStyle: { backgroundColor: '#91C7A3', height: 65 },
-
       headerTitle: (
         <Text
           style={{
+            marginTop: -15,
             fontFamily: 'Pacifico',
-            color: 'white',
+            color: '#f8fafa',
             fontSize: 25
           }}
         >
+          <Image
+            source={require('./../assets/small-logo.png')}
+            // style={{ position: 'absolute' }}
+          />
           shoppit
         </Text>
       ),
+
       headerBackTitle: 'Back',
 
       headerTintColor: 'white',

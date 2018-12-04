@@ -35,5 +35,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducers,
-  composeEnhancers(applyMiddleware(api('http://192.168.1.174:3333')))
+  composeEnhancers(applyMiddleware(api('http://localhost:3333')))
 );
+
+//192.168.1.174
