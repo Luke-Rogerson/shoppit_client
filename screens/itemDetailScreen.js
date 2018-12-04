@@ -7,7 +7,7 @@ import {
   Image,
   WebView,
   TouchableOpacity,
-  Dimensions,
+  Dimensions
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -43,32 +43,24 @@ class ItemDetailScreen extends React.Component {
       return this.renderAmazon();
     } else
       return (
-        <View style={ styles.main_container }>
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>{currentItem.item_name}</Text>
-          </Text>
+        <View style={styles.main_container}>
           <Image
-            style={{
-              flex: 1,
-              height: null,
-              width: null,
-              resizeMode: 'contain'
-            }}
+            style={styles.item_image}
             source={{ uri: currentItem.img_url }}
           />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <Text style={styles.titleText}>{currentItem.price}</Text>
+
+          <View style={styles.item_container}>
             <View style={styles.container}>
+              <Text style={styles.baseText}>
+                <Text style={styles.titleText}>{currentItem.item_name}</Text>
+              </Text>
+
+              <Text style={styles.titleText}>{currentItem.price}</Text>
+
               <Button
                 title="BUY NOW"
                 onPress={() => this.setState({ showWebView: true })}
+                styles={styles.buy_button}
               />
             </View>
           </View>
@@ -94,7 +86,7 @@ class ItemDetailScreen extends React.Component {
                   color="#6F6E6C"
                   onPress={() => {
                     // eslint-disable-next-line no-console
-                    console.log('Don\'t touch that!');
+                    console.log("Don't touch that!");
                   }}
                 />
               ) : (
@@ -119,10 +111,15 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-
   main_container: {
     flex: 1,
     backgroundColor: '#F8FAFA'
+  },
+  item_container: {
+    flex: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   btnContainer: {
     flex: 1,
@@ -150,16 +147,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#6F6E6C'
   },
-  image: {
+  item_image: {
     flex: 1,
     height: SCREEN_HEIGHT - 600,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
     borderRadius: 20,
+    margin: 20,
     padding: 20,
     borderWidth: 0.5,
     borderColor: 'grey'
+  },
+  buy_button: {
+    backgroundColor: 'green'
   }
 });
 
