@@ -45,7 +45,9 @@ class ItemDetailScreen extends React.Component {
       return (
         <View style={styles.main_container}>
 
-
+          <View style={styles.item_name_container}>
+            <Text style={styles.baseText}>{currentItem.item_name}</Text>
+          </View>
 
           <View style={styles.item_image_container}>
             <Image
@@ -55,14 +57,8 @@ class ItemDetailScreen extends React.Component {
             <Text style={styles.price_text}>{currentItem.price}</Text>
           </View>
 
-
-
           <View style={styles.item_container}>
             <View style={styles.container}>
-              <Text style={styles.baseText}>
-                <Text style={styles.titleText}>{currentItem.item_name}</Text>
-              </Text>
-
               <Button
                 title="BUY NOW"
                 onPress={() => this.setState({ showWebView: true })}
@@ -121,6 +117,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8FAFA'
   },
+  item_name_container: {
+    width: SCREEN_WIDTH,
+    height: 100,
+    padding: 20,
+    textAlign: 'center',
+    flexWrap: 'wrap'
+  },
   item_container: {
     flex: 3,
     flexDirection: 'row',
@@ -141,32 +144,26 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontFamily: 'Arial',
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 10,
-    marginTop: 10,
-    textAlign: 'center',
     zIndex: 1000,
-    color: '#6F6E6C'
-  },
-  titleText: {
-    fontSize: 20,
-    color: '#6F6E6C'
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold'
   },
   price_text: {
     position: 'absolute',
-    top: 30,
-    right: 40,
-    fontSize: 30,
+    top: 35,
+    right: 35,
+    fontSize: 25,
     fontWeight: 'bold',
-    backgroundColor: "orange",
-    color: "white",
+    backgroundColor: 'orange',
+    color: 'white'
   },
   item_image_container: {
     position: 'relative'
   },
   item_image: {
-    height: SCREEN_HEIGHT - 400,
+    height: SCREEN_HEIGHT - 500,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
