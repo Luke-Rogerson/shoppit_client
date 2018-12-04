@@ -43,16 +43,19 @@ class ItemDetailScreen extends React.Component {
       return this.renderAmazon();
     } else
       return (
-
         <View style={styles.main_container}>
 
+
+
           <View style={styles.item_image_container}>
-          <Image
-            style={styles.item_image}
-            source={{ uri: currentItem.img_url }}
-          />
-          <Text style={styles.titleText}>{currentItem.price}</Text>
+            <Image
+              style={styles.item_image}
+              source={{ uri: currentItem.img_url }}
+            />
+            <Text style={styles.price_text}>{currentItem.price}</Text>
           </View>
+
+
 
           <View style={styles.item_container}>
             <View style={styles.container}>
@@ -60,15 +63,12 @@ class ItemDetailScreen extends React.Component {
                 <Text style={styles.titleText}>{currentItem.item_name}</Text>
               </Text>
 
-
-
               <Button
                 title="BUY NOW"
                 onPress={() => this.setState({ showWebView: true })}
                 styles={styles.buy_button}
               />
             </View>
-
           </View>
 
           <View style={styles.btnContainer}>
@@ -152,6 +152,14 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     color: '#6F6E6C'
+  },
+  price_text: {
+    position: 'absolute',
+    top: 30,
+    right: 40,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'orange'
   },
   item_image_container: {
     position: 'relative'
