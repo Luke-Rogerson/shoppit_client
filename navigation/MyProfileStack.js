@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight } from 'react-native';
+import { TouchableHighlight, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import ProfileScreen from '../screens/ProfileScreen';
@@ -15,10 +15,21 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#FAFAFA' },
-      title: 'WISHER',
-      headerBackTitle: 'Back',
-      headerTintColor: '#6F6E6C',
+      headerStyle: { backgroundColor: '#91C7A3' },
+      headerTitle: (
+        <Text
+          style={{
+            fontFamily: 'Pacifico',
+            color: 'white',
+            fontSize: 25,
+            paddingBottom: 60
+          }}
+        >
+          shoppit
+        </Text>
+      ),
+      headerBackTitle: 'back',
+      headerTintColor: 'white',
       headerRight: (
         <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
           <CurrentUserAvatar />
