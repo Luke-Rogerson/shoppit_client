@@ -7,6 +7,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
 import FriendListScreen from '../screens/FriendListScreen';
 import CurrentUserAvatar from './CurrentUserAvatar';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default createStackNavigator(
   {
@@ -19,15 +20,14 @@ export default createStackNavigator(
     headerMode: 'float',
     headerBackTitleVisible: true,
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: '#91C7A3' },
+      headerStyle: { backgroundColor: '#91C7A3', height: 65 },
 
       headerTitle: (
         <Text
           style={{
             fontFamily: 'Pacifico',
             color: 'white',
-            fontSize: 25,
-            paddingBottom: 60
+            fontSize: 25
           }}
         >
           shoppit
