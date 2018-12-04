@@ -43,7 +43,9 @@ class ItemDetailScreen extends React.Component {
       return this.renderAmazon();
     } else
       return (
+
         <View style={styles.main_container}>
+
           <Image
             style={styles.item_image}
             source={{ uri: currentItem.img_url }}
@@ -63,6 +65,7 @@ class ItemDetailScreen extends React.Component {
                 styles={styles.buy_button}
               />
             </View>
+
           </View>
 
           <View style={styles.btnContainer}>
@@ -148,8 +151,8 @@ const styles = StyleSheet.create({
     color: '#6F6E6C'
   },
   item_image: {
-    flex: 1,
-    height: SCREEN_HEIGHT,
+
+    height: SCREEN_HEIGHT - 400,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
