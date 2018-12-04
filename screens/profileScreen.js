@@ -5,16 +5,14 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight,
-  Dimensions,
-  FlatList
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import moment from 'moment';
 
 import { connect } from 'react-redux';
 import { getLikedItems } from '../actions';
-import { Row } from 'native-base';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -57,7 +55,7 @@ class ProfileScreen extends React.Component {
           <ScrollView contentContainerStyle={styles.itemsList}>
             {likedItems.map((currentItem, i) => {
               return (
-                <TouchableHighlight
+                <TouchableOpacity
                   onPress={() =>
                     navigate('ItemDetailScreen', {
                       currentItem
@@ -69,7 +67,7 @@ class ProfileScreen extends React.Component {
                     source={{ uri: currentItem.img_url }}
                     style={styles.item_images}
                   />
-                </TouchableHighlight>
+                </TouchableOpacity>
               );
             })}
           </ScrollView>

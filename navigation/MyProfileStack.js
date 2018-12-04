@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import ProfileScreen from '../screens/ProfileScreen';
@@ -27,12 +27,12 @@ export default createStackNavigator(
           shoppit
         </Text>
       ),
-      headerBackTitle: 'back',
+      headerBackTitle: 'Back',
       headerTintColor: 'white',
       headerRight: (
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MyProfile')}>
           <CurrentUserAvatar />
-        </TouchableHighlight>
+        </TouchableOpacity>
       )
     })
   }

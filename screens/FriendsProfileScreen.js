@@ -5,7 +5,7 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight,
+  TouchableOpacity,
   Dimensions
 } from 'react-native';
 
@@ -48,7 +48,7 @@ class FriendsProfileScreen extends React.Component {
         <ScrollView>
           {likedItems.map((currentItem, i) => {
             return (
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() =>
                   navigate('ItemDetailScreen', {
                     currentItem
@@ -60,7 +60,7 @@ class FriendsProfileScreen extends React.Component {
                   source={{ uri: currentItem.img_url }}
                   style={styles.item_images}
                 />
-              </TouchableHighlight>
+              </TouchableOpacity>
             );
           })}
         </ScrollView>

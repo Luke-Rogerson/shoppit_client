@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableHighlight, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -7,7 +7,6 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
 import FriendListScreen from '../screens/FriendListScreen';
 import CurrentUserAvatar from './CurrentUserAvatar';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default createStackNavigator(
   {
@@ -33,13 +32,13 @@ export default createStackNavigator(
           shoppit
         </Text>
       ),
-      headerBackTitle: 'back',
+      headerBackTitle: 'Back',
 
       headerTintColor: 'white',
       headerRight: (
-        <TouchableHighlight onPress={() => navigation.navigate('MyProfile')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MyProfile')}>
           <CurrentUserAvatar />
-        </TouchableHighlight>
+        </TouchableOpacity>
       )
     })
   }

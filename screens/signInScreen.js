@@ -115,17 +115,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   title: {
-    fontSize: 40,
+    fontSize: 36,
     fontFamily: 'Walsheim',
     color: '#fff'
   },
   text: {
     color: '#3b5998',
     fontFamily: 'Walsheim',
-    fontSize: 30
+    fontSize: 26
   },
   icon: {
-    fontSize: 32,
+    fontSize: 28,
     color: '#3b5998'
   }
 });
