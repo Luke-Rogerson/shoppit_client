@@ -93,7 +93,7 @@ class ItemDetailScreen extends React.Component {
                   color="#6F6E6C"
                   onPress={() => {
                     // eslint-disable-next-line no-console
-                    console.log('Don\'t touch that!');
+                    console.log("Don't touch that!");
                   }}
                 />
               ) : (
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   baseText: {
-    fontFamily: 'Arial',
+    fontFamily: 'Walsheim',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
     color: '#6F6E6C'
   },
   titleText: {
+    fontFamily: 'Walsheim',
     fontSize: 20,
     color: '#6F6E6C'
   }

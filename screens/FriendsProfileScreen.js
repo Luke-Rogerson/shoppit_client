@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   text: {
     margin: 10,
     color: '#6F6E6C',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Walsheim'
   },
   profile_pic: {
     width: 60,

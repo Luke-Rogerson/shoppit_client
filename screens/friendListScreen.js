@@ -4,13 +4,13 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   ScrollView
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserFriends } from '../actions';
-
+import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
 
 class FriendListScreen extends React.Component {
@@ -29,7 +29,7 @@ class FriendListScreen extends React.Component {
         <ScrollView>
           {friends.map((friend, i) => {
             return (
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() =>
                   navigate('FriendsProfileScreen', {
                     firstName: friend.first_name,
@@ -51,8 +51,16 @@ class FriendListScreen extends React.Component {
                   <Text style={styles.text}>
                     {friend.first_name} {friend.last_name}
                   </Text>
+                  <FontAwesome
+                    name="bell-o"
+                    size={30}
+                    color="#6F6E6C"
+                    onPress={() => {
+                      console.log('🎊 friend ID: ', friend.user_id);
+                    }}
+                  />
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
             );
           })}
         </ScrollView>
@@ -74,9 +82,10 @@ const styles = StyleSheet.create({
     margin: 10
   },
   text: {
-    margin: 30,
+    marginTop: 30,
     color: '#6F6E6C',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'Walsheim'
   }
 });
 
