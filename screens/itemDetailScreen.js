@@ -6,7 +6,8 @@ import {
   Button,
   Image,
   WebView,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -42,7 +43,7 @@ class ItemDetailScreen extends React.Component {
       return this.renderAmazon();
     } else
       return (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={ styles.main_container }>
           <Text style={styles.baseText}>
             <Text style={styles.titleText}>{currentItem.item_name}</Text>
           </Text>
@@ -114,7 +115,15 @@ class ItemDetailScreen extends React.Component {
   }
 }
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
+
+  main_container: {
+    flex: 1,
+    backgroundColor: '#F8FAFA'
+  },
   btnContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -140,6 +149,17 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     color: '#6F6E6C'
+  },
+  image: {
+    flex: 1,
+    height: SCREEN_HEIGHT - 600,
+    width: SCREEN_WIDTH - 400,
+    backgroundColor: 'white',
+    resizeMode: 'contain',
+    borderRadius: 20,
+    padding: 20,
+    borderWidth: 0.5,
+    borderColor: 'grey'
   }
 });
 
