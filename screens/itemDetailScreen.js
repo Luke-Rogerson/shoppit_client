@@ -44,7 +44,6 @@ class ItemDetailScreen extends React.Component {
     } else
       return (
         <View style={styles.main_container}>
-
           <View style={styles.item_name_container}>
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
@@ -57,14 +56,12 @@ class ItemDetailScreen extends React.Component {
             <Text style={styles.price_text}>{currentItem.price}</Text>
           </View>
 
-          <View style={styles.item_container}>
-            <View style={styles.container}>
-              <Button
-                title="BUY NOW"
-                onPress={() => this.setState({ showWebView: true })}
-                styles={styles.buy_button}
-              />
-            </View>
+          <View style={styles.buy_button}>
+            <Button
+              title="BUY NOW"
+              onPress={() => this.setState({ showWebView: true })}
+              color="white"
+            />
           </View>
 
           <View style={styles.btnContainer}>
@@ -174,7 +171,13 @@ const styles = StyleSheet.create({
     borderColor: 'grey'
   },
   buy_button: {
-    backgroundColor: 'green'
+    backgroundColor: '#6F6E6C',
+    height: 50,
+    marginLeft: 25,
+    marginRight: 25,
+    borderRadius: 10,
+    borderColor: 'grey',
+    borderWidth: 1
   }
 });
 
