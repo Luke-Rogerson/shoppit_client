@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   item_image: {
     flex: 1,
-    height: SCREEN_HEIGHT - 600,
+    height: SCREEN_HEIGHT,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
