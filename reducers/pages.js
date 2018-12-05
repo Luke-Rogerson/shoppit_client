@@ -46,7 +46,7 @@ const pages = (state = defaultState, action) => {
       ...state,
       categoriesPage: {
         ...state.categoriesPage,
-        selectedCategories: categoriesstatePage.selectedCategories.includes(
+        selectedCategories: state.categoriesPage.selectedCategories.includes(
           category_id
         )
           ? state.categoriesPage.selectedCategories
