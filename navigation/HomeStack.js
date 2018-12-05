@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -29,10 +29,7 @@ export default createStackNavigator(
             fontSize: 25
           }}
         >
-          <Image
-            source={require('./../assets/small-logo.png')}
-            // style={{ position: 'absolute' }}
-          />
+          <Image source={require('./../assets/small-logo.png')} />
           shoppit
         </Text>
       ),

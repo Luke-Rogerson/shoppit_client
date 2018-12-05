@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
   header: {
     position: 'absolute',
     color: '#6F6E6C',
-    top: -62,
+    top: -60,
     fontFamily: 'Walsheim',
     fontSize: 36
   },
   container: {
-    marginTop: 210,
+    marginTop: 98,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
