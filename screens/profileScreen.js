@@ -9,6 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
+import { Spinner } from 'native-base';
+
 import moment from 'moment';
 
 import { connect } from 'react-redux';
@@ -16,6 +18,7 @@ import { getLikedItems } from '../actions';
 import NoItemsComponent from '../components/NoItemsComponent';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class ProfileScreen extends React.Component {
   constructor(props) {
@@ -32,8 +35,16 @@ class ProfileScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { currentUser, currentUserId, likedItems } = this.props;
-    if (!currentUser) return <Text>Loading...</Text>;
 
+    if (!currentUser || !likedItems.length)
+      return (
+        <Spinner
+          style={{
+            height: SCREEN_HEIGHT / 1.3
+          }}
+        />
+      );
+    
     return (
       <View style={styles.container}>
         <View styles={styles.profileInfo}>
