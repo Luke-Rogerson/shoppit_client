@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 
 import {
+  getCurrentUserData,
   selectACategory,
   deselectACategory,
   getAllCategories
@@ -20,18 +21,28 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class CategoriesScreen extends React.Component {
   componentDidMount() {
+    this.props.getCurrentUserData();
     this.props.getAllCategories();
-    // console.log('----------');
-    // console.log(this.props.currentUser);
+
+    console.log('-----🌟-----');
+    console.log(this.props.selectedCategories);
   }
 
-  dispatchButtonPress = id => {
+  handleButtonPress = id => {
+    const inCatList = this.props.selectedCategories.includes(id);
+    this.props.selectedCategories = inCatList
+      ? [...this.props.selectedCategories.filter(catID => catID !== id)] // dispatch addCategory action here
+      : [...this.props.selectedCategories, id]; // dispatch removeCategory action here
     console.log('😱 YOU CLICKED ON:');
     console.log(id);
+    console.log('selectedCategories', this.props.selectedCategories);
+    this.setSelectedColors(id);
   };
 
-  checkSelectedCats = id => {
-    // ooooo
+  setSelectedColors = id => {
+    return this.props.selectedCategories.includes(id)
+      ? styles.selected
+      : styles.unselected;
   };
 
   createCategoryButtons = catArray => {
@@ -40,8 +51,8 @@ class CategoriesScreen extends React.Component {
         <TouchableOpacity
           key={cat.category_id}
           title={cat.category_name}
-          onPress={() => this.dispatchButtonPress(cat.category_id)}
-          style={styles.unselected}
+          onPress={() => this.handleButtonPress(cat.category_id)}
+          style={this.setSelectedColors(cat.category_id)}
         >
           <Text style={styles.buttonText}>{cat.category_name}</Text>
         </TouchableOpacity>
@@ -79,7 +90,11 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   selected: {
-    backgroundColor: '#FFBF77'
+    backgroundColor: '#FFBF77',
+    alignItems: 'center',
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 20
   },
   buttonText: {
     color: '#fff'
@@ -90,12 +105,14 @@ const mapStateToProps = state => ({
   categories: state.pages.categoriesPage.categories.map(
     category_id => state.entities.categories[category_id]
   ),
-  selectedCategories: state.pages.categoriesPage.selectedCategories,
-  currentUser:
-    state.entities.currentUser[state.pages.currentUserPage.currentUser]
+  selectedCategories:
+    state.entities.currentUser[state.pages.currentUserPage.currentUser].category
 });
 
+//state.pages.categoriesPage.selectedCategories,
+
 const mapDispatchToProps = dispatch => ({
+  getCurrentUserData: () => dispatch(getCurrentUserData()),
   getAllCategories: () => dispatch(getAllCategories()),
   selectACategory: category_id => dispatch(selectACategory(category_id)),
   deselectACategory: category_id => dispatch(deselectACategory(category_id))
