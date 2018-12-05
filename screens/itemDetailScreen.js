@@ -37,7 +37,6 @@ class ItemDetailScreen extends React.Component {
   }
   render() {
     const { currentItem } = this.props.navigation.state.params;
-    console.log('CURRENT ITEM: ', currentItem.item_name);
     const item_id = currentItem.item_id;
     const alreadyLiked = Boolean(this.props.likedItems[currentItem.item_id]);
 
@@ -62,17 +61,6 @@ class ItemDetailScreen extends React.Component {
               source={{ uri: currentItem.img_url }}
             />
             <Text style={styles.price_text}>{currentItem.price}</Text>
-
-            <Button
-              warning
-              onPress={() => this.setState({ showWebView: true })}
-              style={styles.buy_button}
-            >
-              <AntDesign name="shoppingcart" size={25} color="#F8FAFA" />
-              <Text style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}>
-                BUY NOW
-              </Text>
-            </Button>
           </View>
 
           <View style={styles.btnContainer}>
@@ -87,6 +75,20 @@ class ItemDetailScreen extends React.Component {
                 }}
               />
             </TouchableOpacity>
+
+
+            <Button
+              warning
+              onPress={() => this.setState({ showWebView: true })}
+              style={styles.buy_button}
+            >
+              <AntDesign name="shoppingcart" size={25} color="#F8FAFA" />
+              <Text style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}>
+                BUY NOW
+              </Text>
+            </Button>
+
+
 
             <TouchableOpacity style={styles.btn}>
               {alreadyLiked ? (
@@ -188,9 +190,10 @@ const styles = StyleSheet.create({
   buy_button: {
     alignSelf: 'center',
     backgroundColor: '#FFBF77',
-    position: 'absolute',
-    bottom: 5,
-    paddingHorizontal: 20,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10
   }
 });
 
