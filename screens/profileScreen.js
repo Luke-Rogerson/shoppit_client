@@ -5,8 +5,8 @@ import {
   View,
   Image,
   ScrollView,
-  Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import moment from 'moment';
@@ -70,6 +70,7 @@ class ProfileScreen extends React.Component {
             );
           })}
         </ScrollView>
+
       </View>
     );
   }
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#6F6E6C',
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Walsheim'
   },
 
   profile_pic: {

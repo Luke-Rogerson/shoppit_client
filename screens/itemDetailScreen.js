@@ -147,10 +147,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   baseText: {
-    fontFamily: 'Arial',
+    fontFamily: 'Walsheim',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     padding: 10,
     zIndex: 1000,
-    color: 'black',
+    color: '#6F6E6C',
     fontSize: 25,
     fontWeight: 'bold'
   },
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     right: 35,
     fontSize: 25,
     fontWeight: 'bold',
-    backgroundColor: 'orange',
+    backgroundColor: '#FFBF77',
     color: 'white'
   },
   item_image_container: {
