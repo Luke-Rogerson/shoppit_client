@@ -36,7 +36,7 @@ class ProfileScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const { currentUser, currentUserId, likedItems } = this.props;
 
-    if (!currentUser || !likedItems.length)
+    if (!currentUser || !likedItems)
       return (
         <Spinner
           style={{
@@ -44,7 +44,7 @@ class ProfileScreen extends React.Component {
           }}
         />
       );
-    
+
     return (
       <View style={styles.container}>
         <View styles={styles.profileInfo}>
