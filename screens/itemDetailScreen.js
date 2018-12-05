@@ -3,12 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   Image,
   WebView,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
+
+import { Button } from 'native-base';
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -45,9 +46,14 @@ class ItemDetailScreen extends React.Component {
       return (
         <View style={styles.main_container}>
 
+
+
           <View style={styles.item_name_container}>
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
+
+
+
 
           <View style={styles.item_image_container}>
             <Image
@@ -55,19 +61,6 @@ class ItemDetailScreen extends React.Component {
               source={{ uri: currentItem.img_url }}
             />
             <Text style={styles.price_text}>{currentItem.price}</Text>
-          </View>
-
-          <View style={styles.buy_button}>
-          <AntDesign
-            name="shoppingcart"
-            size={40}
-            color="white"
-              />
-            <Button
-              title="BUY NOW"
-              onPress={() => this.setState({ showWebView: true })}
-              color="white"
-            />
           </View>
 
           <View style={styles.btnContainer}>
@@ -82,6 +75,20 @@ class ItemDetailScreen extends React.Component {
                 }}
               />
             </TouchableOpacity>
+
+
+            <Button
+              warning
+              onPress={() => this.setState({ showWebView: true })}
+              style={styles.buy_button}
+            >
+              <AntDesign name="shoppingcart" size={25} color="#F8FAFA" />
+              <Text style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}>
+                BUY NOW
+              </Text>
+            </Button>
+
+
 
             <TouchableOpacity style={styles.btn}>
               {alreadyLiked ? (
@@ -121,18 +128,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFA'
   },
   item_name_container: {
-    width: SCREEN_WIDTH,
-    height: 100,
-    padding: 20,
-    margin: 0,
-    textAlign: 'center',
-    flexWrap: 'wrap'
+    padding: 0,
+    marginHorizontal: 20,
+    marginTop: 20,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   item_container: {
-    flex: 3,
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   btnContainer: {
     flex: 1,
@@ -144,29 +148,35 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   baseText: {
     fontFamily: 'Walsheim',
-    // justifyContent: 'center',
-    // alignItems: 'center',
     padding: 10,
     zIndex: 1000,
     color: '#6F6E6C',
-    fontSize: 25,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flexWrap: 'wrap'
   },
   price_text: {
     position: 'absolute',
-    top: 35,
-    right: 35,
-    fontSize: 25,
+    top: 20,
+    right: 20,
+    fontSize: 30,
+    paddingHorizontal: 5,
     fontWeight: 'bold',
     backgroundColor: '#FFBF77',
-    color: 'white'
+    color: 'white',
+    transform: [{ rotate: '30deg'}]
   },
   item_image_container: {
-    position: 'relative'
+    position: 'relative',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5
   },
   item_image: {
     height: SCREEN_HEIGHT - 450,
@@ -176,17 +186,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 20,
     padding: 20,
-    borderWidth: 0.5,
-    borderColor: 'grey'
   },
   buy_button: {
-    backgroundColor: '#91C7A3',
-    height: 50,
-    marginLeft: 25,
-    marginRight: 25,
-    borderRadius: 10,
-    borderColor: 'grey',
-    borderWidth: 1
+    alignSelf: 'center',
+    backgroundColor: '#FFBF77',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10
   }
 });
 

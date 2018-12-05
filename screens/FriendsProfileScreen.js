@@ -54,6 +54,7 @@ class FriendsProfileScreen extends React.Component {
                     currentItem
                   })
                 }
+                style={styles.item_image_shadow}
                 key={i}
               >
                 <Image
@@ -100,10 +101,14 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH / 2 - 30,
     margin: 10,
     borderRadius: 20,
-    borderWidth: 0.5,
-    borderColor: 'grey',
     backgroundColor: 'white',
     padding: 10
+  },
+  item_image_shadow: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5
   }
 });
 

@@ -207,7 +207,10 @@ class HomeScreen extends React.Component {
           backgroundColor: '#F8FAFA'
         }}
       >
-        <View style={{ flex: 1 }}>{this.renderItems()}</View>
+        <View style={{ flex: 1, shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5 }}>{this.renderItems()}</View>
 
         <View style={styles.btnContainer}>
           {/* DISLIKE button */}
@@ -275,8 +278,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 20,
     padding: 20,
-    borderWidth: 0.5,
-    borderColor: 'grey'
   },
   textNope: {
     borderWidth: 1,
