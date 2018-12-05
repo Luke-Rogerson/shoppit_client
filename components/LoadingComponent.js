@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Dimensions } from 'react-native';
 
 const LoadingScreen = () => {
+  const SCREEN_WIDTH = Dimensions.get('window').width;
   return (
     <View style={styles.container}>
       <Text
