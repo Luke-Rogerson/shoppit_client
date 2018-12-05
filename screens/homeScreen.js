@@ -70,7 +70,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.props.getAllRecommendedItems();
-    this.props.getCurrentUserData();
+    // this.props.getCurrentUserData();
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,

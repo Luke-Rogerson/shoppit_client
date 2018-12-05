@@ -86,6 +86,7 @@ export const getUserFriends = () => ({
 
 export const selectACategory = category_id => ({
   type: 'SELECT_A_CATEGORY',
+  category_id,
   [API]: {
     method: 'PUT',
     url: `/me/categories/${category_id}`

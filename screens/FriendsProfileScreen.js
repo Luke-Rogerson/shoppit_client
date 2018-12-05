@@ -45,7 +45,10 @@ class FriendsProfileScreen extends React.Component {
         <Text style={styles.text}>
           {this.props.navigation.getParam('birthday', '')}
         </Text>
-        <ScrollView contentContainerStyle={styles.itemsList}>
+        <ScrollView
+          alwaysBounceVertical={'false'}
+          contentContainerStyle={styles.itemsList}
+        >
           {likedItems.map((currentItem, i) => {
             return (
               <TouchableOpacity
