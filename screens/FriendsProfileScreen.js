@@ -33,8 +33,7 @@ class FriendsProfileScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-
-   
+    const { friends, friendsItems } = this.props;
 
     if (!friends.length || !friendsItems[this.user_id])
       return (
@@ -45,10 +44,6 @@ class FriendsProfileScreen extends React.Component {
         />
       );
 
-    const { friends, friendsItems } = this.props;
-
-
-   
     const likedItems = friendsItems[this.user_id].map(
       item_id => this.props.likedItems[item_id]
     );
