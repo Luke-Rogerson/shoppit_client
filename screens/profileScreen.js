@@ -37,41 +37,40 @@ class ProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View styles={styles.profileInfo}>
+          <Text style={styles.text}>Me</Text>
           <Image
             source={{ uri: currentUser[currentUserId].avatar_url }}
             style={styles.profile_pic}
           />
 
           <Text style={styles.text}>
-            {currentUser[currentUserId].first_name}{' '}
-            {currentUser[currentUserId].last_name}
-          </Text>
-
-          <Text style={styles.text}>
             {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
           </Text>
         </View>
-        <View>
-          <ScrollView contentContainerStyle={styles.itemsList}>
-            {likedItems.map((currentItem, i) => {
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigate('ItemDetailScreen', {
-                      currentItem
-                    })
-                  }
-                  key={i}
-                >
-                  <Image
-                    source={{ uri: currentItem.img_url }}
-                    style={styles.item_images}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
+
+        <ScrollView
+          alwaysBounceVertical={'false'}
+          contentContainerStyle={styles.itemsList}
+        >
+          {likedItems.map((currentItem, i) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigate('ItemDetailScreen', {
+                    currentItem
+                  })
+                }
+                key={i}
+              >
+                <Image
+                  source={{ uri: currentItem.img_url }}
+                  style={styles.item_images}
+                />
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+
       </View>
     );
   }
@@ -84,7 +83,8 @@ const styles = StyleSheet.create({
   },
 
   profileInfo: {
-    margin: 20
+    margin: 20,
+    flexDirection: 'row'
   },
 
   text: {

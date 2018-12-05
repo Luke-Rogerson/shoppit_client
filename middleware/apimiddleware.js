@@ -40,7 +40,7 @@ export default BASE_URL => store => next => async action => {
       // FIXME: this catch is only for empty responses, but it catches all errors now.
       return response.json().catch(e => {
         // eslint-disable-next-line no-console
-        console.warn('[apiMiddleware] Error parsing json', e);
+        console.log('[apiMiddleware] Error parsing json', e);
       });
     })
     .then(data => {

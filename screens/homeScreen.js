@@ -19,8 +19,6 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { Card } from 'native-base';
-
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -262,7 +260,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 20,
     position: 'absolute',
-    bottom: 30
+    bottom: 5
   },
   btn: {
     flex: 1,
