@@ -76,6 +76,15 @@ export const getLikedItems = user_id => ({
   }
 });
 
+export const getFriendsLikedItems = user_id => ({
+  type: 'GET_FRIENDS_LIKED_ITEMS',
+  [API]: {
+    url: `/users/${user_id}/items`,
+    schema: likedItemsSchema
+  },
+  user_id
+});
+
 export const getUserFriends = () => ({
   type: 'GET_USER_FRIENDS',
   [API]: {
