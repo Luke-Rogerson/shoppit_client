@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
@@ -72,37 +73,62 @@ class CategoriesScreen extends React.Component {
     const categories = Object.values(this.props.categories);
 
     return (
-      <View style={styles.container}>
-        <Text>I am...</Text>
-        <View>{categories && this.createCategoryButtons(categories)}</View>
-      </View>
+      <ScrollView
+        alwaysBounceVertical={'false'}
+        contentContainerStyle={styles.container}
+      >
+        <Text style={styles.header}>I am...</Text>
+        {categories && this.createCategoryButtons(categories)}
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  header: {
+    position: 'absolute',
+    color: '#6F6E6C',
+    top: -62,
+    fontFamily: 'Walsheim',
+    fontSize: 36
+  },
   container: {
+    marginTop: 210,
     flex: 1,
-    backgroundColor: '#fff',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    backgroundColor: '#F8FAFA',
     justifyContent: 'center',
-    paddingHorizontal: 43
+    paddingHorizontal: 20
   },
   unselected: {
-    backgroundColor: '#8f8f8f',
+    alignSelf: 'flex-start',
+    // flex: 1,
+    backgroundColor: '#C0C0C0',
     alignItems: 'center',
     padding: 10,
     marginBottom: 10,
-    borderRadius: 20
+    borderRadius: 25,
+    paddingHorizontal: 20,
+    marginLeft: 3,
+    marginRight: 3
   },
   selected: {
-    backgroundColor: '#FFBF77',
+    alignSelf: 'flex-start',
+    // flex: 1,
+    backgroundColor: '#91C7A3',
     alignItems: 'center',
     padding: 10,
     marginBottom: 10,
-    borderRadius: 20
+    borderRadius: 25,
+    paddingHorizontal: 20,
+    marginLeft: 3,
+    marginRight: 3
   },
   buttonText: {
-    color: '#fff'
+    color: '#fff',
+    fontFamily: 'Walsheim',
+    fontSize: 20
   }
 });
 
