@@ -9,9 +9,12 @@ import {
   Dimensions
 } from 'react-native';
 
+import { Spinner } from 'native-base';
+
 import { connect } from 'react-redux';
 import { getLikedItems } from '../actions';
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class FriendsProfileScreen extends React.Component {
@@ -30,7 +33,14 @@ class FriendsProfileScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const { friends, likedItems } = this.props;
 
-    if (!friends || !likedItems) return <Text>Loading...</Text>;
+    if (!friends.length || !likedItems.length)
+      return (
+        <Spinner
+          style={{
+            height: SCREEN_HEIGHT / 1.3
+          }}
+        />
+      );
 
     return (
       <View style={styles.container}>

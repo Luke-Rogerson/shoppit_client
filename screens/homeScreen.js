@@ -17,6 +17,8 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
+
+import { Spinner } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -113,7 +115,7 @@ class HomeScreen extends React.Component {
   }
 
   renderItems = () => {
-    if (!this.props.recommendedItems) return <Text>Loading...</Text>;
+    if (!this.props.recommendedItems) return <Spinner />;
 
     return this.props.recommendedItems
       .map((item, i) => {
@@ -196,9 +198,16 @@ class HomeScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    if (!this.props.recommendedItems) return <Text>Loading...</Text>;
 
     const currentItem = this.props.recommendedItems[this.state.currentIndex];
+    if (!currentItem)
+      return (
+        <Spinner
+          style={{
+            height: SCREEN_HEIGHT / 1.3
+          }}
+        />
+      );
 
     return (
       <View
@@ -207,10 +216,17 @@ class HomeScreen extends React.Component {
           backgroundColor: '#F8FAFA'
         }}
       >
-        <View style={{ flex: 1, shadowColor: '#000',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5 }}>{this.renderItems()}</View>
+        <View
+          style={{
+            flex: 1,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0.1,
+            shadowRadius: 5
+          }}
+        >
+          {this.renderItems()}
+        </View>
 
         <View style={styles.btnContainer}>
           {/* DISLIKE button */}
@@ -277,7 +293,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     resizeMode: 'contain',
     borderRadius: 20,
-    padding: 20,
+    padding: 20
   },
   textNope: {
     borderWidth: 1,
