@@ -10,7 +10,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
 import { setItemAffinity } from '../actions';
@@ -44,6 +44,7 @@ class ItemDetailScreen extends React.Component {
     } else
       return (
         <View style={styles.main_container}>
+
           <View style={styles.item_name_container}>
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
@@ -57,6 +58,11 @@ class ItemDetailScreen extends React.Component {
           </View>
 
           <View style={styles.buy_button}>
+          <AntDesign
+            name="shoppingcart"
+            size={40}
+            color="white"
+              />
             <Button
               title="BUY NOW"
               onPress={() => this.setState({ showWebView: true })}
@@ -118,6 +124,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: 100,
     padding: 20,
+    margin: 0,
     textAlign: 'center',
     flexWrap: 'wrap'
   },
@@ -160,7 +167,7 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   item_image: {
-    height: SCREEN_HEIGHT - 500,
+    height: SCREEN_HEIGHT - 450,
     width: SCREEN_WIDTH - 400,
     backgroundColor: 'white',
     resizeMode: 'contain',
@@ -171,7 +178,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey'
   },
   buy_button: {
-    backgroundColor: '#6F6E6C',
+    backgroundColor: '#91C7A3',
     height: 50,
     marginLeft: 25,
     marginRight: 25,
