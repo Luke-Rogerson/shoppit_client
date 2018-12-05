@@ -20,27 +20,33 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class CategoriesScreen extends React.Component {
+  state = {
+    selectedCategories: this.props.selectedCategories
+  };
+
   componentDidMount() {
     this.props.getCurrentUserData();
     this.props.getAllCategories();
 
     console.log('-----🌟-----');
-    console.log(this.props.selectedCategories);
+    console.log(this.state.selectedCategories);
   }
 
   handleButtonPress = id => {
-    const inCatList = this.props.selectedCategories.includes(id);
-    this.props.selectedCategories = inCatList
-      ? [...this.props.selectedCategories.filter(catID => catID !== id)] // dispatch addCategory action here
-      : [...this.props.selectedCategories, id]; // dispatch removeCategory action here
+    const inCatList = this.state.selectedCategories.includes(id);
+    let selectedCategories;
+    selectedCategories = inCatList
+      ? this.state.selectedCategories.filter(catID => catID !== id) // dispatch addCategory action here
+      : [...this.state.selectedCategories, id]; // dispatch removeCategory action here
+    this.setState({ selectedCategories });
     console.log('😱 YOU CLICKED ON:');
     console.log(id);
-    console.log('selectedCategories', this.props.selectedCategories);
+    console.log('selectedCategories', this.state.selectedCategories);
     this.setSelectedColors(id);
   };
 
   setSelectedColors = id => {
-    return this.props.selectedCategories.includes(id)
+    return this.state.selectedCategories.includes(id)
       ? styles.selected
       : styles.unselected;
   };
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 43
   },
   unselected: {
-    backgroundColor: '#6F6E6C',
+    backgroundColor: '#8f8f8f',
     alignItems: 'center',
     padding: 10,
     marginBottom: 10,
