@@ -111,6 +111,24 @@ export const deselectACategory = category_id => ({
   }
 });
 
+export const followFriend = friend_id => ({
+  type: 'FOLLOW_A_FRIEND',
+  friend_id,
+  [API]: {
+    method: 'PUT',
+    url: `/me/follow/${friend_id}`
+  }
+});
+
+export const unFollowFriend = friend_id => ({
+  type: 'UNFOLLOW_A_FRIEND',
+  friend_id,
+  [API]: {
+    method: 'DELETE',
+    url: `/me/follow/${friend_id}`
+  }
+});
+
 export const setItemAffinity = (item_id, affinity) => ({
   type: 'SET_ITEM_AFFINITY',
   loading: true,

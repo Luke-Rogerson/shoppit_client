@@ -14,7 +14,7 @@ import {
 } from 'native-base';
 
 import { connect } from 'react-redux';
-import { getUserFriends } from '../actions';
+import { getUserFriends, followFriend, unFollowFriend } from '../actions';
 import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
 
@@ -38,8 +38,10 @@ class FriendListScreen extends React.Component {
       followedFriends = this.state.followedFriends.filter(
         friendID => friendID !== id
       );
+      this.props.unFollowFriend(id);
     } else {
       followedFriends = [...this.state.followedFriends, id];
+      this.props.followFriend(id);
     }
     this.setState({ followedFriends });
   };
@@ -145,7 +147,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUserFriends: () => dispatch(getUserFriends())
+  getUserFriends: () => dispatch(getUserFriends()),
+  followFriend: category_id => dispatch(followFriend(category_id)),
+  unFollowFriend: category_id => dispatch(unFollowFriend(category_id))
 });
 
 export default connect(
