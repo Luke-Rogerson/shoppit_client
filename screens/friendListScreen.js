@@ -51,7 +51,7 @@ class FriendListScreen extends React.Component {
     if (!friends) return <Text>Loading...</Text>;
 
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content>
           <List>
             {friends.map(friend => {
@@ -130,6 +130,9 @@ class FriendListScreen extends React.Component {
 // colored-in bell: "bell", color: #FFBF77
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F8FAFA'
+  },
   text: {
     marginTop: 20,
     color: '#6F6E6C',
