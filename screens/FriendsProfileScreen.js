@@ -10,15 +10,16 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { getLikedItems } from '../actions';
+import { getFriendsLikedItems } from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class FriendsProfileScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.user_id = this.props.navigation.getParam('id');
     this.didFocusListener = props.navigation.addListener('didFocus', () => {
-      props.getLikedItems(this.props.navigation.getParam('id'));
+      props.getFriendsLikedItems(this.props.navigation.getParam('id'));
     });
   }
 
@@ -28,10 +29,12 @@ class FriendsProfileScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { friends, likedItems } = this.props;
+    const { friends, friendsItems } = this.props;
 
-    if (!friends || !likedItems) return <Text>Loading...</Text>;
-
+    if (!friends || !friendsItems[this.user_id]) return <Text>Loading...</Text>;
+    const likedItems = friendsItems[this.user_id].map(
+      item_id => this.props.likedItems[item_id]
+    );
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
@@ -118,13 +121,13 @@ const mapStateToProps = state => ({
   ),
   friendsIds: state.pages.friendsPage.friendsList,
 
-  likedItems: state.pages.profilePage.items.map(
-    item_id => state.entities.likedItems[item_id]
-  )
+  friendsItems: state.pages.friendsPage.friendsItems,
+
+  likedItems: state.entities.likedItems
 });
 
 const mapDispatchToProps = dispatch => ({
-  getLikedItems: id => dispatch(getLikedItems(id))
+  getFriendsLikedItems: id => dispatch(getFriendsLikedItems(id))
 });
 
 export default connect(
