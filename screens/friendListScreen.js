@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  // Text,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  ScrollView
-} from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import {
   List,
   ListItem,
@@ -27,9 +19,30 @@ import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
 
 class FriendListScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      followedFriends: []
+    };
+  }
+
   componentDidMount() {
     this.props.getUserFriends();
   }
+
+  followfriend = id => {
+    const inFollowList = this.state.followedFriends.includes(id);
+
+    let followedFriends;
+    if (inFollowList) {
+      followedFriends = this.state.followedFriends.filter(
+        friendID => friendID !== id
+      );
+    } else {
+      followedFriends = [...this.state.followedFriends, id];
+    }
+    this.setState({ followedFriends });
+  };
 
   render() {
     const { navigate } = this.props.navigation;
@@ -41,11 +54,11 @@ class FriendListScreen extends React.Component {
       <Container>
         <Content>
           <List>
-            {friends.map((friend, i) => {
+            {friends.map(friend => {
               return (
                 <ListItem
                   avatar
-                  key={i}
+                  key={friend.user_id}
                   onPress={() =>
                     navigate('FriendsProfileScreen', {
                       firstName: friend.first_name,
@@ -68,20 +81,39 @@ class FriendListScreen extends React.Component {
                     </Text>
                   </Body>
                   <Right>
-                    <Icon
-                      style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginTop: 20
-                      }}
-                      type="FontAwesome"
-                      name="bell-o"
-                      // size={40}
-                      color="#6F6E6C"
-                      onPress={() => {
-                        console.log('🎊 friend ID: ', friend.user_id);
-                      }}
-                    />
+                    <TouchableOpacity>
+                      {!this.state.followedFriends.includes(friend.user_id) ? (
+                        <FontAwesome
+                          style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginTop: 20,
+                            marginRight: 20
+                          }}
+                          size={25}
+                          name="bell-o"
+                          color="#C0C0C0"
+                          onPress={() => {
+                            this.followfriend(friend.user_id);
+                          }}
+                        />
+                      ) : (
+                        <FontAwesome
+                          style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginTop: 20,
+                            marginRight: 20
+                          }}
+                          size={25}
+                          name="bell"
+                          color="#FFBF77"
+                          onPress={() => {
+                            this.followfriend(friend.user_id);
+                          }}
+                        />
+                      )}
+                    </TouchableOpacity>
                   </Right>
                 </ListItem>
               );
