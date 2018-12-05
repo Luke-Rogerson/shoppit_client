@@ -27,21 +27,23 @@ class CategoriesScreen extends React.Component {
   componentDidMount() {
     this.props.getCurrentUserData();
     this.props.getAllCategories();
-
-    console.log('-----🌟-----');
-    console.log(this.state.selectedCategories);
   }
 
   handleButtonPress = id => {
     const inCatList = this.state.selectedCategories.includes(id);
+
     let selectedCategories;
-    selectedCategories = inCatList
-      ? this.state.selectedCategories.filter(catID => catID !== id) // dispatch addCategory action here
-      : [...this.state.selectedCategories, id]; // dispatch removeCategory action here
+    if (inCatList) {
+      selectedCategories = this.state.selectedCategories.filter(
+        catID => catID !== id
+      );
+      this.props.deselectACategory(id);
+    } else {
+      selectedCategories = [...this.state.selectedCategories, id];
+      this.props.selectACategory(id);
+    }
+
     this.setState({ selectedCategories });
-    console.log('😱 YOU CLICKED ON:');
-    console.log(id);
-    console.log('selectedCategories', this.state.selectedCategories);
     this.setSelectedColors(id);
   };
 
