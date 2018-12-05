@@ -16,6 +16,8 @@ import {
   getAllCategories
 } from '../actions';
 
+import { Spinner } from 'native-base';
+
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -69,8 +71,16 @@ class CategoriesScreen extends React.Component {
   };
 
   render() {
-    if (!this.props.categories) return <Text>LOADING...</Text>;
     const categories = Object.values(this.props.categories);
+
+    if (!categories.length)
+      return (
+        <Spinner
+          style={{
+            height: SCREEN_HEIGHT / 1.3
+          }}
+        />
+      );
 
     return (
       <View style={styles.main}>

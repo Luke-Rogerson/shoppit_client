@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import {
   List,
   ListItem,
@@ -10,13 +10,15 @@ import {
   Text,
   Content,
   Container,
-  Icon
+  Spinner
 } from 'native-base';
 
 import { connect } from 'react-redux';
 import { getUserFriends } from '../actions';
 import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 class FriendListScreen extends React.Component {
   constructor() {
@@ -47,11 +49,17 @@ class FriendListScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { friends } = this.props;
-
-    if (!friends) return <Text>Loading...</Text>;
+    if (!friends.length)
+      return (
+        <Spinner
+          style={{
+            height: SCREEN_HEIGHT / 1.3
+          }}
+        />
+      );
 
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content>
           <List>
             {friends.map(friend => {
@@ -130,6 +138,9 @@ class FriendListScreen extends React.Component {
 // colored-in bell: "bell", color: #FFBF77
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F8FAFA'
+  },
   text: {
     marginTop: 20,
     color: '#6F6E6C',

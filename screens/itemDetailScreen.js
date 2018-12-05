@@ -9,7 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import { Button } from 'native-base';
+import { Button, Spinner } from 'native-base';
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
@@ -49,9 +49,6 @@ class ItemDetailScreen extends React.Component {
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
 
-
-
-
           <View style={styles.item_image_container}>
             <Image
               style={styles.item_image}
@@ -59,7 +56,7 @@ class ItemDetailScreen extends React.Component {
             />
             <Text style={styles.price_text}>{currentItem.price}</Text>
           </View>
-        
+
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btn}>
               <Ionicons
@@ -73,19 +70,18 @@ class ItemDetailScreen extends React.Component {
               />
             </TouchableOpacity>
 
-
             <Button
               warning
               onPress={() => this.setState({ showWebView: true })}
               style={styles.buy_button}
             >
               <AntDesign name="shoppingcart" size={25} color="#F8FAFA" />
-              <Text style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}>
+              <Text
+                style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}
+              >
                 BUY NOW
               </Text>
             </Button>
-
-
 
             <TouchableOpacity style={styles.btn}>
               {alreadyLiked ? (
@@ -129,11 +125,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   item_container: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   btnContainer: {
     flex: 1,
@@ -145,7 +141,7 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   baseText: {
     fontFamily: 'Walsheim',
@@ -166,7 +162,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: '#FFBF77',
     color: 'white',
-    transform: [{ rotate: '30deg'}]
+    transform: [{ rotate: '30deg' }]
   },
   item_image_container: {
     position: 'relative',
@@ -182,7 +178,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 20,
     margin: 20,
-    padding: 20,
+    padding: 20
   },
   buy_button: {
     alignSelf: 'center',
