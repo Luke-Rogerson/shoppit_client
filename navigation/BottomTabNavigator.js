@@ -5,7 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import HomeStack from './HomeStack';
 import MyProfileStack from './MyProfileStack';
 import FriendsStack from './FriendsStack';
-import CategoriesScreen from './../screens/CategoriesScreen';
+import CategoriesStack from './CategoriesStack';
 
 export default createBottomTabNavigator(
   {
@@ -19,7 +19,7 @@ export default createBottomTabNavigator(
       }
     },
     MyCategories: {
-      screen: CategoriesScreen,
+      screen: CategoriesStack,
       navigationOptions: {
         tabBarLabel: 'Categories',
         tabBarIcon: ({ tintColor }) => (

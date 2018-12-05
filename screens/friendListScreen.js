@@ -125,6 +125,10 @@ class FriendListScreen extends React.Component {
   }
 }
 
+// bell icon is from FontAwesome
+// bell outline: "bell-o", color: #6F6E6C
+// colored-in bell: "bell", color: #FFBF77
+
 const styles = StyleSheet.create({
   text: {
     marginTop: 20,
