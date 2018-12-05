@@ -77,7 +77,12 @@ class ItemDetailScreen extends React.Component {
             >
               <AntDesign name="shoppingcart" size={25} color="#F8FAFA" />
               <Text
-                style={{ color: '#F8FAFA', fontWeight: 'bold', marginLeft: 10 }}
+                style={{
+                  color: '#F8FAFA',
+                  fontWeight: 'bold',
+                  marginLeft: 10,
+                  fontSize: 16
+                }}
               >
                 BUY NOW
               </Text>
@@ -186,7 +191,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 10
+    paddingHorizontal: 22,
+    borderRadius: 25
   }
 });
 
