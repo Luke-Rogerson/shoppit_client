@@ -45,9 +45,6 @@ class ItemDetailScreen extends React.Component {
     } else
       return (
         <View style={styles.main_container}>
-
-
-
           <View style={styles.item_name_container}>
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
@@ -62,7 +59,7 @@ class ItemDetailScreen extends React.Component {
             />
             <Text style={styles.price_text}>{currentItem.price}</Text>
           </View>
-
+        
           <View style={styles.btnContainer}>
             <TouchableOpacity style={styles.btn}>
               <Ionicons
