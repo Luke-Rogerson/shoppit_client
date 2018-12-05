@@ -17,6 +17,7 @@ const defaultState = {
     items: []
   },
   friendsPage: {
+    friendsItems: {},
     friendsList: [],
     isLoading: false
   }
@@ -46,7 +47,7 @@ const pages = (state = defaultState, action) => {
       ...state,
       categoriesPage: {
         ...state.categoriesPage,
-        selectedCategories: categoriesstatePage.selectedCategories.includes(
+        selectedCategories: state.categoriesPage.selectedCategories.includes(
           category_id
         )
           ? state.categoriesPage.selectedCategories
@@ -84,6 +85,17 @@ const pages = (state = defaultState, action) => {
       }
     };
 
+  case 'GET_FRIENDS_LIKED_ITEMS_SUCCESS':
+    return {
+      ...state,
+      friendsPage: {
+        ...state.friendsPage,
+        friendsItems: {
+          ...state.friendsPage.friendsItems,
+          [action.user_id]: action.data.result
+        }
+      }
+    };
   case 'GET_USER_FRIENDS_SUCCESS':
     return {
       ...state,
