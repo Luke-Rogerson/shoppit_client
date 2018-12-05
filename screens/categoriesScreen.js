@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
@@ -69,8 +68,6 @@ class CategoriesScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     if (!this.props.categories) return <Text>LOADING...</Text>;
     const categories = Object.values(this.props.categories);
 
@@ -130,47 +127,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CategoriesScreen);
-
-// <CustomMultiPicker
-// options={categories}
-// multiple={true}
-// returnValue={'value'}
-// callback={res => {
-//   const selectedCategories = res;
-//   if (this.props.selectedCategories.length === 0 && res.length > 1) {
-//     const categoryId =
-//       selectedCategories[selectedCategories.length - 1];
-
-//     this.props.selectACategory(categoryId);
-//   } else if (
-//     res.length === 1 &&
-//     this.props.selectedCategories.length === 0
-//   ) {
-//     return;
-//   }
-
-//   const selectedItem = this.props.selectedCategories.reduce(
-//     (acc, el) =>
-//       !el || (el && selectedCategories.includes(el.toString()))
-//         ? acc
-//         : [...acc, el],
-//     []
-//   )[0];
-
-//   if (!selectedItem) {
-//     const categoryId =
-//       selectedCategories[selectedCategories.length - 1];
-
-//     this.props.selectACategory(categoryId);
-//   } else {
-//     this.props.deselectACategory(selectedItem);
-//   }
-// }}
-// rowBackgroundColor={'#eee'}
-// rowHeight={50}
-// rowRadius={5}
-// iconColor={'#00a2dd'}
-// iconSize={30}
-// selectedIconName={'ios-checkmark-circle-outline'}
-// scrollViewHeight={SCREEN_HEIGHT - 180}
-// />
