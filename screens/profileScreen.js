@@ -5,8 +5,8 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 import moment from 'moment';
@@ -36,21 +36,25 @@ class ProfileScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
-          {currentUser[currentUserId].first_name}{' '}
-          {currentUser[currentUserId].last_name}
-        </Text>
-        <Image
-          source={{ uri: currentUser[currentUserId].avatar_url }}
-          style={styles.profile_pic}
-        />
-        <Text style={styles.text}>
-          {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
-        </Text>
-        <ScrollView>
+        <View styles={styles.profileInfo}>
+          <Text style={styles.text}>Me</Text>
+          <Image
+            source={{ uri: currentUser[currentUserId].avatar_url }}
+            style={styles.profile_pic}
+          />
+
+          <Text style={styles.text}>
+            {moment(currentUser[currentUserId].birthday).format('Do MMMM')}
+          </Text>
+        </View>
+
+        <ScrollView
+          alwaysBounceVertical={'false'}
+          contentContainerStyle={styles.itemsList}
+        >
           {likedItems.map((currentItem, i) => {
             return (
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() =>
                   navigate('ItemDetailScreen', {
                     currentItem
@@ -62,7 +66,7 @@ class ProfileScreen extends React.Component {
                   source={{ uri: currentItem.img_url }}
                   style={styles.item_images}
                 />
-              </TouchableHighlight>
+              </TouchableOpacity>
             );
           })}
         </ScrollView>
@@ -73,33 +77,45 @@ class ProfileScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center'
+    backgroundColor: '#F8FAFA',
+    flex: 1
   },
+
+  profileInfo: {
+    margin: 20,
+    flexDirection: 'row'
+  },
+
   text: {
     margin: 10,
     color: '#6F6E6C',
-    fontSize: 20
+    fontSize: 20,
+    textAlign: 'center'
   },
+
   profile_pic: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginTop: 10
+    marginTop: 10,
+    alignSelf: 'center'
   },
+
+  itemsList: {
+    padding: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+
   item_images: {
-    flex: 1,
-    resizeMode: 'cover',
-    height: 300,
-    width: SCREEN_WIDTH - 20,
+    resizeMode: 'contain',
+    height: 250,
+    width: SCREEN_WIDTH / 2 - 30,
     margin: 10,
-    borderRadius: 5,
-    padding: 10
-  },
-  category_name: {
-    textTransform: 'capitalize',
-    color: '#6F6E6C',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: 'grey',
+    backgroundColor: 'white',
     padding: 10
   }
 });

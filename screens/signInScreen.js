@@ -62,12 +62,14 @@ class SignInScreen extends React.Component {
       );
       if (type === 'success') {
         await this.storeToken('accesstoken', token);
-        const currentUserCatLen = this.props.currentUser[
-          this.props.currentUserId
-        ].category.length;
-        currentUserCatLen > 1
-          ? this.props.navigation.navigate('HomeScreen')
-          : this.props.navigation.navigate('CategoriesScreen');
+        this.props.navigation.navigate('HomeScreen');
+
+        // const currentUserCatLen = this.props.currentUser[
+        //   this.props.currentUserId
+        // ].category.length;
+        // currentUserCatLen > 1
+        //   ? this.props.navigation.navigate('HomeScreen')
+        //   : this.props.navigation.navigate('CategoriesScreen');
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
@@ -80,7 +82,12 @@ class SignInScreen extends React.Component {
     // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Shoppit</Text>
+        <Text
+          onPress={() => this.props.navigation.navigate('HomeScreen')}
+          style={styles.title}
+        >
+          Welcome to Shoppit
+        </Text>
 
         <Image
           source={require('./../assets/bunny-hop.gif')}
