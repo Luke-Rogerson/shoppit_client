@@ -30,10 +30,10 @@ class CategoriesScreen extends React.Component {
   }
 
   handleButtonPress = id => {
-    const inCatList = this.state.selectedCategories.includes(id);
+    const inSelected = this.state.selectedCategories.includes(id);
 
     let selectedCategories;
-    if (inCatList) {
+    if (inSelected) {
       selectedCategories = this.state.selectedCategories.filter(
         catID => catID !== id
       );
@@ -73,37 +73,40 @@ class CategoriesScreen extends React.Component {
     const categories = Object.values(this.props.categories);
 
     return (
-      <ScrollView
-        alwaysBounceVertical={'false'}
-        contentContainerStyle={styles.container}
-      >
-        <Text style={styles.header}>I am...</Text>
-        {categories && this.createCategoryButtons(categories)}
-      </ScrollView>
+      <View style={styles.main}>
+        <ScrollView
+          alwaysBounceVertical={'false'}
+          contentContainerStyle={styles.container}
+        >
+          <Text style={styles.header}>I am...</Text>
+          {categories && this.createCategoryButtons(categories)}
+        </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  main: {
+    backgroundColor: '#F8FAFA',
+    flex: 1
+  },
   header: {
     position: 'absolute',
     color: '#6F6E6C',
-    top: -62,
+    top: -60,
     fontFamily: 'Walsheim',
     fontSize: 36
   },
   container: {
-    marginTop: 210,
-    flex: 1,
+    marginTop: 98,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    backgroundColor: '#F8FAFA',
     justifyContent: 'center',
     paddingHorizontal: 20
   },
   unselected: {
     alignSelf: 'flex-start',
-    // flex: 1,
     backgroundColor: '#C0C0C0',
     alignItems: 'center',
     padding: 10,
@@ -115,7 +118,6 @@ const styles = StyleSheet.create({
   },
   selected: {
     alignSelf: 'flex-start',
-    // flex: 1,
     backgroundColor: '#91C7A3',
     alignItems: 'center',
     padding: 10,

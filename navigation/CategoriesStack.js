@@ -2,14 +2,13 @@ import React from 'react';
 import { TouchableOpacity, Text, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
-import ProfileScreen from '../screens/ProfileScreen';
-import ItemDetailScreen from '../screens/ItemDetailScreen';
+import CategoriesScreen from '../screens/CategoriesScreen';
+
 import CurrentUserAvatar from './CurrentUserAvatar';
 
 export default createStackNavigator(
   {
-    ProfileScreen,
-    ItemDetailScreen
+    CategoriesScreen
   },
   {
     headerMode: 'float',

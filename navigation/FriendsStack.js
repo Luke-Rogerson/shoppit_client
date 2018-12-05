@@ -29,10 +29,7 @@ export default createStackNavigator(
             fontSize: 25
           }}
         >
-          <Image
-            source={require('./../assets/small-logo.png')}
-            // style={{ position: 'absolute' }}
-          />
+          <Image source={require('./../assets/small-logo.png')} />
           shoppit
         </Text>
       ),
