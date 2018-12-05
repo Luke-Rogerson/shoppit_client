@@ -4,8 +4,8 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 const NoItemsComponent = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>No liked items yet!</Text>
       <Image source={require('./../assets/carrot-small.png')} />
+      <Text style={styles.title}>No liked items yet!</Text>
     </View>
   );
 };
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   title: {
+    marginTop: 20,
     fontSize: 26,
     fontFamily: 'Walsheim',
     color: '#6F6E6C'

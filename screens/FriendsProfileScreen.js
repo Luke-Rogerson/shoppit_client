@@ -13,6 +13,7 @@ import { Spinner } from 'native-base';
 
 import { connect } from 'react-redux';
 import { getFriendsLikedItems } from '../actions';
+import NoItemsComponent from '../components/NoItemsComponent';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -51,6 +52,7 @@ class FriendsProfileScreen extends React.Component {
     const likedItems = friendsItems[this.user_id].map(
       item_id => this.props.likedItems[item_id]
     );
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
@@ -64,29 +66,34 @@ class FriendsProfileScreen extends React.Component {
         <Text style={styles.text}>
           {this.props.navigation.getParam('birthday', '')}
         </Text>
-        <ScrollView
-          alwaysBounceVertical={'false'}
-          contentContainerStyle={styles.itemsList}
-        >
-          {likedItems.map((currentItem, i) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigate('ItemDetailScreen', {
-                    currentItem
-                  })
-                }
-                style={styles.item_image_shadow}
-                key={i}
-              >
-                <Image
-                  source={{ uri: currentItem.img_url }}
-                  style={styles.item_images}
-                />
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+
+        {likedItems.length ? (
+          <ScrollView
+            alwaysBounceVertical={'false'}
+            contentContainerStyle={styles.itemsList}
+          >
+            {likedItems.map((currentItem, i) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigate('ItemDetailScreen', {
+                      currentItem
+                    })
+                  }
+                  style={styles.item_image_shadow}
+                  key={i}
+                >
+                  <Image
+                    source={{ uri: currentItem.img_url }}
+                    style={styles.item_images}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        ) : (
+          <NoItemsComponent />
+        )}
       </View>
     );
   }

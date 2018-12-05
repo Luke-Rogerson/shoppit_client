@@ -15,6 +15,7 @@ import moment from 'moment';
 
 import { connect } from 'react-redux';
 import { getLikedItems } from '../actions';
+import NoItemsComponent from '../components/NoItemsComponent';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -43,7 +44,7 @@ class ProfileScreen extends React.Component {
           }}
         />
       );
-
+    
     return (
       <View style={styles.container}>
         <View styles={styles.profileInfo}>
@@ -57,29 +58,33 @@ class ProfileScreen extends React.Component {
           </Text>
         </View>
 
-        <ScrollView
-          alwaysBounceVertical={'false'}
-          contentContainerStyle={styles.itemsList}
-        >
-          {likedItems.map((currentItem, i) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigate('ItemDetailScreen', {
-                    currentItem
-                  })
-                }
-                style={styles.item_image_shadow}
-                key={i}
-              >
-                <Image
-                  source={{ uri: currentItem.img_url }}
-                  style={styles.item_images}
-                />
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+        {likedItems.length ? (
+          <ScrollView
+            alwaysBounceVertical={'false'}
+            contentContainerStyle={styles.itemsList}
+          >
+            {likedItems.map((currentItem, i) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigate('ItemDetailScreen', {
+                      currentItem
+                    })
+                  }
+                  style={styles.item_image_shadow}
+                  key={i}
+                >
+                  <Image
+                    source={{ uri: currentItem.img_url }}
+                    style={styles.item_images}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        ) : (
+          <NoItemsComponent />
+        )}
       </View>
     );
   }
