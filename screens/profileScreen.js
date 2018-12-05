@@ -32,11 +32,7 @@ class ProfileScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { currentUser, currentUserId, likedItems } = this.props;
-
     if (!currentUser) return <Text>Loading...</Text>;
-
-    console.log('----🌟MY LIKED ITEMS🌟----');
-    console.log(likedItems);
 
     return (
       <View style={styles.container}>

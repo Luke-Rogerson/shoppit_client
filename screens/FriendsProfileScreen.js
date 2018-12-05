@@ -36,8 +36,6 @@ class FriendsProfileScreen extends React.Component {
     const likedItems = friendsItems[this.user_id].map(
       item_id => this.props.likedItems[item_id]
     );
-    console.log('----🌟FRIEND LIKED ITEMS🌟----');
-    console.log(likedItems);
 
     return (
       <View style={styles.container}>
