@@ -6,10 +6,11 @@ import {
   Button,
   Image,
   WebView,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 import { connect } from 'react-redux';
 import { setItemAffinity } from '../actions';
@@ -42,34 +43,31 @@ class ItemDetailScreen extends React.Component {
       return this.renderAmazon();
     } else
       return (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
-          <Text style={styles.baseText}>
-            <Text style={styles.titleText}>{currentItem.item_name}</Text>
-          </Text>
-          <Image
-            style={{
-              flex: 1,
-              height: null,
-              width: null,
-              resizeMode: 'contain'
-            }}
-            source={{ uri: currentItem.img_url }}
-          />
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <Text style={styles.titleText}>{currentItem.price}</Text>
-            <View style={styles.container}>
-              <Button
-                title="BUY NOW"
-                onPress={() => this.setState({ showWebView: true })}
+        <View style={styles.main_container}>
+
+          <View style={styles.item_name_container}>
+            <Text style={styles.baseText}>{currentItem.item_name}</Text>
+          </View>
+
+          <View style={styles.item_image_container}>
+            <Image
+              style={styles.item_image}
+              source={{ uri: currentItem.img_url }}
+            />
+            <Text style={styles.price_text}>{currentItem.price}</Text>
+          </View>
+
+          <View style={styles.buy_button}>
+          <AntDesign
+            name="shoppingcart"
+            size={40}
+            color="white"
               />
-            </View>
+            <Button
+              title="BUY NOW"
+              onPress={() => this.setState({ showWebView: true })}
+              color="white"
+            />
           </View>
 
           <View style={styles.btnContainer}>
@@ -93,7 +91,7 @@ class ItemDetailScreen extends React.Component {
                   color="#6F6E6C"
                   onPress={() => {
                     // eslint-disable-next-line no-console
-                    console.log('Don\'t touch that!');
+                    console.log("Don't touch that!");
                   }}
                 />
               ) : (
@@ -114,7 +112,28 @@ class ItemDetailScreen extends React.Component {
   }
 }
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
+  main_container: {
+    flex: 1,
+    backgroundColor: '#F8FAFA'
+  },
+  item_name_container: {
+    width: SCREEN_WIDTH,
+    height: 100,
+    padding: 20,
+    margin: 0,
+    textAlign: 'center',
+    flexWrap: 'wrap'
+  },
+  item_container: {
+    flex: 3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   btnContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -129,17 +148,43 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontFamily: 'Arial',
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 10,
-    marginTop: 10,
-    textAlign: 'center',
     zIndex: 1000,
-    color: '#6F6E6C'
+    color: 'black',
+    fontSize: 25,
+    fontWeight: 'bold'
   },
-  titleText: {
-    fontSize: 20,
-    color: '#6F6E6C'
+  price_text: {
+    position: 'absolute',
+    top: 35,
+    right: 35,
+    fontSize: 25,
+    fontWeight: 'bold',
+    backgroundColor: 'orange',
+    color: 'white'
+  },
+  item_image_container: {
+    position: 'relative'
+  },
+  item_image: {
+    height: SCREEN_HEIGHT - 450,
+    width: SCREEN_WIDTH - 400,
+    backgroundColor: 'white',
+    resizeMode: 'contain',
+    borderRadius: 20,
+    margin: 20,
+    padding: 20,
+    borderWidth: 0.5,
+    borderColor: 'grey'
+  },
+  buy_button: {
+    backgroundColor: '#91C7A3',
+    height: 50,
+    marginLeft: 25,
+    marginRight: 25,
+    borderRadius: 10,
+    borderColor: 'grey',
+    borderWidth: 1
   }
 });
 
