@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class CurrentUserAvatar extends React.Component {
   render() {
     const { uri } = this.props;
-    return (
+    return !uri ? null : (
       <Image
         source={{ uri }}
         style={{
