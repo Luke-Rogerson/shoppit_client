@@ -88,7 +88,7 @@ class FriendListScreen extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                             marginTop: 20,
-                            marginRight: 20
+                            marginRight: 15
                           }}
                           size={25}
                           name="bell-o"
@@ -103,7 +103,7 @@ class FriendListScreen extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                             marginTop: 20,
-                            marginRight: 20
+                            marginRight: 15
                           }}
                           size={25}
                           name="bell"
@@ -124,10 +124,6 @@ class FriendListScreen extends React.Component {
     );
   }
 }
-
-// bell icon is from FontAwesome
-// bell outline: "bell-o", color: #6F6E6C
-// colored-in bell: "bell", color: #FFBF77
 
 const styles = StyleSheet.create({
   text: {
