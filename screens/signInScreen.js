@@ -82,12 +82,21 @@ class SignInScreen extends React.Component {
     // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text
-          onPress={() => this.props.navigation.navigate('HomeScreen')}
-          style={styles.title}
-        >
-          Welcome to Shoppit
-        </Text>
+        <View style={styles.greeting}>
+          <Text
+            onPress={() => this.props.navigation.navigate('HomeScreen')}
+            style={styles.welcome}
+          >
+            welcome to
+          </Text>
+          <Text style={styles.shoppit}>
+            shoppit
+            <Image
+              source={require('./../assets/carrot-xxsmall.png')}
+              style={{ marginTop: -5 }}
+            />
+          </Text>
+        </View>
 
         <Image
           source={require('./../assets/bunny-hop.gif')}
@@ -105,15 +114,24 @@ class SignInScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  greeting: {
+    marginTop: 50,
+    marginLeft: 20
+  },
   container: {
     flex: 1,
     backgroundColor: '#91C7A3',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  title: {
-    fontSize: 36,
+  welcome: {
+    fontSize: 24,
     fontFamily: 'Walsheim',
+    color: '#fff'
+  },
+  shoppit: {
+    fontSize: 64,
+    fontFamily: 'Pacifico',
     color: '#fff'
   },
   text: {
