@@ -1,12 +1,25 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
+  // Text,
   View,
   Image,
   TouchableOpacity,
+  FlatList,
   ScrollView
 } from 'react-native';
+import {
+  List,
+  ListItem,
+  Left,
+  Body,
+  Right,
+  Thumbnail,
+  Text,
+  Content,
+  Container,
+  Icon
+} from 'native-base';
 
 import { connect } from 'react-redux';
 import { getUserFriends } from '../actions';
@@ -25,64 +38,64 @@ class FriendListScreen extends React.Component {
     if (!friends) return <Text>Loading...</Text>;
 
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          {friends.map((friend, i) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigate('FriendsProfileScreen', {
-                    firstName: friend.first_name,
-                    lastName: friend.last_name,
-                    image: friend.avatar_url,
-                    id: friend.user_id,
-                    birthday: moment(friend.birthday).format('Do MMMM')
-                  })
-                }
-                key={i}
-              >
-                <View style={styles.container}>
-                  <Image
-                    key={i}
-                    source={{ uri: friend.avatar_url }}
-                    style={styles.profile_pic}
-                  />
-
-                  <Text style={styles.text}>
-                    {friend.first_name} {friend.last_name}
-                  </Text>
-                  <FontAwesome
-                    name="bell-o"
-                    size={30}
-                    color="#6F6E6C"
-                    onPress={() => {
-                      console.log('🎊 friend ID: ', friend.user_id);
-                    }}
-                  />
-                </View>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-      </View>
+      <Container>
+        <Content>
+          <List>
+            {friends.map((friend, i) => {
+              return (
+                <ListItem
+                  avatar
+                  key={i}
+                  onPress={() =>
+                    navigate('FriendsProfileScreen', {
+                      firstName: friend.first_name,
+                      lastName: friend.last_name,
+                      image: friend.avatar_url,
+                      id: friend.user_id,
+                      birthday: moment(friend.birthday).format('Do MMMM')
+                    })
+                  }
+                >
+                  <Left>
+                    <Thumbnail
+                      style={styles.profile_pic}
+                      source={{ uri: friend.avatar_url }}
+                    />
+                  </Left>
+                  <Body>
+                    <Text style={styles.text}>
+                      {friend.first_name} {friend.last_name}
+                    </Text>
+                  </Body>
+                  <Right>
+                    <Icon
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: 20
+                      }}
+                      type="FontAwesome"
+                      name="bell-o"
+                      // size={40}
+                      color="#6F6E6C"
+                      onPress={() => {
+                        console.log('🎊 friend ID: ', friend.user_id);
+                      }}
+                    />
+                  </Right>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Content>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#fff'
-  },
-  profile_pic: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    margin: 10
-  },
   text: {
-    marginTop: 30,
+    marginTop: 20,
     color: '#6F6E6C',
     fontSize: 20,
     fontFamily: 'Walsheim'

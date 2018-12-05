@@ -44,7 +44,6 @@ class ItemDetailScreen extends React.Component {
     } else
       return (
         <View style={styles.main_container}>
-
           <View style={styles.item_name_container}>
             <Text style={styles.baseText}>{currentItem.item_name}</Text>
           </View>
@@ -58,11 +57,7 @@ class ItemDetailScreen extends React.Component {
           </View>
 
           <View style={styles.buy_button}>
-          <AntDesign
-            name="shoppingcart"
-            size={40}
-            color="white"
-              />
+            <AntDesign name="shoppingcart" size={40} color="white" />
             <Button
               title="BUY NOW"
               onPress={() => this.setState({ showWebView: true })}
@@ -148,6 +143,8 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontFamily: 'Walsheim',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     // justifyContent: 'center',
     // alignItems: 'center',
     padding: 10,

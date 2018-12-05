@@ -274,9 +274,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     resizeMode: 'contain',
     borderRadius: 20,
-    padding: 20,
-    borderWidth: 0.5,
-    borderColor: 'grey'
+    padding: 20
+
+    // borderWidth: 0.5,
+    // borderColor: 'grey'
   },
   textNope: {
     borderWidth: 1,
