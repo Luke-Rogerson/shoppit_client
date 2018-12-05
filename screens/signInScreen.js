@@ -104,10 +104,12 @@ class SignInScreen extends React.Component {
           resizeMode="contain"
         />
 
-        <Button iconLeft large full light onPress={this.logInFB.bind(this)}>
-          <Icon style={styles.icon} name="logo-facebook" />
-          <Text style={styles.text}> Connect with Facebook</Text>
-        </Button>
+        <View style={styles.buttonView}>
+          <Button iconLeft large full light onPress={this.logInFB.bind(this)}>
+            <Icon style={styles.icon} name="logo-facebook" />
+            <Text style={styles.text}> Connect with Facebook</Text>
+          </Button>
+        </View>
       </View>
     );
   }
@@ -142,6 +144,10 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 28,
     color: '#3b5998'
+  },
+  buttonView: {
+    marginTop: -80,
+    width: SCREEN_WIDTH
   }
 });
 
