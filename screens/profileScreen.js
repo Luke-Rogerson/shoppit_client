@@ -37,7 +37,6 @@ class ProfileScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View styles={styles.profileInfo}>
-          <Text style={styles.text}>Me</Text>
           <Image
             source={{ uri: currentUser[currentUserId].avatar_url }}
             style={styles.profile_pic}
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginTop: 10,
+    marginTop: 20,
     alignSelf: 'center'
   },
 
