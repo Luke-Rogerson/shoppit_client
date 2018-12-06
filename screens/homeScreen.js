@@ -202,7 +202,10 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     const currentItem = this.props.recommendedItems[this.state.currentIndex];
-    if (!currentItem)
+
+    const { isLoading } = this.props;
+
+    if (isLoading)
       return (
         <Spinner
           style={{
@@ -333,7 +336,7 @@ const mapStateToProps = state => ({
   recommendedItems: state.pages.homePage.items.map(
     item_id => state.entities.items[item_id]
   ),
-  isUpdating: state.pages.homePage.loading
+  isLoading: state.pages.homePage.loading
 });
 
 const mapDispatchToProps = dispatch => ({

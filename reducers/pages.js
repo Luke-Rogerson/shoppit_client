@@ -2,16 +2,16 @@ const defaultState = {
   categoriesPage: {
     categories: [],
     selectedCategories: [],
-    loading: false
+    loading: true
   },
   currentUserPage: {
     currentUser: [],
-    loading: false
+    loading: true
   },
   homePage: {
     items: [],
     likedItems: [],
-    loading: false
+    loading: true
   },
   profilePage: {
     items: [],
@@ -26,6 +26,7 @@ const defaultState = {
 
 const pages = (state = defaultState, action) => {
   switch (action.type) {
+
   case 'GET_ALL_CATEGORIES_SUCCESS':
     return {
       ...state,
@@ -68,6 +69,16 @@ const pages = (state = defaultState, action) => {
       }
     };
   }
+
+  case 'GET_ALL_RECOMMENDED_ITEMS_PENDING':
+    return {
+      ...state,
+      homePage: {
+        ...state.homePage,
+        loading: true
+      }
+    };
+
   case 'GET_ALL_RECOMMENDED_ITEMS_SUCCESS':
     return {
       ...state,
