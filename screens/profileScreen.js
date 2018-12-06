@@ -34,9 +34,9 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { currentUser, currentUserId, likedItems } = this.props;
+    const { currentUser, currentUserId, likedItems, isLoading } = this.props;
 
-    if (!currentUser || !likedItems)
+    if (isLoading)
       return (
         <Spinner
           style={{
@@ -146,7 +146,8 @@ const mapStateToProps = state => ({
 
   likedItems: state.pages.profilePage.items.map(
     item_id => state.entities.likedItems[item_id]
-  )
+  ),
+  isLoading: state.pages.profilePage.loading
 });
 
 const mapDispatchToProps = dispatch => ({

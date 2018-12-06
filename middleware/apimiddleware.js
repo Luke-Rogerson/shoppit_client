@@ -52,8 +52,8 @@ export default BASE_URL => store => next => async action => {
         ...action,
         type: action.type + '_SUCCESS',
         [API]: undefined,
-        loading: false,
-        data
+        data,
+        loading: false
       });
     })
     .catch(error => {

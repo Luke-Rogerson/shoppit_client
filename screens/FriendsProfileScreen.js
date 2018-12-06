@@ -33,9 +33,9 @@ class FriendsProfileScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { friends, friendsItems } = this.props;
+    const { friends, friendsItems, isLoading } = this.props;
 
-    if (!friends.length || !friendsItems[this.user_id])
+    if ((!friends.length || !friendsItems[this.user_id]) )
       return (
         <Spinner
           style={{
@@ -145,11 +145,14 @@ const mapStateToProps = state => ({
 
   friendsItems: state.pages.friendsPage.friendsItems,
 
-  likedItems: state.entities.likedItems
+  likedItems: state.entities.likedItems,
+
+  isLoading: state.pages.friendsPage.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-  getFriendsLikedItems: id => dispatch(getFriendsLikedItems(id))
+  getFriendsLikedItems: id => dispatch(getFriendsLikedItems(id)),
+
 });
 
 export default connect(
