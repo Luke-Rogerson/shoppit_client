@@ -68,11 +68,15 @@ class HomeScreen extends React.Component {
       outputRange: [1, 0.8, 1],
       extrapolate: 'clamp'
     });
+
+    // Listener to fetch updated list of recommended items each time
+    this.didFocusListener = props.navigation.addListener('didFocus', () => {
+      props.getAllRecommendedItems();
+    });
+
   }
 
   componentDidMount() {
-    this.props.getAllRecommendedItems();
-    // this.props.getCurrentUserData();
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -112,6 +116,10 @@ class HomeScreen extends React.Component {
         }
       }
     });
+  }
+
+  componentWillUnmount() {
+    this.didFocusListener.remove();
   }
 
   renderItems = () => {
