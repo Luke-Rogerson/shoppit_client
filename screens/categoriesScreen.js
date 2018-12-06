@@ -13,7 +13,8 @@ import {
   getCurrentUserData,
   selectACategory,
   deselectACategory,
-  getAllCategories
+  getAllCategories,
+  getAllRecommendedItems
 } from '../actions';
 
 import { Spinner } from 'native-base';
@@ -70,6 +71,13 @@ class CategoriesScreen extends React.Component {
     });
   };
 
+  refreshRecommended = () => {
+    // call get recommended items again with new categories
+    this.props.getAllRecommendedItems();
+    // navigate to home screen
+    this.props.navigation.navigate('HomeScreen');
+  };
+
   render() {
     const categories = Object.values(this.props.categories);
 
@@ -91,6 +99,9 @@ class CategoriesScreen extends React.Component {
           <Text style={styles.header}>I am...</Text>
           {categories && this.createCategoryButtons(categories)}
         </ScrollView>
+        <TouchableOpacity style={styles.OK} onPress={this.refreshRecommended}>
+          <Text style={styles.buttonText}>OK</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -109,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 36
   },
   container: {
-    marginTop: 98,
+    marginTop: 82,
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -128,7 +139,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     alignSelf: 'flex-start',
-    backgroundColor: '#91C7A3',
+    backgroundColor: '#FFBF77',
     alignItems: 'center',
     padding: 10,
     marginBottom: 10,
@@ -141,6 +152,15 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontFamily: 'Walsheim',
     fontSize: 20
+  },
+  OK: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#91C7A3',
+    marginBottom: 15,
+    borderRadius: 12,
+    padding: 5,
+    paddingHorizontal: 15,
+    marginRight: 20
   }
 });
 
@@ -158,7 +178,8 @@ const mapDispatchToProps = dispatch => ({
   getCurrentUserData: () => dispatch(getCurrentUserData()),
   getAllCategories: () => dispatch(getAllCategories()),
   selectACategory: category_id => dispatch(selectACategory(category_id)),
-  deselectACategory: category_id => dispatch(deselectACategory(category_id))
+  deselectACategory: category_id => dispatch(deselectACategory(category_id)),
+  getAllRecommendedItems: () => dispatch(getAllRecommendedItems())
 });
 
 export default connect(
