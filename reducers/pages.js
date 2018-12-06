@@ -14,12 +14,13 @@ const defaultState = {
     loading: false
   },
   profilePage: {
-    items: []
+    items: [],
+    loading: true
   },
   friendsPage: {
     friendsItems: {},
     friendsList: [],
-    isLoading: false
+    loading: true
   }
 };
 
@@ -72,7 +73,17 @@ const pages = (state = defaultState, action) => {
       ...state,
       homePage: {
         ...state.homePage,
-        items: action.data.result
+        items: action.data.result,
+        loading: false
+      }
+    };
+
+  case 'GET_LIKED_ITEMS_PENDING':
+    return {
+      ...state,
+      profilePage: {
+        ...state.profilePage,
+        loading: true
       }
     };
 
@@ -81,7 +92,17 @@ const pages = (state = defaultState, action) => {
       ...state,
       profilePage: {
         ...state.profilePage,
-        items: action.data.result
+        items: action.data.result,
+        loading: action.loading
+      }
+    };
+
+  case 'GET_FRIENDS_LIKED_ITEMS_PENDING':
+    return {
+      ...state,
+      friendsPage: {
+        ...state.friendsPage,
+        loading: true
       }
     };
 
@@ -92,16 +113,27 @@ const pages = (state = defaultState, action) => {
         ...state.friendsPage,
         friendsItems: {
           ...state.friendsPage.friendsItems,
-          [action.user_id]: action.data.result
+          [action.user_id]: action.data.result,
+          loading: action.loading
         }
       }
     };
+
   case 'GET_USER_FRIENDS_SUCCESS':
     return {
       ...state,
       friendsPage: {
         ...state.friendsPage,
         friendsList: action.data.result
+      }
+    };
+
+  case 'SET_ITEM_AFFINITY_PENDING':
+    return {
+      ...state,
+      profilePage: {
+        ...state.profilePage,
+        loading: true
       }
     };
 

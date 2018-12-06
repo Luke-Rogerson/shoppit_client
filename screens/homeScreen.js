@@ -15,7 +15,8 @@ import {
   Animated,
   PanResponder,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from 'react-native';
 
 import { Spinner } from 'native-base';
@@ -69,14 +70,11 @@ class HomeScreen extends React.Component {
       extrapolate: 'clamp'
     });
 
-    // Listener to fetch updated list of recommended items each time
-    this.didFocusListener = props.navigation.addListener('didFocus', () => {
-      props.getAllRecommendedItems();
-    });
-
   }
 
   componentDidMount() {
+
+    this.props.getAllRecommendedItems();
 
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -116,10 +114,6 @@ class HomeScreen extends React.Component {
         }
       }
     });
-  }
-
-  componentWillUnmount() {
-    this.didFocusListener.remove();
   }
 
   renderItems = () => {
@@ -238,17 +232,19 @@ class HomeScreen extends React.Component {
 
         <View style={styles.btnContainer}>
           {/* DISLIKE button */}
-          <TouchableOpacity style={styles.btn}>
+          <TouchableHighlight style={styles.btn} underlayColor={'red'}>
             <Ionicons
               name="ios-close-circle-outline"
               size={50}
               color="#6F6E6C"
+              beat={true}
+              shake={true}
               onPress={() => {
                 this.props.setItemAffinity(currentItem.item_id, false);
                 this.setState({ currentIndex: this.state.currentIndex + 1 });
               }}
             />
-          </TouchableOpacity>
+          </TouchableHighlight>
           {/* INFO button */}
           <TouchableOpacity style={styles.btn}>
             <Ionicons
