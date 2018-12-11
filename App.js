@@ -1,21 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import { Font, AppLoading } from 'expo';
+
+import AppNavigator from './navigation/AppNavigator';
+import reducers from './reducers';
+// import logger from './middleware/logger';
+import api from './middleware/apimiddleware';
 
 export default class App extends React.Component {
+  state = {
+    fontLoaded: false
+  };
+  async componentDidMount() {
+    await Font.loadAsync({
+      Pacifico: require('./assets/fonts/Pacifico-Regular.ttf'),
+      Walsheim: require('./assets/fonts/GT-Walsheim-Regular.ttf')
+    });
+    this.setState({ fontLoaded: true });
+  }
   render() {
+    if (!this.state.fontLoaded) {
+      return <AppLoading />;
+    }
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(api('http://localhost:3333')))
+);
+
+//192.168.1.174

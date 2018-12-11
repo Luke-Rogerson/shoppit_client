@@ -1,0 +1,37 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "amd": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "ecmaVersion": 2017,
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.5.2"
+    }
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "keyword-spacing": "error",
+    "linebreak-style": ["error", "unix"],
+    "no-undef": 0,
+    "no-unsued-vars": 0,
+    "react/prop-types": 0,
+    "semi": ["error", "always"],
+    "space-before-blocks": "error",
+    "space-before-function-paren": 0
+  }
+}
