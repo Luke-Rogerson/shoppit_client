@@ -13,8 +13,9 @@ export default createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: {
         tabBarLabel: 'Home',
+        displayName: 'home',
         tabBarIcon: ({ tintColor }) => (
-          <FontAwesome name="home" color={tintColor} size={24} />
+          <FontAwesome displayName="home" color={tintColor} size={24} />
         )
       }
     },
