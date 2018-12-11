@@ -6,15 +6,15 @@
  <img src="screenshots/shoppit-banner.png" width="80%">
 </p> 
 
-_Shoppit is a social shopping app!_
+**Shoppit is a social shopping app!**
 
-_Spend a few minutes browsing our personalised, curated products. Buy something nice for yourself or a friend! Never forget a birthday again!_
+Spend a few minutes browsing our personalised, curated products. Buy something nice for yourself or a friend! Never forget a birthday again!
 
 ## Table of contents
 
 - [Screenshots](#screenshots)
 - [Getting started](#getting-started)
-- [Motivation](#Motivation)
+- [Motivation](#motivation)
 - [Usage](#usage)
 - [Tech Stack](#tech-stack)
 - [Developers team](#developers-team)
@@ -26,15 +26,15 @@ _Spend a few minutes browsing our personalised, curated products. Buy something 
  <img src="screenshots/first.jpg" />
 </p>
 
-_After connecting the app with Facebook, Shoppit will automatically detect a few categories you'll like and save them to your profile. If your recommendations feel a bit stale, you can customize your them at any time by saving whatever categories interest you. Tap on the home screen again to see your dynamically-updated item feed. Find something you like? Swipe right to save it on your profile!_
+After connecting the app with Facebook, Shoppit will automatically detect a few categories you'll like and save them to your profile. If your recommendations feel a bit stale, you can customize your them at any time by saving whatever categories interest you. Tap on the home screen again to see your dynamically-updated item feed. Find something you like? Swipe right to save it on your profile!
 
 <p align="center">
  <img src="screenshots/second.jpg" />
 </p>
 
-_Connect to your friends without the hassle! Your friends list is automatically generated from your Facebook connections. Make sure you never forget a birthday again by tapping the bell icon next to a friend's name to subscribe to notifications. Need to get a friend something special? Simply browse their recently liked items on their profile. Just check out an item on their profile to find out more info, and once you find a match, buy it from Amazon directly within the app!_
+Connect to your friends without the hassle! Your friends list is automatically generated from your Facebook connections. Make sure you never forget a birthday again by tapping the bell icon next to a friend's name to subscribe to notifications. Need to get a friend something special? Simply browse their recently liked items on their profile. Just check out an item on their profile to find out more info, and once you find a match, buy it from Amazon directly within the app!
 
-## Motivations 
+## Motivation 
 
 We wanted to make an app that would make shopping on your phone social and fun! 
 
@@ -73,13 +73,13 @@ npm start
 
 - Expo
 
-### Back-end: [Shoppit backend](https://github.com/cherlin/trash-walk)
+### Back-end: [Shoppit backend](https://github.com/rusomarques/shoppit_server/)
 
 ## Developers team
 
 - Luke Rogerson [GitHub](https://github.com/Luke-Rogerson) [LinkedIn](https://www.linkedin.com/in/lukerogerson/)
 - Charlie Rutland - [GitHub](https://github.com/charlierutland) [LinkedIn](https://www.linkedin.com/in/charlie-rutland/)
-- Amy Kirasak - [GitHub](https://github.com/momentmuse) [LinkedIn](https://www.linkedin.com/in/amy-kirasak/)
+- Amy Kirasack - [GitHub](https://github.com/momentmuse) [LinkedIn](https://www.linkedin.com/in/amy-kirasak/)
 - Leandro Marques - [GitHub](https://github.com/rusomarques) [LinkedIn](https://www.linkedin.com/in/leandro-marques-pereira/)
 
 ## License
