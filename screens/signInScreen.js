@@ -63,13 +63,6 @@ class SignInScreen extends React.Component {
       if (type === 'success') {
         await this.storeToken('accesstoken', token);
         this.props.navigation.navigate('HomeScreen');
-
-        // const currentUserCatLen = this.props.currentUser[
-        //   this.props.currentUserId
-        // ].category.length;
-        // currentUserCatLen > 1
-        //   ? this.props.navigation.navigate('HomeScreen')
-        //   : this.props.navigation.navigate('CategoriesScreen');
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
@@ -79,7 +72,6 @@ class SignInScreen extends React.Component {
   render() {
     if (!this.props.currentUser) return <Text>Loading...</Text>;
 
-    // const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.greeting}>

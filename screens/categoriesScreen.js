@@ -20,7 +20,6 @@ import {
 import { Spinner } from 'native-base';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class CategoriesScreen extends React.Component {
   state = {

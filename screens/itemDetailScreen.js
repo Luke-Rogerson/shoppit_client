@@ -9,7 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import { Button, Spinner } from 'native-base';
+import { Button } from 'native-base';
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 
